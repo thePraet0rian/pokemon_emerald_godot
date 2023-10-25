@@ -63,8 +63,6 @@ func start_battle() -> void:
 
 func set_ui() -> void:
 	
-	update_ui()
-	
 	enemy_sprite.texture = pokemon_data.pokemon_front_sprite[global.get_mon_number(enemy_pokemon[0][1])]
 	player_sprite.texture = pokemon_data.pokemon_back_sprite[global.get_mon_number(player_pokemon[0][1])]
 	
@@ -76,6 +74,8 @@ func set_ui() -> void:
 	
 	
 	menue_label.text = "What will \n" + player_pokemon[0][1] + " do?"
+	
+	update_ui()
 
 
 const item_scn: PackedScene = preload("res://components/item.tscn")
@@ -734,6 +734,9 @@ func update_ui() -> void:
 	xp_bar.scale.x = clampf(xp_bar_scale, 0.0, 1.0)
 	
 	player_hp_label.text = str(round(player_pokemon[0][9])) + "/" + str(player_pokemon[0][3])
+	
+	pp_attack_label.text = "PP    " + str(player_moveset[attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_moveset[attack_select_index.x][attack_select_index.y][0]][1])
+	type_attack_label.text = "TYPE/" + attacks.attacks[player_moveset[attack_select_index.y][attack_select_index.y][0]][0]
 
 
 func cubed(input: int) -> float:
