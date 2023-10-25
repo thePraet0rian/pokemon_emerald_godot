@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://igovefvqgoqe"]
+
+[ext_resource type="Texture2D" uid="uid://cjn4spcjqixcc" path="res://room_assets/grass.png" id="1_cubkb"]
+
+[sub_resource type="Animation" id="Animation_ubpw1"]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qtvvx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_goh34"]
+_data = {
+"RESET": SubResource("Animation_qtvvx"),
+"fade": SubResource("Animation_ubpw1")
+}
+
+[node name="tall_grass" type="Area2D"]
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+texture = ExtResource("1_cubkb")
+
+[node name="anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_goh34")
+}

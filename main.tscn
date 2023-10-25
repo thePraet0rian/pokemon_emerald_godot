@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqg04iyf3b111"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1kc81"]
+[ext_resource type="AudioStream" uid="uid://dx64xwia70q8j" path="res://sfx/verlassen.wav" id="2_0l16n"]
+
+[sub_resource type="Animation" id="Animation_c6b02"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canvas_layer/color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w6n01"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canvas_layer/color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_transtition"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kwn57"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canvas_layer/color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8tn3p"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canvas_layer/color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v6ihr"]
+_data = {
+"RESET": SubResource("Animation_c6b02"),
+"fade": SubResource("Animation_w6n01"),
+"fade_in": SubResource("Animation_kwn57"),
+"fade_out": SubResource("Animation_8tn3p")
+}
+
+[node name="main" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_1kc81")
+
+[node name="rooms" type="Node2D" parent="."]
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v6ihr")
+}
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="color_rect" type="ColorRect" parent="canvas_layer"]
+offset_right = 240.0
+offset_bottom = 160.0
+color = Color(0, 0, 0, 0)
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+
+[node name="sfx_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0l16n")
+
+[connection signal="animation_finished" from="animation_player" to="." method="_on_animation_player_animation_finished"]

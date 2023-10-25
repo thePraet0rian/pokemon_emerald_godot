@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7qwguxr61pmx"]
+
+[ext_resource type="Script" path="res://dialogue/dialogue_object.gd" id="1_mq4mv"]
+
+[node name="dialouge_object" type="Area2D"]
+script = ExtResource("1_mq4mv")
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

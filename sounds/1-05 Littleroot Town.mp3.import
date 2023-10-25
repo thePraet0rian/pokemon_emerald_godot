@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvih8v4jfq26q"
+path="res://.godot/imported/1-05 Littleroot Town.mp3-af51baaa9cf94254d28eb745d07d2342.mp3str"
+
+[deps]
+
+source_file="res://sounds/1-05 Littleroot Town.mp3"
+dest_files=["res://.godot/imported/1-05 Littleroot Town.mp3-af51baaa9cf94254d28eb745d07d2342.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

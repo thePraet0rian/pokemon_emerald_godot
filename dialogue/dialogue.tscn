@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctk0c5xy6nhg"]
+
+[ext_resource type="Texture2D" uid="uid://bqjdu1sgt7qk5" path="res://dialouge_assets/dialouge_background.png" id="1_3318f"]
+[ext_resource type="Script" path="res://dialogue/dialogue.gd" id="1_oawlg"]
+[ext_resource type="FontFile" uid="uid://byc8v8aboxcx1" path="res://assets/pokefont_new.ttf" id="3_82dxw"]
+
+[node name="dialogue" type="CanvasLayer"]
+script = ExtResource("1_oawlg")
+
+[node name="texture_rect" type="TextureRect" parent="."]
+offset_top = 112.0
+offset_right = 240.0
+offset_bottom = 160.0
+texture = ExtResource("1_3318f")
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="dialouge_label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 122.0
+offset_right = 64.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_82dxw")
+theme_override_font_sizes/font_size = 8
+text = "abc"

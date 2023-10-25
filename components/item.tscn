@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://be7h315ingglp"]
+
+[ext_resource type="FontFile" uid="uid://b75ntqsk0etvv" path="res://assets/pokefont.ttf" id="1_8dtg5"]
+
+[node name="item" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_8dtg5")
+theme_override_font_sizes/font_size = 8

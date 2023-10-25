@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://wxhxheo61txe"]
+
+[ext_resource type="Script" path="res://components/transition.gd" id="1_bbsbi"]
+
+[node name="transition" type="Area2D"]
+script = ExtResource("1_bbsbi")
+
+[node name="hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://sim7ytioq2s2"]
+
+[ext_resource type="Texture2D" uid="uid://dgc3ip3inqu0" path="res://player_assets/inventory/menue.png" id="1_86uxw"]
+[ext_resource type="Script" path="res://player_assets/inventory/inventory.gd" id="1_ewyd6"]
+[ext_resource type="Texture2D" uid="uid://cejwyyrdk6njt" path="res://player_assets/inventory/menue_cursor.png" id="2_ypce2"]
+
+[node name="inventory" type="CanvasLayer"]
+script = ExtResource("1_ewyd6")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(204, 60)
+texture = ExtResource("1_86uxw")
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(179, 15)
+texture = ExtResource("2_ypce2")
