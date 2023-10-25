@@ -1,11 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1698171964
+::res://::1698252345
 attacks.gd::GDScript::-1::1693930834::0::1::::<>Node<>::
 dialogue.gd::GDScript::-1::1697824192::0::1::::<>Node<>::
 global.gd::GDScript::-1::1697896580::0::1::::<>Node<>::
 icon.svg::CompressedTexture2D::6894853286932151327::1692728159::1692728165::1::::<><>::
 main.gd::GDScript::-1::1698171963::0::1::::<>Node2D<>::
-main.tscn::PackedScene::8296239986181355486::1698171963::0::1::::<><>::res://main.gd<>uid://dx64xwia70q8j::::res://sfx/verlassen.wav
+main.tscn::PackedScene::8296239986181355486::1698177707::0::1::::<><>::res://main.gd<>uid://dx64xwia70q8j::::res://sfx/verlassen.wav
 pokemon_data.gd::GDScript::-1::1695911251::0::1::::<>Node<>::
 README.md::TextFile::-1::1698005085::0::1::::<><>::
 save_select_screen.gd::GDScript::-1::1698171922::0::1::::<>Node2D<>::
@@ -16,9 +16,9 @@ titlescreen.tscn::PackedScene::6731054881901204873::1698171964::0::1::::<><>::ui
 pokefont.ttf::FontFile::4695219132390112027::1693075973::1693161688::1::::<><>::
 pokefont_big.ttf::FontFile::5885894448203516064::1693163523::1693163530::1::::<><>::
 pokefont_new.ttf::FontFile::4077124582282899944::1697741614::1697741615::1::::<><>::
-::res://battle/::1698171966
+::res://battle/::1698177708
 battle.gd::GDScript::-1::1698170576::0::1::::<>CanvasLayer<>::
-battle.gdshader::Shader::-1::1698171966::0::1::::<><>::
+battle.gdshader::Shader::-1::1698177708::0::1::::<><>::
 battle.tscn::PackedScene::6555438823145066452::1698171965::0::1::::<><>::res://battle/battle.gd<>uid://1ieaejkmc3gf::::res://battle_assets/backgrounds/grass_01.png<>uid://bjgpg1v6vm0ys::::res://battle_assets/enemy_info.png<>uid://dk0t8e6e6ggkp::::res://battle_assets/player_info.png<>uid://b75ntqsk0etvv::::res://assets/pokefont.ttf<>uid://c52a6e4eqhy5e::::res://battle_assets/main_menue.png<>uid://dmp0fucbg5jx0::::res://battle_assets/menue_cursor.png<>uid://d10m1ecady526::::res://battle_assets/dialouge_background.png<>uid://dl5j30oc57k1v::::res://battle_assets/backgrounds/enemy_pokemon_grass.png<>uid://cp4f262bau5iy::::res://assets/pokefont_big.ttf<>uid://3qi43fmkdimb::::res://battle_assets/backgrounds/player_pokemon_grass.png<>uid://dwfv2b3bi381c::::res://battle_assets/pokemon/treecko/back.png<>uid://dbtcanods1xaq::::res://battle_assets/attack_select_background.png<>uid://dmly66s5bfei7::::res://battle_assets/bag_background.png<>uid://cxy3po8cffb4b::::res://battle_assets/bag_assets/item_sign.png<>uid://ddgcqtt8h4ida::::res://battle_assets/bag_assets/bag_01.png<>uid://bi5v4q4colv5k::::res://battle_assets/bag_assets/point.png<>uid://bshxl6mq0qb3::::res://battle_assets/pokemon_background.png<>uid://copisokbb4j4u::::res://battle_assets/pokemon_switch/front_pokemon.png<>uid://bocv65qf447os::::res://battle_assets/not_selected_ball.png<>uid://cm5ygq1jvvv76::::res://battle_assets/pokemon_switch/pokemon_empty.png<>uid://k2b6g8gy5pp3::::res://battle_assets/choose_pokemon.png<>uid://dpcftpwyuj874::::res://battle_assets/backgrounds/scroll_grass/grass_01.png<>uid://g2v4baiol8mq::::res://battle_assets/characters/ball.png<>uid://c8vq6tnfwa4as::::res://battle_assets/characters/may_01.png<>uid://c17qrjafhffvw::::res://battle_assets/characters/may_02.png<>uid://bh57wt41itrif::::res://battle_assets/characters/may_03.png<>uid://u3q1exar5vtx::::res://battle_assets/backgrounds/scroll_grass/grass_02.png<>uid://cwjfw76ut8nxs::::res://battle_assets/characters/may_04.png<>uid://dvlnhpn6quw57::::res://battle_assets/backgrounds/scroll_grass/grass_03.png<>uid://dpfe8yroc7ll8::::res://battle_assets/backgrounds/scroll_grass/grass_04.png<>uid://c65pmmk1yu3rg::::res://battle_assets/spawnpokemon.mp3.wav<>uid://bwik4w13x1wk0::::res://sounds/1-08 Wild Pokémon Battle!.mp3<>uid://brfoisv0yik4::::res://sfx/confirm.wav
 ::res://battle_assets/::1695323381
 attack_select_background.png::CompressedTexture2D::7268796210622226748::1693128965::1693128967::1::::<><>::
@@ -2876,7 +2876,7 @@ emerald_0109.wav::AudioStreamWAV::2793495022087972126::1419113470::1697996250::1
 emerald_0214.wav::AudioStreamWAV::8759898834685907062::1419113800::1697996250::1::::<><>::
 level_up_sound.wav::AudioStreamWAV::2160360765963779471::1419113390::1697996789::1::::<><>::
 verlassen.wav::AudioStreamWAV::8839404199095844595::1419113382::1697996623::1::::<><>::
-::res://sounds/::1698173227
+::res://sounds/::1698173228
 1-03 Title Theme.mp3::AudioStreamMP3::2365860916086646897::1697904654::1697904655::1::::<><>::
 1-05 Littleroot Town.mp3::AudioStreamMP3::6263807204171529930::1697904649::1697904649::1::::<><>::
 1-08 Wild Pokémon Battle!.mp3::AudioStreamMP3::3947750420695791621::1697904096::1697904096::1::::<><>::
