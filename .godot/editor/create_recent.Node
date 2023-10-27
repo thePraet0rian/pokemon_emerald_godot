@@ -1,3 +1,4 @@
+TileMap
 ColorRect
 AnimationPlayer
 Node2D
@@ -11,7 +12,6 @@ Area2D
 StaticBody2D
 CollisionPolygon2D
 CollisionShape2D
-TileMap
 AnimationTree
 TextureRect
 ParallaxBackground
