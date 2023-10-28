@@ -872,7 +872,7 @@ func damage(attack: String, level: int, crit_chance: int, attacker: String, defe
 	
 	
 	@warning_ignore("integer_division", "narrowing_conversion")
-	return ((((((2 * level * crit) / 5) + 2) * attack_power * (attack_stat / defense_stat)) / 50) + 2) * stab * type_01 * type_02 * random
+	return ((((((2 * level) / 5) + 2) * attack_power * (attack_stat / defense_stat)) / 50) + 2) * stab * type_01 * type_02 * random * crit
 
 
 func type_effectivness(attacking_type: String, defending_type: String) -> float:

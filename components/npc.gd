@@ -31,4 +31,12 @@ func _ready() -> void:
 
 func update() -> void:
 	
-	pass
+	if direction.x == -1:
+		sprite.frame = 3
+	elif direction.x == 1:
+		sprite.frame = 2
+	
+	if direction.y == -1:
+		sprite.frame = 0
+	elif direction.y == 1:
+		sprite.frame = 1

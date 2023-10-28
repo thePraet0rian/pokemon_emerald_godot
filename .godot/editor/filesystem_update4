@@ -1,2 +1,6 @@
-res://test/test.tscn
-res://rooms/room_03.tscn
+res://main.tscn
+res://battle/battle.gd
+res://components/npc.gd
+res://dialogue/dialogue_scn.tscn
+res://dialogue/dialogue.tscn
+res://dialogue.gd
