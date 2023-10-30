@@ -519,3 +519,19 @@ next_position = Vector2(40, 8)
 
 [node name="dialouge_object" parent="." instance=ExtResource("3_1ktjk")]
 position = Vector2(72, 0)
+
+[node name="dialouge_object_2" parent="." instance=ExtResource("3_1ktjk")]
+position = Vector2(56, -17)
+object = 1
+
+[node name="dialouge_object_3" parent="." instance=ExtResource("3_1ktjk")]
+position = Vector2(88, 0)
+object = 2
+
+[node name="dialouge_object_4" parent="." instance=ExtResource("3_1ktjk")]
+position = Vector2(104, -16)
+object = 3
+
+[node name="dialouge_object_5" parent="." instance=ExtResource("3_1ktjk")]
+position = Vector2(136, -8)
+object = 4
