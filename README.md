@@ -4,3 +4,5 @@
 
 - Sprites are ripped from spritersresource.com/game-boy-advance/pokemon-emerald
 - Music is ripped from downloads.khinsider.com/game-soundtracks/album/pokemon-emerald-enhanced-soundtrack/
+
+![alt text](assets/example_image.png)

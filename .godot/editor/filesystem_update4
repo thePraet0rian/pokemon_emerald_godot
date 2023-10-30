@@ -1,1 +1,8 @@
+res://main.tscn
+res://titlescreen.tscn
+res://rooms/room_01.tscn
+res://dialogue/dialogue.tscn
+res://components/npc.tscn
 res://rooms/room_03.tscn
+res://rooms/room_02.tscn
+res://README.md
