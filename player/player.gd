@@ -47,6 +47,15 @@ func _ready() -> void:
 	previous_positon = inital_position
 
 
+func _input(event: InputEvent) -> void:
+	
+	if event.is_action_pressed("debug"):
+		get_tree().debug_collisions_hint = not get_tree().debug_collisions_hint
+		$collsion_polygon.visible = get_tree().debug_collisions_hint
+		$on_entered/hitbox.visible = get_tree().debug_collisions_hint
+		$on_touched/hitbox.visible = get_tree().debug_collisions_hint
+
+
 func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("inventory"):

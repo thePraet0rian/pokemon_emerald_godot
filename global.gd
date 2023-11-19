@@ -12,7 +12,7 @@ signal save_game
 
 
 const rooms: Array = [preload("res://rooms/room_01.tscn"), preload("res://rooms/room_02.tscn"), 
-preload("res://rooms/room_03.tscn"), preload("res://rooms/room_04.tscn"), preload("res://rooms/room_05.tscn"), 
+preload("res://rooms/room_03.scn"), preload("res://rooms/room_04.tscn"), preload("res://rooms/room_05.tscn"), 
 preload("res://rooms/room_06.tscn"), preload("res://rooms/room_07.tscn"), preload("res://rooms/room_08.tscn"),
 preload("res://rooms/room_09.tscn"), preload("res://rooms/room_10.tscn")]
 
