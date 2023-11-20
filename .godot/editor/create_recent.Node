@@ -1,3 +1,4 @@
+Sprite2D
 ColorRect
 Node2D
 TileMap
@@ -7,7 +8,6 @@ Camera2D
 CollisionPolygon2D
 CollisionShape2D
 StaticBody2D
-Sprite2D
 Label
 AudioStreamPlayer
 AudioListener2D

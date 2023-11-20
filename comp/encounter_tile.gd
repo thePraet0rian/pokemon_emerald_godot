@@ -37,7 +37,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	
-	print("yes")
+	print("yesh liebech ")
 	
 	if !player.is_moving:
 		if pokemon_encounterd():
