@@ -39,10 +39,10 @@ func start() -> void:
 	anim_player.play("fade_out")
 	
 	data = FileAccess.open(save_path, FileAccess.READ).get_var().duplicate()
-
+	
 	global.current_room = data[0][0]
 	
-	rooms.add_child(global.rooms[global.current_room].instantiate())
+	rooms.add_child(rooms_arr[global.current_room].instantiate())
 	
 	var player_inst: CharacterBody2D = player_scn.instantiate()
 	rooms.get_child(0).get_node("tilemap").add_child(player_inst)
@@ -74,7 +74,7 @@ func transition(new_room: int, next_position: Vector2) -> void:
 	new_room_int = new_room
 	global.current_room = new_room
 	anim_player.play("fade_in")
-	room_inst = global.rooms[new_room].instantiate()
+	room_inst = rooms_arr[new_room].instantiate()
 	
 	sfx_player.play()
 	await sfx_player.finished
