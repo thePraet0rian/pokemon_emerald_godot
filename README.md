@@ -10,13 +10,12 @@
 - Music is ripped from downloads.khinsider.com/game-soundtracks/album/pokemon-emerald-enhanced-soundtrack/
 
 # There is a corespoding youtube video by me, which you can watch.
-- youtube: 
+- youtube: https://www.youtube.com/watch?v=9SDiq2hfyXs
 
 # Implementation Check List:
 - Player movement
 - Room transition
-- Wild Pokémon battles
-- 
+- Wild Pokémon battles 
 
 # To be implemented:
 - 50% of the overworld and most of the subrooms
@@ -26,7 +25,6 @@
 - Story Progress
 - Moving NPC's
 - Performance Optimizations
-- 
 
 
 ![alt text](assets/example_image.png)
