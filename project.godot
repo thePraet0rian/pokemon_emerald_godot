@@ -13,7 +13,6 @@ config_version=5
 config/name="pokemon_emerald"
 run/main_scene="res://titlescreen.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
@@ -28,9 +27,10 @@ dialogue="*res://dialogue.gd"
 
 window/size/viewport_width=240
 window/size/viewport_height=160
-window/size/window_width_override=480
-window/size/window_height_override=320
+window/size/window_width_override=1440
+window/size/window_height_override=960
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [editor]
 

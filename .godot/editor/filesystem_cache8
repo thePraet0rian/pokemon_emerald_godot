@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1700569877
+::res://::1700576843
 attacks.gd::GDScript::-1::1700568312::0::1::::<>Node<>::
 dialogue.gd::GDScript::-1::1700568312::0::1::::<>Node<>::
 global.gd::GDScript::-1::1700568312::0::1::::<>Node<>::
@@ -7,7 +7,7 @@ icon.svg::CompressedTexture2D::6894853286932151327::1700568312::1700568312::1:::
 main.gd::GDScript::-1::1700569565::0::1::::<>Node2D<>::
 main.tscn::PackedScene::8296239986181355486::1700569877::0::1::::<><>::res://main.gd<>uid://dx64xwia70q8j::::res://sfx/verlassen.wav
 pokemon_data.gd::GDScript::-1::1700568312::0::1::::<>Node<>::
-README.md::TextFile::-1::1700568922::0::1::::<><>::
+README.md::TextFile::-1::1700574919::0::1::::<><>::
 save_select_screen.gd::GDScript::-1::1700568312::0::1::::<>Node2D<>::
 save_select_screen.tscn::PackedScene::7148398537917209810::1700568312::0::1::::<><>::res://save_select_screen.gd<>uid://i6wab5dxj806
 titlescreen.gd::GDScript::-1::1700568312::0::1::::<>Node2D<>::
@@ -2595,11 +2595,11 @@ inventory.gd::GDScript::-1::1700568312::0::1::::<>CanvasLayer<>::
 inventory.tscn::PackedScene::1280701247129755531::1700568312::0::1::::<><>::uid://dgc3ip3inqu0
 menue.png::CompressedTexture2D::223124678295605929::1700568312::1700568312::1::::<><>::
 menue_cursor.png::CompressedTexture2D::5073556061592431281::1700568312::1700568312::1::::<><>::
-::res://rooms/::1700571370
+::res://rooms/::1700571640
 hoenn___pokemon_emerald___full_region_map_by_darkshadedx_dd636ie.png::CompressedTexture2D::4677106320950913563::1700568312::1700568312::1::::<><>::
 room_01.tscn::PackedScene::4621708496921119603::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
 room_02.tscn::PackedScene::4127166116531659431::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
-room_03.scn::PackedScene::6866204543669153440::1700571370::0::1::::<><>::uid://d2nxv1swp11jp::::res://room_assets/exterior_tileset_02.png<>uid://db03dtqxwxqj8::::res://comp/ledge.tscn<>uid://wxhxheo61txe::::res://components/transition.tscn<>uid://xa22fo13s7np::::res://components/npc.tscn<>uid://b6mim3gt4xv8b::::res://npc_assets/npc_02.png<>uid://4c43wr4i42nk::::res://npc_assets/npc_03.png<>uid://b7vvi08qmwqud::::res://rooms/hoenn___pokemon_emerald___full_region_map_by_darkshadedx_dd636ie.png
+room_03.scn::PackedScene::6866204543669153440::1700571640::0::1::::<><>::uid://d2nxv1swp11jp::::res://room_assets/exterior_tileset_02.png<>uid://db03dtqxwxqj8::::res://comp/ledge.tscn<>uid://wxhxheo61txe::::res://components/transition.tscn<>uid://xa22fo13s7np::::res://components/npc.tscn<>uid://b6mim3gt4xv8b::::res://npc_assets/npc_02.png<>uid://4c43wr4i42nk::::res://npc_assets/npc_03.png<>uid://b7vvi08qmwqud::::res://rooms/hoenn___pokemon_emerald___full_region_map_by_darkshadedx_dd636ie.png
 room_03_duplicate.tscn::PackedScene::8758950883244258074::1700568312::0::1::::<><>::uid://dn5a2k80ycttp
 room_04.tscn::PackedScene::3186565012817393599::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
 room_05.tscn::PackedScene::4898077141061191361::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
@@ -2608,7 +2608,7 @@ room_07.tscn::PackedScene::1568413803490485869::1700568312::0::1::::<><>::uid://
 room_08.tscn::PackedScene::421562370292929512::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
 room_09.tscn::PackedScene::665726484095101279::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
 room_10.tscn::PackedScene::2211996495422765019::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
-::res://room_assets/::1700571263
+::res://room_assets/::1700571400
 exterior_tileset.png::CompressedTexture2D::8133697144811055697::1700568312::1700568312::1::::<><>::
 exterior_tileset_02.png::CompressedTexture2D::9082633127048845993::1700571399::1700571400::1::::<><>::
 grass.png::CompressedTexture2D::5433171599382288514::1700568312::1700568312::1::::<><>::
