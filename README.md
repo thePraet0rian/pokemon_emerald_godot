@@ -25,6 +25,7 @@
 - Story Progress
 - Moving NPC's
 - Performance Optimizations
+- Refactoring of the entire codebase. 
 
 
 ![alt text](assets/example_image.png)
