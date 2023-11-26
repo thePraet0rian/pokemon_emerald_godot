@@ -9,7 +9,8 @@ signal start_dialogue()
 signal end_dialogue()
 signal start_game()
 signal save_game
-
+signal enter_new_room()
+signal enter_new_area()
 
 
 var current_room: int = 0

@@ -28,6 +28,7 @@ func _ready() -> void:
 	global.connect("end_dialogue", Callable(self, "end_dialogue"))
 	global.connect("start_game", Callable(self, "start_game"))
 	global.connect("save_game", Callable(self, "save_game"))
+	global.connect("enter_new_area", Callable(self, "enter_new_area"))
 
 
 const save_path: String = "user://savefile.save"
@@ -68,7 +69,6 @@ var room_inst: Node2D
 
 func transition(new_room: int, next_position: Vector2) -> void:
 	
-	
 	player_inst = player_scn.instantiate()
 	player_inst.position = next_position
 	new_room_int = new_room
@@ -93,6 +93,7 @@ func end_transtition() -> void:
 	
 	play_music()
 	anim_player.play("fade_out")
+	enter_new_area(0)
 
 
 func start_battle(enemy_pokemon: Array, enemy_moveset: Array, battle_type: int) -> void:
@@ -174,3 +175,24 @@ func play_music() -> void:
 			else: return
 	
 	music_player.play()
+
+
+func enter_new_area(new_area: int) -> void:
+	
+	match new_area:
+		
+		0:
+			global.emit_signal("enter_new_room", [0, 1], 0)
+			return
+		
+		1:
+			global.emit_signal("enter_new_room", [0, 1, 2], 1)
+			return
+		
+		2:
+			global.emit_signal("enter_new_room", [1, 2, 3, 4], 2)
+			return
+		
+		3:
+			global.emit_signal("enter_new_room", [2, 3, 3]) # Weird water connection TBI
+			return

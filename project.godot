@@ -30,7 +30,6 @@ window/size/viewport_height=160
 window/size/window_width_override=1440
 window/size/window_height_override=960
 window/stretch/mode="viewport"
-window/vsync/vsync_mode=0
 
 [editor]
 
