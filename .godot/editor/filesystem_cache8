@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701104864
+::res://::1701119248
 attacks.gd::GDScript::-1::1700568312::0::1::::<>Node<>::
 dialogue.gd::GDScript::-1::1700568312::0::1::::<>Node<>::
 global.gd::GDScript::-1::1700688097::0::1::::<>Node<>::
@@ -2595,11 +2595,11 @@ inventory.gd::GDScript::-1::1700568312::0::1::::<>CanvasLayer<>::
 inventory.tscn::PackedScene::1280701247129755531::1700568312::0::1::::<><>::uid://dgc3ip3inqu0
 menue.png::CompressedTexture2D::223124678295605929::1700568312::1700568312::1::::<><>::
 menue_cursor.png::CompressedTexture2D::5073556061592431281::1700568312::1700568312::1::::<><>::
-::res://rooms/::1701089912
+::res://rooms/::1701117231
 hoenn___pokemon_emerald___full_region_map_by_darkshadedx_dd636ie.png::CompressedTexture2D::4677106320950913563::1701009336::1700568312::1::::<><>::
 room_01.tscn::PackedScene::4621708496921119603::1700829057::0::1::::<><>::uid://bwenod3wu7r3u
 room_02.tscn::PackedScene::4127166116531659431::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
-room_03.scn::PackedScene::6866204543669153440::1701089912::0::1::::<><>::uid://d2nxv1swp11jp::::res://room_assets/exterior_tileset_02.png<>res://rooms/routes/areas.gd<>uid://b7vvi08qmwqud::::res://rooms/hoenn___pokemon_emerald___full_region_map_by_darkshadedx_dd636ie.png
+room_03.scn::PackedScene::6866204543669153440::1701117231::0::1::::<><>::uid://d2nxv1swp11jp::::res://room_assets/exterior_tileset_02.png<>res://rooms/routes/areas.gd<>uid://b7vvi08qmwqud::::res://rooms/hoenn___pokemon_emerald___full_region_map_by_darkshadedx_dd636ie.png
 room_03_duplicate.tscn::PackedScene::8758950883244258074::1700568312::0::1::::<><>::uid://dn5a2k80ycttp
 room_03_test.scn::PackedScene::8319419714047588639::1700685424::0::1::::<><>::uid://d2nxv1swp11jp
 room_04.tscn::PackedScene::3186565012817393599::1700568312::0::1::::<><>::uid://bwenod3wu7r3u
@@ -2613,9 +2613,9 @@ room_10.tscn::PackedScene::2211996495422765019::1700568312::0::1::::<><>::uid://
 area.gd.txt::TextFile::-1::1700685802::0::1::::<><>::
 areas.gd::GDScript::-1::1700912854::0::1::::<>Area2D<>::
 area_06.gd::GDScript::-1::1700775996::0::1::::<>Area2D<>::
-::res://room_assets/::1701114530
+::res://room_assets/::1701115094
 exterior_tileset.png::CompressedTexture2D::8133697144811055697::1700568312::1700568312::1::::<><>::
-exterior_tileset_02.png::CompressedTexture2D::9082633127048845993::1701115092::1701115094::1::::<><>::
+exterior_tileset_02.png::CompressedTexture2D::9082633127048845993::1701119922::1701120033::1::::<><>::
 grass.png::CompressedTexture2D::5433171599382288514::1700568312::1700568312::1::::<><>::
 iterior_assets.png::CompressedTexture2D::3939647278618843664::1700568312::1700568312::1::::<><>::
 teses.png::CompressedTexture2D::4976057907036226::1700568312::1700568312::1::::<><>::
