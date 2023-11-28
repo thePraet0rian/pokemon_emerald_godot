@@ -4,7 +4,7 @@
 ## NOTE (ONGOING)
 - Project is currently being developed.
 - Probably will be finished around new years, but no promises.
-#- Project is currently being bugfixed please don't clone in about a week it will be okay
+- Project is currently being bugfixed please don't clone in about a week it will be okay
 
 # RESOURCES
 - Sprites are ripped from spritersresource.com/game-boy-advance/pokemon-emerald
