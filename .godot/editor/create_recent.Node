@@ -1,11 +1,12 @@
+Camera2D
 CollisionPolygon2D
+Area2D
+RayCast2D
+Sprite2D
+StaticBody2D
 TileMap
 Node2D
-Area2D
-Sprite2D
 Node
-Camera2D
-StaticBody2D
 ColorRect
 AnimationPlayer
 AnimationTree
@@ -20,5 +21,4 @@ ParallaxBackground
 AnimatedSprite2D
 FileDialog
 AspectRatioContainer
-RayCast2D
 CharacterBody2D

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://tpexuiss48cl"]
+
+[ext_resource type="Texture2D" uid="uid://c5h6hxt56qieh" path="res://icon.svg" id="1_1sogb"]
+[ext_resource type="Script" path="res://trainer/trainer.gd" id="1_evsi1"]
+
+[node name="trainer" type="StaticBody2D"]
+script = ExtResource("1_evsi1")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_1sogb")
+
+[node name="area_2d" type="Area2D" parent="."]
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="area_2d"]
+polygon = PackedVector2Array(-16, 16, -16, 160, 16, 160, 16, 16)
+
+[connection signal="area_entered" from="area_2d" to="." method="_on_area_2d_area_entered"]

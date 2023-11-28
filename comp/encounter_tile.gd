@@ -37,8 +37,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	
-	print("yesh liebech ")
-	
 	if !player.is_moving:
 		if pokemon_encounterd():
 			
@@ -103,8 +101,6 @@ func start_battle() -> void:
 	
 	pokemon_arr[0].append(hp_stat)
 	pokemon_arr[0].append(pokemon_level)
-	
-	
 	
 	global.emit_signal("start_battle", pokemon_arr, pokemon_moveset, wild_pokemon_battle)
 	reset()

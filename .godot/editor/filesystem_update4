@@ -1,1 +1,9 @@
+res://player/player.tscn
+res://main.tscn
 res://rooms/room_03.scn
+res://rooms/room_01.tscn
+res://trainer/trainer.tscn
+res://comp/encounter_tile.tscn
+res://rooms/routes/arr_00.tscn
+res://battle/battle.tscn
+res://save_select_screen.tscn

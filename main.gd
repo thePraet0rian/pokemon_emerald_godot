@@ -99,6 +99,8 @@ func end_transtition() -> void:
 func start_battle(enemy_pokemon: Array, enemy_moveset: Array, battle_type: int) -> void:
 	
 	stop_music()
+	player = get_node("rooms").get_child(0).get_node("tilemap").get_child(0)
+	player.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	var battle_instance = battle_scn.instantiate()
 	add_child(battle_instance)
@@ -182,17 +184,26 @@ func enter_new_area(new_area: int) -> void:
 	match new_area:
 		
 		0:
-			global.emit_signal("enter_new_room", [0, 1], 0)
+			global.enter_new_room.emit([0, 1], new_area)
 			return
-		
 		1:
-			global.emit_signal("enter_new_room", [0, 1, 2], 1)
+			global.enter_new_room.emit([0, 1, 2], new_area)
 			return
-		
 		2:
-			global.emit_signal("enter_new_room", [1, 2, 3, 4], 2)
+			global.enter_new_room.emit([1, 2, 3, 4], new_area)
 			return
-		
 		3:
-			global.emit_signal("enter_new_room", [2, 3, 3]) # Weird water connection TBI
+			global.enter_new_room.emit([2,3, 3], new_area) # Weird water connection TBI
+			return
+		4:
+			global.enter_new_room.emit([2, 4, 5], new_area)
+			return
+		5:
+			global.enter_new_room.emit([4, 5, 6], new_area)
+			return
+		6:
+			global.enter_new_room.emit([6, 7, 9], new_area)
+			return
+		7:
+			global.enter_new_room.emit([], new_area) # Missing top
 			return

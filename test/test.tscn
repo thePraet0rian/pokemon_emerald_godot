@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://camjvmy4ytvme"]
 
 [ext_resource type="PackedScene" uid="uid://cdoxpqaqs23g5" path="res://player/player.tscn" id="1_rj0lu"]
-[ext_resource type="PackedScene" uid="uid://wxhxheo61txe" path="res://components/transition.tscn" id="2_3dhdx"]
+[ext_resource type="PackedScene" uid="uid://tpexuiss48cl" path="res://trainer/trainer.tscn" id="2_or1al"]
 
 [node name="main" type="Node2D"]
 
@@ -10,5 +10,4 @@ position = Vector2(112, -32)
 
 [node name="camera_2d" type="Camera2D" parent="player"]
 
-[node name="transition" parent="." instance=ExtResource("2_3dhdx")]
-position = Vector2(112, -72)
+[node name="trainer" parent="." instance=ExtResource("2_or1al")]

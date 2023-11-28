@@ -3,7 +3,6 @@ extends CanvasLayer
 
 enum states {MENUE = 0, FIGHT = 1, BAG = 2, POKEMON = 3, RUN = 4, DIALOUGE = 5, NONE = 6, ATTACKING = 7}
 
-
 @onready var anim_player: AnimationPlayer = $anim_player
 @onready var battle_anim_player: AnimationPlayer = $battle_anim_player
 @onready var audio_stream_player: AudioStreamPlayer = $audio_stream_player
@@ -42,6 +41,9 @@ func set_battle(enemy_pokemon_arr: Array, enemy_moveset_arr: Array, battle_type_
 @onready var enemy_lv_label: Label = $info/enemy_info/level
 @onready var player_lv_label: Label = $info/player_info/level
 
+const trainer_battle: int = 1
+const wild_pokemon_battle: int = 0
+
 
 func start_battle() -> void:
 	
@@ -49,14 +51,23 @@ func start_battle() -> void:
 	set_bag()
 	set_pokemon()
 	
-	anim_player.play("start")
-	await anim_player.animation_finished
-	
-	start_dialouge(["Wild " + enemy_pokemon[0][1] + " appeared!\n", "Go " + player_pokemon[0][1] + "." ])
-	await self.dialouge_finished
-	
-	anim_player.play("start_02")
-	await anim_player.animation_finished
+	if battle_type == wild_pokemon_battle:
+		
+		anim_player.play("start")
+		await anim_player.animation_finished
+		start_dialouge(["Wild " + enemy_pokemon[0][1] + " appeared!\n", "Go " + player_pokemon[0][1] + "." ])
+		await self.dialouge_finished
+		anim_player.play("start_02")
+		await anim_player.animation_finished
+		
+	elif battle_type == trainer_battle:
+		
+		anim_player.play("start")
+		await anim_player.animation_finished
+		start_dialouge(["Trainer chalanged you"])
+		await self.dialouge_finished
+		anim_player.play("start_02")
+		await anim_player.animation_finished
 	
 	battle_anim_player.play("constant")
 
