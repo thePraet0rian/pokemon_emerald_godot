@@ -65,9 +65,11 @@ const player_scn: PackedScene = preload("res://player/player.tscn")
 var new_room_int: int = 0
 var new_player_position: Vector2
 var player_inst
+var transition_type: int
 var room_inst: Node2D
 
-func transition(new_room: int, next_position: Vector2) -> void:
+
+func transition(new_room: int, next_position: Vector2, trans_type: int) -> void:
 	
 	player_inst = player_scn.instantiate()
 	player_inst.position = next_position
@@ -75,6 +77,7 @@ func transition(new_room: int, next_position: Vector2) -> void:
 	global.current_room = new_room
 	anim_player.play("fade_in")
 	room_inst = rooms_arr[new_room].instantiate()
+	transition_type = trans_type
 	
 	sfx_player.play()
 	await sfx_player.finished
@@ -82,7 +85,9 @@ func transition(new_room: int, next_position: Vector2) -> void:
 
 func end_transtition() -> void:
 	
-	player.queue_free()
+	if transition_type == 0:
+		player.queue_free()
+	
 	rooms.get_child(0).queue_free()
 	rooms.add_child(room_inst)
 	

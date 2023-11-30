@@ -39,6 +39,7 @@ var previous_positon: Vector2 = Vector2.ZERO
 var opponent_pokemon: Array
 
 var running: bool = false
+var can_move: bool = true
 
 
 func _ready() -> void:
@@ -64,16 +65,27 @@ func _physics_process(delta: float) -> void:
 	animation()
 	start_dialouge()
 	
-	
-	if !is_moving && !jumping: player_input()
-	elif input_direction != Vector2.ZERO && is_moving && !jumping: move(delta)
-	else: is_moving = false
-	
-	if percent == 0.0 && transitioning:
-		transition()
-	
-	if jumping:
-		jump(delta)
+	if can_move:
+		
+		if !is_moving && !jumping: player_input()
+		elif input_direction != Vector2.ZERO && is_moving && !jumping: move(delta)
+		else: is_moving = false
+		
+		if percent == 0.0 and transitioning:
+			
+			transition()
+		elif percent == 0.0 and can_animated_transition:
+			
+			if Input.is_action_just_pressed("move_up"):
+				
+				
+				animated_transition()
+				
+				
+				
+		
+		if jumping:
+			jump(delta)
 
 
 func player_input() -> void:
@@ -144,11 +156,9 @@ func player_input() -> void:
 				is_moving = true
 		
 	else:
-		("y")
 		
 		if input_direction == ledge.direction and jumpable: 
 			
-			("yes")
 			inital_position = position
 			percent = 0.0  
 			jumping = true
@@ -217,11 +227,23 @@ func animation() -> void:
 func transition() -> void:
 	
 	process_mode = Node.PROCESS_MODE_DISABLED
-	global.emit_signal("transition", new_room, next_position)
+	global.emit_signal("transition", new_room, next_position, 0)
 	
 	can_transition = false
 	transitioning = false
 	touched = false
+
+
+func animated_transition() -> void:
+	
+	anim_tree.process_mode = Node.PROCESS_MODE_DISABLED
+	can_move = false
+	entered.player_animation()
+	await global.animation_finished
+	anim_tree.process_mode = Node.PROCESS_MODE_INHERIT
+	await get_tree().create_tween().tween_property(self, "position", position + Vector2(0,-16), 0.25).finished
+	global.transition.emit(1, animated_transition_position, 1)
+	anim_tree.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 @onready var sfx_player: AudioStreamPlayer = $sfx_player
@@ -254,6 +276,11 @@ func _on_on_entered_area_entered(area: Area2D) -> void:
 				next_position = area.next_position
 				
 				transitioning = true
+
+
+var can_animated_transition: bool = false
+var entered: Area2D
+var animated_transition_position: Vector2 = Vector2.ZERO
 
 
 func _on_on_touched_area_entered(area: Area2D) -> void:
@@ -291,6 +318,12 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 			ledge = area
 			jumpable = true
 			ledge_direction = ledge.direction
+	
+	elif "animated_trans" in area.name:
+		
+		entered = area
+		can_animated_transition = true
+		animated_transition_position = area.transition_position
 
 
 var jumpable: bool = false
@@ -301,9 +334,14 @@ var ledge_direction: Vector2
 func _on_on_touched_area_exited(area: Area2D) -> void:
 	
 	if "npc" in area.name:
+		
 		can_talk = false
 	elif "object" in area.name:
+		
 		can_talk = false
+	elif "animated_trans" in area.name:
+		
+		can_animated_transition = false
 
 
 const inventory_scn: PackedScene = preload("res://player_assets/inventory/inventory.tscn")

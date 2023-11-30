@@ -2,15 +2,20 @@ extends Node
 
 
 signal transition()
+signal enter_new_room()
+signal enter_new_area()
+
 signal start_battle()
 signal end_battle()
 signal lost_battle()
+
 signal start_dialogue()
 signal end_dialogue()
+
 signal start_game()
 signal save_game
-signal enter_new_room()
-signal enter_new_area()
+
+signal animation_finished
 
 
 var current_room: int = 0
@@ -34,5 +39,3 @@ func get_mon_number(pokemon_name: String) -> int:
 			return i
 	
 	return 0
-
-

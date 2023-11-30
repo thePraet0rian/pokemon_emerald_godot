@@ -1,3 +1,4 @@
+res://components
 /home/vincent/programming_godot/pokemon_emerald_godot
 res://trainer
 res://rooms/routes
@@ -6,7 +7,6 @@ res://rooms
 res://dialogue
 res://
 res://player_assets/inventory
-res://components
 res://test
 res://battle
 res://comp

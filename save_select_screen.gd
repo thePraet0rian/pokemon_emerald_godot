@@ -58,7 +58,7 @@ func execute() -> void:
 			file.store_var(data)
 			
 		
-		overlay.visible = true
+#		overlay.visible = true
 		anim_player.play("fade")
 		await anim_player.animation_finished
 		
