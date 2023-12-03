@@ -5,7 +5,9 @@ extends Area2D
 @export var direction: Vector2 = Vector2(0, 0)
 @export var offset: Vector2 = Vector2(0, 0)
 @export var npc: int = 0
-@export var frames: int = 0
+@export var frames: int = 12
+@export var moving: bool = false
+
 
 @onready var sprite: Sprite2D = $sprite_2d
 

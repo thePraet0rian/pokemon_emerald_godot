@@ -9,6 +9,7 @@ enum save_type {save_current = 0, save_last = 1}
 @export var type: types = types.entered
 @export var saves: save_type = save_type.save_current
 @export var next_position: Vector2 
+@export var direction: Vector2 = Vector2(0, 1)
 
 @onready var hitbox: CollisionPolygon2D = $hitbox
 

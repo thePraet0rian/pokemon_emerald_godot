@@ -510,7 +510,6 @@ position = Vector2(136, 56)
 txt = ExtResource("4_qxaha")
 direction = Vector2(-1, 0)
 offset = Vector2(0, -2)
-frames = 12
 
 [node name="transition" parent="." instance=ExtResource("2_ho1f1")]
 position = Vector2(40, -8)

@@ -180,6 +180,11 @@ func play_music() -> void:
 			if !music_player.stream == load("res://sounds/1-05 Littleroot Town.mp3"):
 				music_player.stream = load("res://sounds/1-05 Littleroot Town.mp3")
 			else: return
+		3:
+			if !music_player.stream == load("res://sounds/1-05 Littleroot Town.mp3"):
+				music_player.stream = load("res://sounds/1-05 Littleroot Town.mp3")
+			else:
+				return
 	
 	music_player.play()
 

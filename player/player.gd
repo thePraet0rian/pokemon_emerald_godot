@@ -78,11 +78,7 @@ func _physics_process(delta: float) -> void:
 			
 			if Input.is_action_just_pressed("move_up"):
 				
-				
 				animated_transition()
-				
-				
-				
 		
 		if jumping:
 			jump(delta)
@@ -118,8 +114,9 @@ func player_input() -> void:
 			transition()
 		elif Input.is_action_pressed("move_up") && matching.y != -1:
 			touched = false
-		
+		print(matching.y)
 		if Input.is_action_pressed("move_down") && matching.y == 1:
+			print("yes ")
 			transition()
 		elif Input.is_action_pressed("move_down") && matching.y != 1:
 			touched = false
@@ -229,7 +226,7 @@ func transition() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	global.emit_signal("transition", new_room, next_position, 0)
 	
-	can_transition = false
+	can_transition = true
 	transitioning = false
 	touched = false
 
@@ -238,12 +235,17 @@ func animated_transition() -> void:
 	
 	anim_tree.process_mode = Node.PROCESS_MODE_DISABLED
 	can_move = false
+	
 	entered.player_animation()
-	await global.animation_finished
+	
+	await get_tree().create_timer(0.3).timeout
+	
 	anim_tree.process_mode = Node.PROCESS_MODE_INHERIT
+	
 	await get_tree().create_tween().tween_property(self, "position", position + Vector2(0,-16), 0.25).finished
-	global.transition.emit(1, animated_transition_position, 1)
+	global.transition.emit(new_room, animated_transition_position, 1)
 	anim_tree.process_mode = Node.PROCESS_MODE_DISABLED
+	can_animated_transition = false
 
 
 @onready var sfx_player: AudioStreamPlayer = $sfx_player
@@ -289,15 +291,16 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 		
 		if area.type == 1:
 			
+			print("yes 1ww")
+			
 			new_room = area.new_room
 			save_pos = area.saves
 			next_position = area.next_position
 			
-			matching = input_direction
-			
+			matching = area.direction
 			touched = true
 	
-	elif "npc" in area.name:
+	elif "npc" in area.name: 
 		
 		can_talk = true
 		text.clear()
@@ -322,8 +325,9 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 	elif "animated_trans" in area.name:
 		
 		entered = area
-		can_animated_transition = true
+		new_room = area.next_room
 		animated_transition_position = area.transition_position
+		can_animated_transition = true
 
 
 var jumpable: bool = false

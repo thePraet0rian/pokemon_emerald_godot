@@ -1,9 +1,9 @@
-Sprite2D
+Node2D
 AnimationPlayer
+Sprite2D
 AnimationTree
 CollisionPolygon2D
 Area2D
-Node2D
 Camera2D
 RayCast2D
 StaticBody2D
@@ -12,13 +12,3 @@ Node
 ColorRect
 CollisionShape2D
 Label
-AudioStreamPlayer
-AudioListener2D
-Timer
-CanvasLayer
-TextureRect
-ParallaxBackground
-AnimatedSprite2D
-FileDialog
-AspectRatioContainer
-CharacterBody2D

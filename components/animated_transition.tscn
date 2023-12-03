@@ -1,32 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://nnd1o5w5bc5g"]
+[gd_scene load_steps=10 format=3 uid="uid://nnd1o5w5bc5g"]
 
 [ext_resource type="Script" path="res://components/animated_transition.gd" id="1_kamgm"]
-[ext_resource type="Texture2D" uid="uid://yqqo2s0wmjhj" path="res://room_assets/animated_tiles/door_02.png" id="2_h4ja4"]
-[ext_resource type="Texture2D" uid="uid://b5kftvciiuffm" path="res://room_assets/animated_tiles/door_02_top.png" id="3_efx8o"]
+[ext_resource type="Texture2D" uid="uid://yqqo2s0wmjhj" path="res://room_assets/animated_tiles/door_01.png" id="2_2jc82"]
+[ext_resource type="Texture2D" uid="uid://dv7rke37ssvqx" path="res://room_assets/animated_tiles/door_02.png" id="2_h4ja4"]
+[ext_resource type="Texture2D" uid="uid://b5kftvciiuffm" path="res://room_assets/animated_tiles/door_01_top.png" id="3_degay"]
 
-[sub_resource type="Animation" id="Animation_0ffim"]
+[sub_resource type="Animation" id="Animation_hd55s"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite_2d:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
-[sub_resource type="Animation" id="Animation_kdphf"]
-resource_name = "door"
+[sub_resource type="Animation" id="Animation_jrjry"]
+resource_name = "open_door"
 length = 0.3
-step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite_2d:frame")
+tracks/0/path = NodePath("door_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,21 +24,49 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1ivm"]
+[sub_resource type="Animation" id="Animation_7of30"]
+resource_name = "set_sprite_00"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_2jc82")]
+}
+
+[sub_resource type="Animation" id="Animation_nqd07"]
+resource_name = "set_sprite_01"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_h4ja4")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s10t1"]
 _data = {
-"RESET": SubResource("Animation_0ffim"),
-"door": SubResource("Animation_kdphf")
+"RESET": SubResource("Animation_hd55s"),
+"open_door": SubResource("Animation_jrjry"),
+"set_sprite_00": SubResource("Animation_7of30"),
+"set_sprite_01": SubResource("Animation_nqd07")
 }
 
 [node name="animated_trans" type="Area2D"]
 script = ExtResource("1_kamgm")
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_x1ivm")
-}
-
-[node name="sprite_2d" type="Sprite2D" parent="."]
+[node name="door_sprite" type="Sprite2D" parent="."]
 position = Vector2(8, 6)
 texture = ExtResource("2_h4ja4")
 hframes = 4
@@ -59,7 +75,12 @@ hframes = 4
 position = Vector2(8, 8)
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
-[node name="sprite_2d_2" type="Sprite2D" parent="."]
+[node name="top_sprite" type="Sprite2D" parent="."]
 z_index = 3
 position = Vector2(8, -10)
-texture = ExtResource("3_efx8o")
+texture = ExtResource("3_degay")
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s10t1")
+}
