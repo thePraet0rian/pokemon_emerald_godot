@@ -8,14 +8,18 @@ extends Area2D
 @export var next_room: int = 0
 @export var door_type: int = 0
 
-const door_sprites: Array = [preload("res://room_assets/animated_tiles/door_01.png"), preload("res://room_assets/animated_tiles/door_02.png"), preload("res://room_assets/animated_tiles/door_03.png")]
-const top_sprites: Array = [preload("res://room_assets/animated_tiles/door_01_top.png"), preload("res://room_assets/animated_tiles/door_02_top.png"), preload("res://room_assets/animated_tiles/door_02_top.png")]
+const door_sprites: Array = [preload("res://room_assets/animated_tiles/door_01.png"), preload("res://room_assets/animated_tiles/door_02.png"), preload("res://room_assets/animated_tiles/door_03.png"), preload("res://room_assets/animated_tiles/door_04.png")]
+const top_sprites: Array = [preload("res://room_assets/animated_tiles/door_01_top.png"), preload("res://room_assets/animated_tiles/door_02_top.png"), preload("res://room_assets/animated_tiles/door_03_top.png"), preload("res://room_assets/animated_tiles/door_04_top.png")]
 
 
 func _ready() -> void:
 	
 	$door_sprite.texture = door_sprites[door_type]
-	$top_sprite.texture = top_sprites[door_type]
+	
+	if top_sprites[door_type] != null:
+		$top_sprite.texture = top_sprites[door_type]
+	else:
+		$top_sprite.visible = false
 
 
 func player_animation() -> void:

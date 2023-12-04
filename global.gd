@@ -19,16 +19,13 @@ signal animation_finished
 
 
 var current_room: int = 0
+var current_area: int = 0
+var display_areas: Array = []
 
 var player_pokemon: Array = []
 var player_moveset: Array = []
 
 var player_inventory: Array = []
-
-
-func _ready() -> void:
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func get_mon_number(pokemon_name: String) -> int:

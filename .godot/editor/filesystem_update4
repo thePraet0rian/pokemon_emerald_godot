@@ -1,4 +1,5 @@
 res://main.tscn
+res://main.gd
 res://rooms/room_03.scn
 res://rooms/routes/arr_00.tscn
 res://components/animated_transition.tscn
@@ -7,3 +8,4 @@ res://rooms/room_04.tscn
 res://battle/battle.tscn
 res://components/transition.tscn
 res://components/npc.tscn
+res://rooms/routes/arr_02.tscn

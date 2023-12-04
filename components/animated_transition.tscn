@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://nnd1o5w5bc5g"]
+[gd_scene load_steps=11 format=3 uid="uid://nnd1o5w5bc5g"]
 
 [ext_resource type="Script" path="res://components/animated_transition.gd" id="1_kamgm"]
 [ext_resource type="Texture2D" uid="uid://yqqo2s0wmjhj" path="res://room_assets/animated_tiles/door_01.png" id="2_2jc82"]
 [ext_resource type="Texture2D" uid="uid://dv7rke37ssvqx" path="res://room_assets/animated_tiles/door_02.png" id="2_h4ja4"]
-[ext_resource type="Texture2D" uid="uid://b5kftvciiuffm" path="res://room_assets/animated_tiles/door_01_top.png" id="3_degay"]
+[ext_resource type="Texture2D" uid="uid://bnx37hdl02lhk" path="res://room_assets/animated_tiles/door_04.png" id="2_tcfd6"]
+[ext_resource type="Texture2D" uid="uid://7hl2jxqwy4du" path="res://room_assets/animated_tiles/door_04_top.png" id="3_6puph"]
 
 [sub_resource type="Animation" id="Animation_hd55s"]
 length = 0.001
@@ -68,17 +69,18 @@ script = ExtResource("1_kamgm")
 
 [node name="door_sprite" type="Sprite2D" parent="."]
 position = Vector2(8, 6)
-texture = ExtResource("2_h4ja4")
+texture = ExtResource("2_tcfd6")
 hframes = 4
 
 [node name="collision_polygon_2d" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(8, 8)
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
 [node name="top_sprite" type="Sprite2D" parent="."]
 z_index = 3
 position = Vector2(8, -10)
-texture = ExtResource("3_degay")
+texture = ExtResource("3_6puph")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {

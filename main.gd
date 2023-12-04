@@ -64,15 +64,15 @@ const player_scn: PackedScene = preload("res://player/player.tscn")
 
 var new_room_int: int = 0
 var new_player_position: Vector2
-var player_inst
+var player_trans_inst
 var transition_type: int
 var room_inst: Node2D
 
 
 func transition(new_room: int, next_position: Vector2, trans_type: int) -> void:
 	
-	player_inst = player_scn.instantiate()
-	player_inst.position = next_position
+	player_trans_inst = player_scn.instantiate()
+	player_trans_inst.position = next_position
 	new_room_int = new_room
 	global.current_room = new_room
 	anim_player.play("fade_in")
@@ -93,12 +93,12 @@ func end_transtition() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	rooms.get_child(0).get_node("tilemap").add_child(player_inst)
+	rooms.get_child(0).get_node("tilemap").add_child(player_trans_inst)
 	player = $rooms.get_child(0).get_node("tilemap").get_node("player")
 	
 	play_music()
 	anim_player.play("fade_out")
-	enter_new_area(0)
+	enter_new_area(global.current_area)
 
 
 func start_battle(enemy_pokemon: Array, enemy_moveset: Array, battle_type: int) -> void:
@@ -120,10 +120,10 @@ func end_battle() -> void:
 	play_music()
 
 
-
 const dialogue_scn: PackedScene = preload("res://dialogue/dialogue_scn.tscn")
 
 var dialogue_inst: CanvasLayer
+
 
 func start_dialogue(text: Array) -> void:
 	
@@ -158,8 +158,6 @@ func save_game() -> void:
 
 func stop_music() -> void:
 	
-	print("wait")
-	
 	music_player.stop()
 	music_player.set_stream(null)
 
@@ -191,29 +189,28 @@ func play_music() -> void:
 
 func enter_new_area(new_area: int) -> void:
 	
+	var displayed_areas: Array = []
+	var current_area: int = new_area
+	
 	match new_area:
 		
 		0:
-			global.enter_new_room.emit([0, 1], new_area)
-			return
+			displayed_areas = [0, 1]
 		1:
-			global.enter_new_room.emit([0, 1, 2], new_area)
-			return
+			displayed_areas = [0, 1, 2]
 		2:
-			global.enter_new_room.emit([1, 2, 3, 4], new_area)
-			return
+			displayed_areas = [1, 2, 3, 4]
 		3:
-			global.enter_new_room.emit([2,3, 3], new_area) # Weird water connection TBI
-			return
+			displayed_areas = [2, 3] # weird water connection
 		4:
-			global.enter_new_room.emit([2, 4, 5], new_area)
-			return
+			displayed_areas = [2, 4, 5]
 		5:
-			global.enter_new_room.emit([4, 5, 6], new_area)
-			return
+			displayed_areas = [4, 5, 6]
 		6:
-			global.enter_new_room.emit([6, 7, 9], new_area)
-			return
+			displayed_areas = [6, 7, 9]
 		7:
-			global.enter_new_room.emit([], new_area) # Missing top
-			return
+			displayed_areas = []
+	
+	global.current_area = current_area
+	
+	global.enter_new_room.emit(displayed_areas, current_area)
