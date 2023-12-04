@@ -3,7 +3,7 @@ extends Area2D
 
 @export var txt: Texture
 @export var direction: Vector2 = Vector2(0, 0)
-@export var offset: Vector2 = Vector2(0, 0)
+@export var sprite_offset: Vector2 = Vector2(0, 0)
 @export var npc: int = 0
 @export var frames: int = 12
 @export var moving: bool = false
@@ -20,7 +20,7 @@ func _ready() -> void:
 	text.append_array(dialogue.npc_dialogue_string[npc])
 	
 	sprite.texture = txt
-	sprite.offset = offset
+	sprite.offset = sprite_offset
 	
 	
 	match frames:

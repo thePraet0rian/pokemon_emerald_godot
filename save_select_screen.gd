@@ -11,7 +11,7 @@ const textures: Array = [preload("res://titlescreen_assets/load_game.png"), prel
 const save_path: String = "user://savefile.save"
 const main: PackedScene = preload("res://main.tscn")
 
-var data: Array = [[0, Vector2(120, 40)], [[global.get_mon_number("Treecko"), "Treecko", ["Grass"], 19.0, 11.0, 10.0, 11.0, 9.0, 12.0, 19, 5, 125]], [[["Pound", 35], ["Absorb", 20]], [["Leer", 30], ["Quick Attack", 30]]], [[["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]]]]
+var data: Array = [[0, Vector2(8, 6)], [[global.get_mon_number("Treecko"), "Treecko", ["Grass"], 19.0, 11.0, 10.0, 11.0, 9.0, 12.0, 19, 5, 125]], [[["Pound", 35], ["Absorb", 20]], [["Leer", 30], ["Quick Attack", 30]]], [[["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]]]]
 var index: int = 0
 var current_state: states = states.normal
 
@@ -43,8 +43,6 @@ func _input(event: InputEvent) -> void:
 
 
 @onready var anim_player: AnimationPlayer = $animation_player
-@onready var overlay: ColorRect = $overlay
-
 
 func execute() -> void:
 	
@@ -52,13 +50,9 @@ func execute() -> void:
 	await sfx_player.finished
 	
 	if index == 0:
-		if !FileAccess.file_exists(save_path):
-			
-			var file = FileAccess.open(save_path, FileAccess.WRITE)
-			file.store_var(data)
-			
 		
-#		overlay.visible = true
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_var(data)
 		anim_player.play("fade")
 		await anim_player.animation_finished
 		

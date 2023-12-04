@@ -1,10 +1,11 @@
 extends CharacterBody2D
-
+class_name player
 
 @onready var ray_cast: RayCast2D = $ray_cast
 @onready var anim_tree: AnimationTree = $anim_tree
 @onready var anim_tree_prop = $anim_tree.get("parameters/playback")
 @onready var hitbox = $on_touched/hitbox
+@onready var sprite: Sprite2D = $sprite
 
 const TILE_SIZE: int = 16
 

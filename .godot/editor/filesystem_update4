@@ -1,5 +1,4 @@
 res://main.tscn
-res://main.gd
 res://rooms/room_03.scn
 res://rooms/routes/arr_00.tscn
 res://components/animated_transition.tscn
@@ -9,3 +8,13 @@ res://battle/battle.tscn
 res://components/transition.tscn
 res://components/npc.tscn
 res://rooms/routes/arr_02.tscn
+res://rooms/room_09.tscn
+res://rooms/room_08.tscn
+res://main.gd
+res://save_select_screen.gd
+res://rooms/room_00.tscn
+res://save_select_screen.tscn
+res://rooms/room_01.tscn
+res://player/player.tscn
+res://player/player.gd
+res://components/npc.gd

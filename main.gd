@@ -2,15 +2,16 @@ extends Node2D
 
 
 @onready var rooms: Node2D = $rooms
-@onready var player: CharacterBody2D
+@onready var player: player
 @onready var anim_player: AnimationPlayer = $animation_player
 @onready var music_player: AudioStreamPlayer = $music_player
 
 const battle_scn: PackedScene = preload("res://battle/battle.tscn")
 
+signal transition_finished
 
 
-const rooms_arr: Array = [preload("res://rooms/room_01.tscn"), preload("res://rooms/room_02.tscn"), 
+const rooms_arr: Array = [preload("res://rooms/room_00.tscn"), preload("res://rooms/room_01.tscn"), preload("res://rooms/room_02.tscn"), 
 preload("res://rooms/room_03.scn"), preload("res://rooms/room_04.tscn"), preload("res://rooms/room_05.tscn"), 
 preload("res://rooms/room_06.tscn"), preload("res://rooms/room_07.tscn"), preload("res://rooms/room_08.tscn"),
 preload("res://rooms/room_09.tscn"), preload("res://rooms/room_10.tscn")]
@@ -71,16 +72,21 @@ var room_inst: Node2D
 
 func transition(new_room: int, next_position: Vector2, trans_type: int) -> void:
 	
-	player_trans_inst = player_scn.instantiate()
-	player_trans_inst.position = next_position
-	new_room_int = new_room
-	global.current_room = new_room
-	anim_player.play("fade_in")
-	room_inst = rooms_arr[new_room].instantiate()
-	transition_type = trans_type
-	
-	sfx_player.play()
-	await sfx_player.finished
+	if new_room < 0:
+		
+		play_cutscene(new_room)
+		
+	else:
+		player_trans_inst = player_scn.instantiate()
+		player_trans_inst.position = next_position
+		new_room_int = new_room
+		global.current_room = new_room
+		anim_player.play("fade_in")
+		room_inst = rooms_arr[new_room].instantiate()
+		transition_type = trans_type
+		
+		sfx_player.play()
+		await sfx_player.finished
 
 
 func end_transtition() -> void:
@@ -99,6 +105,7 @@ func end_transtition() -> void:
 	play_music()
 	anim_player.play("fade_out")
 	enter_new_area(global.current_area)
+	transition_finished.emit()
 
 
 func start_battle(enemy_pokemon: Array, enemy_moveset: Array, battle_type: int) -> void:
@@ -214,3 +221,32 @@ func enter_new_area(new_area: int) -> void:
 	global.current_area = current_area
 	
 	global.enter_new_room.emit(displayed_areas, current_area)
+
+@onready var cutscene_player: AnimationPlayer = $cutscene_player
+@onready var cutscene_01: Node2D = $cutscenes/cutscene_01
+
+
+func play_cutscene(cutscene: int) -> void:
+	
+	if cutscene == -1:
+		cutscene_one()
+
+
+func cutscene_one() -> void:
+	
+	transition(3, Vector2(8, 56), 0)
+	await transition_finished
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	player.sprite.frame = 4
+	cutscene_01.visible = true
+	global.start_dialogue.emit([["MOM We're here finally fuck"]])
+	await global.end_dialogue
+	cutscene_player.play("cutscene_000")
+	await cutscene_player.animation_finished
+	cutscene_01.queue_free()
+	
+	transition(2, Vector2(40, 88), 0)
+
+
+func _on_cut_scene_player_animation_finished(anim_name: StringName) -> void:
+	pass # Replace with function body.
