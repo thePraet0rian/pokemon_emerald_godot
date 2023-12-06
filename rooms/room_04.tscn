@@ -516,11 +516,11 @@ layer_3/tile_data = PackedInt32Array(-196613, 65536, 0, -196615, 65536, 0, -1966
 
 [node name="transition" parent="transitions" instance=ExtResource("2_reumd")]
 position = Vector2(0, 8)
-new_room = 2
+new_room = 3
 type = 1
 next_position = Vector2(-120, 40)
 
 [node name="transition_2" parent="transitions" instance=ExtResource("2_reumd")]
 position = Vector2(-8, -104)
-new_room = 4
+new_room = 5
 next_position = Vector2(8, 8)

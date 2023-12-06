@@ -73,7 +73,6 @@ texture = ExtResource("2_tcfd6")
 hframes = 4
 
 [node name="collision_polygon_2d" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2(8, 8)
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 

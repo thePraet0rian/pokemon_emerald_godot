@@ -115,9 +115,8 @@ func player_input() -> void:
 			transition()
 		elif Input.is_action_pressed("move_up") && matching.y != -1:
 			touched = false
-		print(matching.y)
+		
 		if Input.is_action_pressed("move_down") && matching.y == 1:
-			print("yes ")
 			transition()
 		elif Input.is_action_pressed("move_down") && matching.y != 1:
 			touched = false

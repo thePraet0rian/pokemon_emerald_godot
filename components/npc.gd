@@ -7,6 +7,7 @@ extends Area2D
 @export var npc: int = 0
 @export var frames: int = 12
 @export var moving: bool = false
+@export var current_frame: int = 0
 
 
 @onready var sprite: Sprite2D = $sprite_2d
@@ -54,3 +55,13 @@ func update() -> void:
 				sprite.frame = 0
 			elif direction.y == 1:
 				sprite.frame = 1
+
+
+func update_direction() -> void:
+	
+	sprite.frame = current_frame
+
+
+func quit() -> void:
+	
+	self.queue_free()

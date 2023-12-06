@@ -3345,17 +3345,17 @@ layer_2/tile_data = PackedInt32Array(393206, 0, 0, 393207, 65536, 0, 393208, 131
 
 [node name="animated_trans" parent="transition" instance=ExtResource("3_0btel")]
 position = Vector2(16, 16)
-next_room = 1
+next_room = 2
 
 [node name="animated_trans_2" parent="transition" instance=ExtResource("3_0btel")]
 position = Vector2(-96, 144)
 transition_position = Vector2(8, -8)
-next_room = 5
+next_room = 6
 door_type = 1
 
 [node name="animated_trans_3" parent="transition" instance=ExtResource("3_0btel")]
 position = Vector2(-128, 16)
 transition_position = Vector2(8, -8)
-next_room = 3
+next_room = 4
 
 [node name="npcs" type="Node2D" parent="."]

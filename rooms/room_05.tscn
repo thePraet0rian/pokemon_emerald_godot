@@ -510,5 +510,5 @@ layer_1/tile_data = PackedInt32Array(327679, 65536, 2, 262144, 131072, 2, 327677
 
 [node name="transition" parent="transitions" instance=ExtResource("2_mvd0o")]
 position = Vector2(8, -8)
-new_room = 3
+new_room = 4
 next_position = Vector2(-8, -88)

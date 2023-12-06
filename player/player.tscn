@@ -335,6 +335,7 @@ position = Vector2(0, -2)
 texture = ExtResource("2_1yhr5")
 hframes = 12
 vframes = 2
+frame = 1
 
 [node name="collsion_polygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
@@ -349,6 +350,7 @@ libraries = {
 [node name="anim_tree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_hvbwy")
 anim_player = NodePath("../anim_player")
+active = true
 parameters/idle/blend_position = Vector2(0, 0)
 parameters/run/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(-0.0376068, -0.939547)
@@ -360,6 +362,7 @@ position = Vector2(0, -3)
 polygon = PackedVector2Array(-4, 11, 4, 11, 4, 16, -4, 16)
 
 [node name="camera" type="Camera2D" parent="."]
+process_mode = 3
 
 [node name="on_entered" type="Area2D" parent="."]
 

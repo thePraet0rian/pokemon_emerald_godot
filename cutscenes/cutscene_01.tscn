@@ -1,0 +1,144 @@
+[gd_scene load_steps=9 format=3 uid="uid://cksq0qktc412o"]
+
+[ext_resource type="Texture2D" uid="uid://dgd7o60luinhi" path="res://room_assets/extra/van.png" id="1_y3njt"]
+[ext_resource type="Script" path="res://cutscenes/cutscene_01.gd" id="1_ydjts"]
+[ext_resource type="PackedScene" uid="uid://nnd1o5w5bc5g" path="res://components/animated_transition.tscn" id="2_yagfr"]
+[ext_resource type="PackedScene" uid="uid://xa22fo13s7np" path="res://components/npc.tscn" id="3_0egyq"]
+[ext_resource type="Texture2D" uid="uid://b6bddjs0dy14b" path="res://npc_assets/npc_01.png" id="4_e84w2"]
+
+[sub_resource type="Animation" id="Animation_ehqga"]
+resource_name = "cutscene"
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(56, -0.25, 0, 0.25, 0, 24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("npc:current_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("npc")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"update_direction"
+}, {
+"args": [],
+"method": &"quit"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("animated_trans")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7xvkc"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(56, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("npc:current_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ae5sm"]
+_data = {
+"RESET": SubResource("Animation_7xvkc"),
+"cutscene": SubResource("Animation_ehqga")
+}
+
+[node name="cutscene_01" type="Node2D"]
+script = ExtResource("1_ydjts")
+
+[node name="truck" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-24, 44)
+texture = ExtResource("1_y3njt")
+
+[node name="animated_trans" parent="." instance=ExtResource("2_yagfr")]
+position = Vector2(16, 16)
+
+[node name="npc" parent="." instance=ExtResource("3_0egyq")]
+position = Vector2(24, 56)
+txt = ExtResource("4_e84w2")
+direction = Vector2(-1, 0)
+sprite_offset = Vector2(0, -3)
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ae5sm")
+}

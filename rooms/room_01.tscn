@@ -514,7 +514,7 @@ metadata/_edit_lock_ = true
 
 [node name="transition" parent="." instance=ExtResource("2_wshqm")]
 position = Vector2(24, -8)
-new_room = 1
+new_room = 2
 next_position = Vector2(40, 8)
 
 [node name="dialouge_object" parent="." instance=ExtResource("3_1ktjk")]

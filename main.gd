@@ -20,6 +20,7 @@ preload("res://rooms/room_09.tscn"), preload("res://rooms/room_10.tscn")]
 
 func _ready() -> void:
 	
+	set_process(false)
 	start()
 	
 	global.connect("transition", Callable(self, "transition"))
@@ -222,31 +223,73 @@ func enter_new_area(new_area: int) -> void:
 	
 	global.enter_new_room.emit(displayed_areas, current_area)
 
+
 @onready var cutscene_player: AnimationPlayer = $cutscene_player
-@onready var cutscene_01: Node2D = $cutscenes/cutscene_01
 
 
 func play_cutscene(cutscene: int) -> void:
 	
-	if cutscene == -1:
-		cutscene_one()
+	match cutscene:
+		-1:
+			cutscene_one()
+		-2:
+			cutscene_two()
+
+
+@onready var cutscene: Node2D = $cutscenes
+
+@export var player_position: Vector2
+
+const cutscenes: Array = [preload("res://cutscenes/cutscene_01.tscn")]
+
+var current_cutscene: Node2D
 
 
 func cutscene_one() -> void:
 	
-	transition(3, Vector2(8, 56), 0)
+	transition(3, Vector2(-8, 52), 0)
 	await transition_finished
+	
+	cutscene.add_child(cutscenes[0].instantiate())
+	current_cutscene = $cutscenes/cutscene_01
+	
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	player.sprite.frame = 4
-	cutscene_01.visible = true
-	global.start_dialogue.emit([["MOM We're here finally fuck"]])
-	await global.end_dialogue
-	cutscene_player.play("cutscene_000")
-	await cutscene_player.animation_finished
-	cutscene_01.queue_free()
+	current_cutscene.visible = true
 	
-	transition(2, Vector2(40, 88), 0)
+	cutscene_player.play("cutscene_001")
+	set_process(true)
+	await cutscene_player.animation_finished
+	set_process(false)
+	
+	global.start_dialogue.emit([["Placeholder."]])
+	await global.end_dialogue
+	
+	current_cutscene.play_animation("cutscene")
+	
+	player.get_node("anim_tree").active = false
+	player.get_node("anim_player").play("walk_right")
+	
+	await get_tree().create_tween().tween_property(player, "position", player.position + Vector2(16, 0), .5).finished
+	
+	player.get_node("anim_player").stop()
+	player.get_node("anim_player").play("walk_up")
+	
+	await get_tree().create_tween().tween_property(player, "position", player.position + Vector2(0, -32), 1.3).finished
+	
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	transition(-2, Vector2(40, 88), 0)
+	await transition_finished
+	$cutscenes/cutscene_01.queue_free()
 
 
-func _on_cut_scene_player_animation_finished(anim_name: StringName) -> void:
-	pass # Replace with function body.
+func cutscene_two() -> void:
+	
+	transition(2, Vector2(40, 88), 1)
+	print("yes")
+
+
+func _process(delta: float) -> void:
+	
+	player.position = player_position

@@ -3382,23 +3382,23 @@ layer_2/tile_data = PackedInt32Array(-2293760, 0, 5, -2293759, 65536, 5, -229375
 
 [node name="animated_trans_3" parent="transitions" instance=ExtResource("2_ejjsb")]
 position = Vector2(16, -513)
-next_room = 7
+next_room = 8
 door_type = 3
 
 [node name="animated_trans" parent="transitions" instance=ExtResource("2_ejjsb")]
 position = Vector2(-112, -353)
 transition_position = Vector2(8, -8)
-next_room = 6
+next_room = 7
 door_type = 3
 
 [node name="animated_trans_2" parent="transitions" instance=ExtResource("2_ejjsb")]
 position = Vector2(32, -352)
 transition_position = Vector2(8, -8)
-next_room = 9
+next_room = 10
 door_type = 2
 
 [node name="animated_trans_4" parent="transitions" instance=ExtResource("2_ejjsb")]
 position = Vector2(-128, -496)
 transition_position = Vector2(8, -8)
-next_room = 10
+next_room = 11
 door_type = 2

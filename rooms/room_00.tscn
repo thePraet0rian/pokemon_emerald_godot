@@ -4,6 +4,57 @@
 [ext_resource type="PackedScene" uid="uid://wxhxheo61txe" path="res://components/transition.tscn" id="2_dcjv3"]
 [ext_resource type="Texture2D" uid="uid://dyxwr07wbisgv" path="res://room_assets/extra/van_tilemap.png" id="2_wmxds"]
 
+[sub_resource type="Animation" id="Animation_vjmk5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_2d:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("transitions:process_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("tilemap:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
 [sub_resource type="Animation" id="Animation_dm6yb"]
 resource_name = "start"
 length = 7.0
@@ -44,44 +95,17 @@ tracks/2/keys = {
 "update": 1,
 "values": [4, 0]
 }
-
-[sub_resource type="Animation" id="Animation_vjmk5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite_2d:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("tilemap:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("transitions:process_mode")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
+"values": [4, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s1vlw"]
@@ -132,6 +156,7 @@ position = Vector2(8, -3)
 polygon = PackedVector2Array(24, -12, 24, -22, 40, -22, 40, 40, 24, 40, 24, 32, 8, 32, 8, 16, -24, 16, -24, -12, 20, -12, 20, -16, -28, -16, -28, 20, 4, 20, 4, 36, 20, 36, 20, 44, 44, 44, 44, -26, 20, -26, 20, -12)
 
 [node name="tilemap" type="Node" parent="."]
+process_mode = 4
 
 [node name="transitions" type="Node2D" parent="."]
 process_mode = 4
