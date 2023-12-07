@@ -335,7 +335,6 @@ position = Vector2(0, -2)
 texture = ExtResource("2_1yhr5")
 hframes = 12
 vframes = 2
-frame = 1
 
 [node name="collsion_polygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)

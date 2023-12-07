@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://by2h28llnup4b"]
+[gd_scene load_steps=8 format=3 uid="uid://by2h28llnup4b"]
 
+[ext_resource type="Script" path="res://rooms/room_02.gd" id="1_0y71n"]
 [ext_resource type="Texture2D" uid="uid://bwenod3wu7r3u" path="res://room_assets/iterior_assets.png" id="1_e5xyk"]
 [ext_resource type="PackedScene" uid="uid://wxhxheo61txe" path="res://components/transition.tscn" id="2_ho1f1"]
 [ext_resource type="PackedScene" uid="uid://xa22fo13s7np" path="res://components/npc.tscn" id="3_8huaa"]
@@ -469,6 +470,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_iic4e")
 
 [node name="room_02" type="Node2D"]
+script = ExtResource("1_0y71n")
 
 [node name="tilemap" type="TileMap" parent="."]
 y_sort_enabled = true

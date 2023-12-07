@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://xa22fo13s7np"]
+[gd_scene load_steps=3 format=3 uid="uid://xa22fo13s7np"]
 
 [ext_resource type="Script" path="res://components/npc.gd" id="1_chn85"]
+[ext_resource type="Texture2D" uid="uid://b6bddjs0dy14b" path="res://npc_assets/npc_01.png" id="2_dnu3u"]
 
 [node name="npc" type="Area2D"]
 script = ExtResource("1_chn85")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
 y_sort_enabled = true
+texture = ExtResource("2_dnu3u")
 hframes = 12
 
 [node name="collision_polygon_2d" type="CollisionPolygon2D" parent="."]

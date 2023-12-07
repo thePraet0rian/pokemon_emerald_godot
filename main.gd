@@ -234,13 +234,17 @@ func play_cutscene(cutscene: int) -> void:
 			cutscene_one()
 		-2:
 			cutscene_two()
+		-3:
+			cutscene_three()
+		-4:
+			cutscene_four()
 
 
 @onready var cutscene: Node2D = $cutscenes
 
 @export var player_position: Vector2
 
-const cutscenes: Array = [preload("res://cutscenes/cutscene_01.tscn")]
+const cutscenes: Array = [preload("res://cutscenes/cutscene_01.tscn"), preload("res://cutscenes/cutscene_02.tscn"), preload("res://cutscenes/cutscene_04.tscn")]
 
 var current_cutscene: Node2D
 
@@ -275,7 +279,7 @@ func cutscene_one() -> void:
 	player.get_node("anim_player").stop()
 	player.get_node("anim_player").play("walk_up")
 	
-	await get_tree().create_tween().tween_property(player, "position", player.position + Vector2(0, -32), 1.3).finished
+	await get_tree().create_tween().tween_property(player, "position", player.position + Vector2(0, -32), 1).finished
 	
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	
@@ -287,7 +291,37 @@ func cutscene_one() -> void:
 func cutscene_two() -> void:
 	
 	transition(2, Vector2(40, 88), 1)
-	print("yes")
+	await transition_finished
+	
+	rooms.get_child(0).cutscene()
+	cutscene.add_child(cutscenes[1].instantiate())
+	
+	await transition_finished
+	$cutscenes/cutscene_02.queue_free()
+
+
+func cutscene_three() -> void:
+	
+	transition(1, Vector2(24, 9), 0)
+	await transition_finished
+	
+	rooms.get_child(0).cutscene()
+
+
+func cutscene_four() -> void:
+	
+	transition(2, Vector2(40, 8), 0)
+	await transition_finished
+	
+	rooms.get_child(0).cutscene()
+	cutscene.add_child(cutscenes[2].instantiate())
+	
+	global.start_dialogue.emit([["Bitch set your clock."]])
+	await global.end_dialogue
+	
+	cutscene.get_child(0).cutscene()
+	
+	transition(-3, Vector2(24, 9), 0)
 
 
 func _process(delta: float) -> void:

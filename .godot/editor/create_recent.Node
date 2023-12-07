@@ -1,6 +1,6 @@
 AnimationPlayer
-Sprite2D
 Node2D
+Sprite2D
 TileMap
 Node
 CollisionPolygon2D
