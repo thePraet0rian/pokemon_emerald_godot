@@ -4,6 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://xa22fo13s7np" path="res://components/npc.tscn" id="1_q1xot"]
 [ext_resource type="Texture2D" uid="uid://b6bddjs0dy14b" path="res://npc_assets/npc_01.png" id="2_qrwbm"]
 
+[sub_resource type="Animation" id="Animation_fhr1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 20)]
+}
+
 [sub_resource type="Animation" id="Animation_7fgjh"]
 resource_name = "cutscene"
 length = 0.5
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(40, 20), Vector2(40, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_fhr1n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("npc:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(40, 20)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2m8uw"]
