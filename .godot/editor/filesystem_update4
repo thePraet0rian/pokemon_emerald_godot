@@ -1,1 +1,11 @@
-res://cutscenes/cutscene_04.tscn
+res://main.tscn
+res://rooms/room_02.tscn
+res://cutscenes/cutscene_02.tscn
+res://rooms/room_01.tscn
+res://rooms/room_03.scn
+res://rooms/room_04.tscn
+res://cutscenes/cutscene_07.tscn
+res://cutscenes/cutscene_07.gd
+res://main.gd
+res://rooms/room_06.tscn
+res://rooms/room_07.tscn

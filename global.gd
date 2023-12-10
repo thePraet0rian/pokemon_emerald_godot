@@ -17,6 +17,7 @@ signal save_game
 
 signal animation_finished
 
+signal object()
 
 var current_room: int = 0
 var current_area: int = 0
@@ -26,6 +27,8 @@ var player_pokemon: Array = []
 var player_moveset: Array = []
 
 var player_inventory: Array = []
+
+var progress: int = 0
 
 
 func get_mon_number(pokemon_name: String) -> int:

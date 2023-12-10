@@ -496,7 +496,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(-524291, 131072, 7, -458755, 131072, 8, -524292, 131072, 7, -458756, 131072, 8, -524295, 131072, 7, -131078, 589824, 3, -65542, 589824, 4, -131077, 655360, 3, -65541, 655360, 4, -131079, 458752, 5, -65543, 458752, 5, -131076, 524288, 5, -65540, 524288, 5, -327685, 524288, 6)
+layer_1/tile_data = PackedInt32Array(-524291, 131072, 7, -458755, 131072, 8, -524292, 131072, 7, -458756, 131072, 8, -524295, 131072, 7, -327685, 524288, 6)
 layer_2/name = ""
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -510,7 +510,7 @@ layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array(-196613, 65536, 0, -196615, 65536, 0, -196614, 65536, 0)
+layer_3/tile_data = PackedInt32Array(-196613, 65536, 0, -196615, 65536, 0, -196614, 65536, 0, -131079, 458752, 5, -65543, 458752, 5, -131077, 524288, 3, -65541, 524288, 4, -131078, 458752, 3, -65542, 458752, 4, -131076, 524288, 5, -65540, 524288, 5)
 
 [node name="transitions" type="Node2D" parent="."]
 

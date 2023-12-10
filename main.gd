@@ -31,6 +31,7 @@ func _ready() -> void:
 	global.connect("start_game", Callable(self, "start_game"))
 	global.connect("save_game", Callable(self, "save_game"))
 	global.connect("enter_new_area", Callable(self, "enter_new_area"))
+	global.object.connect(event)
 
 
 const save_path: String = "user://savefile.save"
@@ -73,30 +74,27 @@ var room_inst: Node2D
 
 func transition(new_room: int, next_position: Vector2, trans_type: int) -> void:
 	
-	if new_room < 0:
-		
-		play_cutscene(new_room)
-		
-	else:
-		player_trans_inst = player_scn.instantiate()
-		player_trans_inst.position = next_position
-		new_room_int = new_room
-		global.current_room = new_room
-		anim_player.play("fade_in")
-		room_inst = rooms_arr[new_room].instantiate()
-		transition_type = trans_type
-		
-		sfx_player.play()
-		await sfx_player.finished
+	player_trans_inst = player_scn.instantiate()
+	player_trans_inst.position = next_position
+	new_room_int = new_room
+	global.current_room = new_room
+	anim_player.play("fade_in")
+	room_inst = rooms_arr[new_room].instantiate()
+	transition_type = trans_type
+	
+	sfx_player.play()
+	await sfx_player.finished
 
 
 func end_transtition() -> void:
+	
 	
 	if transition_type == 0:
 		player.queue_free()
 	
 	rooms.get_child(0).queue_free()
 	rooms.add_child(room_inst)
+	
 	
 	await get_tree().create_timer(1).timeout
 	
@@ -107,6 +105,7 @@ func end_transtition() -> void:
 	anim_player.play("fade_out")
 	enter_new_area(global.current_area)
 	transition_finished.emit()
+	progress_transition(new_room_int)
 
 
 func start_battle(enemy_pokemon: Array, enemy_moveset: Array, battle_type: int) -> void:
@@ -225,34 +224,54 @@ func enter_new_area(new_area: int) -> void:
 
 
 @onready var cutscene_player: AnimationPlayer = $cutscene_player
-
-
-func play_cutscene(cutscene: int) -> void:
-	
-	match cutscene:
-		-1:
-			cutscene_one()
-		-2:
-			cutscene_two()
-		-3:
-			cutscene_three()
-		-4:
-			cutscene_four()
-
-
 @onready var cutscene: Node2D = $cutscenes
 
 @export var player_position: Vector2
 
-const cutscenes: Array = [preload("res://cutscenes/cutscene_01.tscn"), preload("res://cutscenes/cutscene_02.tscn"), preload("res://cutscenes/cutscene_04.tscn")]
+const cutscenes: Array = [preload("res://cutscenes/cutscene_01.tscn"), preload("res://cutscenes/cutscene_02.tscn"), 
+preload("res://cutscenes/cutscene_04.tscn"), "", preload("res://cutscenes/cutscene_06.tscn"), preload("res://cutscenes/cutscene_07.tscn")]
 
 var current_cutscene: Node2D
 
 
-func cutscene_one() -> void:
+func progress_transition(new_room: int) -> void:
 	
-	transition(3, Vector2(-8, 52), 0)
-	await transition_finished
+	var progress: int = global.progress
+	
+	if new_room == 3 and progress == 0:
+		
+		leaving_the_van()
+		await transition_finished
+		global.progress = 1
+		return
+	elif new_room == 2 and progress == 1:
+		
+		cutscene_two()
+		await transition_finished
+		global.progress = 2
+		return 
+	elif new_room == 2 and progress == 2:
+		
+		cutscene_four()
+		return
+	elif new_room == 2 and progress == 3:
+		
+		cutscene_five()
+		await transition_finished
+		global.progress = 4
+		return
+	elif new_room == 3 and progress >= 4 and progress <= 6:
+		
+		cutscene_six()
+		return
+	elif new_room == 4 and progress == 4:
+		cutscene_seven()
+	
+	else:
+		pass
+
+
+func leaving_the_van() -> void:
 	
 	cutscene.add_child(cutscenes[0].instantiate())
 	current_cutscene = $cutscenes/cutscene_01
@@ -283,47 +302,71 @@ func cutscene_one() -> void:
 	
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	
-	transition(-2, Vector2(40, 88), 0)
+	transition(2, Vector2(40, 88), 0)
 	await transition_finished
-	$cutscenes/cutscene_01.queue_free()
-
-
-func cutscene_two() -> void:
 	
-	transition(2, Vector2(40, 88), 1)
-	await transition_finished
+	$cutscenes/cutscene_01.queue_free()
+func cutscene_two() -> void:
 	
 	rooms.get_child(0).cutscene()
 	cutscene.add_child(cutscenes[1].instantiate())
 	
 	await transition_finished
 	$cutscenes/cutscene_02.queue_free()
-
-
-func cutscene_three() -> void:
-	
-	transition(1, Vector2(24, 9), 0)
-	await transition_finished
-	
-	rooms.get_child(0).cutscene()
-
-
 func cutscene_four() -> void:
-	
-	transition(2, Vector2(40, 8), 0)
-	await transition_finished
 	
 	rooms.get_child(0).cutscene()
 	cutscene.add_child(cutscenes[2].instantiate())
 	
-	global.start_dialogue.emit([["Bitch set your clock."]])
+	global.start_dialogue.emit([["Placeholder."]])
 	await global.end_dialogue
 	
+	global.progress = 3
+	transition(1, Vector2(24, 9), 0)
+	await transition_finished
+	$cutscenes/cutscene_04.queue_free()
+func cutscene_five() -> void:
+	
+	print("yews")
+	global.start_dialogue.emit([["Look your fahter was on tv."]])
+	await global.end_dialogue
+func cutscene_six() -> void:
+	
+	cutscene.add_child(cutscenes[4].instantiate())
+	
+	await global.transition
+	cutscene.get_child(0).queue_free()
+func cutscene_seven() -> void:
+	
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	cutscene.add_child(cutscenes[5].instantiate())
+	print(cutscene.get_children())
 	cutscene.get_child(0).cutscene()
 	
-	transition(-3, Vector2(24, 9), 0)
+	await get_tree().create_timer(1).timeout
+	
+	global.start_dialogue.emit([["Placeholder."]])
+	await global.end_dialogue
+	
+	await global.transition
+	cutscene.get_child(0).queue_free()
+func cutscene_eight() -> void:
+	
+	pass
+func cutscene_nine() -> void:
+	
+	pass
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	player.position = player_position
+
+
+func event(action: String) -> void:
+	
+	match action:
+		
+		"clock_activated":
+			global.progress = 3

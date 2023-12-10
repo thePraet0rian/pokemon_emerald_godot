@@ -259,6 +259,8 @@ func start_dialouge() -> void:
 			sfx_player.play()
 			await sfx_player.finished
 			
+			global.object.emit(dialogue_sig)
+			
 			process_mode = Node.PROCESS_MODE_DISABLED
 			global.emit_signal("start_dialogue", text)
 			can_talk = false
@@ -283,6 +285,8 @@ func _on_on_entered_area_entered(area: Area2D) -> void:
 var can_animated_transition: bool = false
 var entered: Area2D
 var animated_transition_position: Vector2 = Vector2.ZERO
+
+var dialogue_sig: String = ""
 
 
 func _on_on_touched_area_entered(area: Area2D) -> void:
@@ -314,6 +318,9 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 		can_talk = true
 		text.clear()
 		text.append_array(area.text)
+		
+		if area.sig != "":
+			dialogue_sig = area.sig
 	
 	elif "ledge" in area.name:
 		

@@ -18,8 +18,11 @@ func set_text(input: Array) -> void:
 
 func _ready() -> void:
 	
-	var first_line: int = 0
-	first_line = int(len(text_arr[0]) > 2) + 1
+	print(text_arr)
+	print("ready")
+	
+	var first_line: int = 1
+#	first_line = int(len(text_arr) > 2) + 1
 	
 	label.text = ""
 	
@@ -40,6 +43,8 @@ func _input(event: InputEvent) -> void:
 		
 		pressed = true
 		
+		print(current_line)
+		
 		if current_line >= len(text_arr[current_index]):
 			
 			label.text = ""
@@ -50,6 +55,7 @@ func _input(event: InputEvent) -> void:
 			
 			await audio_player.finished
 			global.emit_signal("end_dialogue")
+			print("end_dialogue")
 		else:
 			
 			label.text = label.text.erase(0, label.text.find("\n") + 1)

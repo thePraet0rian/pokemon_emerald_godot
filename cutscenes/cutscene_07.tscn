@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://rb2d0sck103e"]
+
+[ext_resource type="Script" path="res://cutscenes/cutscene_07.gd" id="1_6bnl4"]
+[ext_resource type="PackedScene" uid="uid://xa22fo13s7np" path="res://components/npc.tscn" id="1_vefb7"]
+[ext_resource type="Texture2D" uid="uid://b6bddjs0dy14b" path="res://npc_assets/npc_01.png" id="2_1cf1q"]
+
+[sub_resource type="Animation" id="Animation_34gci"]
+resource_name = "cutscene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-56, -26), Vector2(-56, -8), Vector2(8, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_ppm88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-56, -26)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ju5v0"]
+_data = {
+"RESET": SubResource("Animation_ppm88"),
+"cutscene": SubResource("Animation_34gci")
+}
+
+[node name="cutscene_07" type="Node2D"]
+script = ExtResource("1_6bnl4")
+
+[node name="npc" parent="." instance=ExtResource("1_vefb7")]
+position = Vector2(-56, -26)
+txt = ExtResource("2_1cf1q")
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ju5v0")
+}

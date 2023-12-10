@@ -45,6 +45,7 @@ _data = {
 script = ExtResource("1_05f73")
 
 [node name="npc" parent="." instance=ExtResource("1_q1xot")]
+process_mode = 4
 position = Vector2(40, 20)
 txt = ExtResource("2_qrwbm")
 direction = Vector2(0, -1)

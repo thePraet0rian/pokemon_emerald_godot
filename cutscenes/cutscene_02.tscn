@@ -14,4 +14,5 @@ sprite_offset = Vector2(0, -3)
 
 [node name="transition" parent="." instance=ExtResource("3_3626t")]
 position = Vector2(40, -8)
-new_room = -3
+new_room = 1
+next_position = Vector2(24, 8)

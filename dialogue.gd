@@ -1,7 +1,7 @@
 extends Node
 
 
-const npc_01: Array = [["MOM How are you doing, May?\n You look a little tired"], ["I think you should rest a bit"], ["Take care honey."]]
+const npc_01: Array = [["MOM How are you doing, May?\nYou look a little tired"], ["I think you should rest a bit"], ["Take care honey."]]
 const npc_02: Array = [["Are you going to catch Pokemon?\nGood Luck.\n"]]
 const npc_03: Array = [["If you use the PC, you can store items\n and Pokemon"], ["The Power of sience is staggering!"]]
 
@@ -16,4 +16,3 @@ const object_04: Array = [["The map is too dirty to read\n"]]
 const object_05: Array = [["The pc is unpluged.\n"]]
 
 const object_dialogue_string: Array = [object_01, object_02, object_03, object_04, object_05]
-

@@ -1,10 +1,11 @@
 AnimationPlayer
 Node2D
+CollisionPolygon2D
+StaticBody2D
+NinePatchRect
 Sprite2D
 TileMap
 Node
-CollisionPolygon2D
-StaticBody2D
 AnimationTree
 Area2D
 Camera2D

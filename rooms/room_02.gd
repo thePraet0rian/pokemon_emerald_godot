@@ -10,5 +10,3 @@ func cutscene() -> void:
 	npc.queue_free()
 	transition.queue_free()
 	transition_2.queue_free()
-
-
