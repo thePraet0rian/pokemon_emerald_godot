@@ -22,6 +22,6 @@ It is in no way finished and I wouldn't recommend cloning the code, because it's
 ## Executing
 
 
-#### [My youtube Video](youtube: https://www.youtube.com/watch?v=9SDiq2hfyXs)
+#### [My youtube Video](https://www.youtube.com/watch?v=9SDiq2hfyXs)
 
 
