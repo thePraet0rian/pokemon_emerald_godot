@@ -1,8 +1,8 @@
 res://cutscenes
+res://components
 res://cutscenes/story
 res://rooms
 res://rooms/routes
-res://components
 /home/vincent/programming_godot/pokemon_emerald_godot
 res://trainer
 /home/vincent/programming_godot/pokemon_emerald_godot/rooms/routes

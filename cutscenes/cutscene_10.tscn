@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cinnty0qyxw25"]
+
+[ext_resource type="Texture2D" uid="uid://bs43uktxb2vxy" path="res://room_assets/extra/bag.png" id="1_7y1av"]
+[ext_resource type="PackedScene" uid="uid://bix8jmu3q7aea" path="res://components/event.tscn" id="2_7hb3x"]
+
+[node name="cutscene_10" type="Node2D"]
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+position = Vector2(-72, -200)
+texture = ExtResource("1_7y1av")
+
+[node name="event" parent="." instance=ExtResource("2_7hb3x")]
+event = "a"
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="event"]
+polygon = PackedVector2Array(-64, -192, -64, -128, 0, -128, 0, -192)

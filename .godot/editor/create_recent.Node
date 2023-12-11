@@ -1,13 +1,13 @@
-AnimationPlayer
-Node2D
 CollisionPolygon2D
+Sprite2D
+Node2D
+Area2D
+AnimationPlayer
 StaticBody2D
 NinePatchRect
-Sprite2D
 TileMap
 Node
 AnimationTree
-Area2D
 Camera2D
 RayCast2D
 ColorRect

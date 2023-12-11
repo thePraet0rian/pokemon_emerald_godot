@@ -229,7 +229,8 @@ func enter_new_area(new_area: int) -> void:
 @export var player_position: Vector2
 
 const cutscenes: Array = [preload("res://cutscenes/cutscene_01.tscn"), preload("res://cutscenes/cutscene_02.tscn"), 
-preload("res://cutscenes/cutscene_04.tscn"), "", preload("res://cutscenes/cutscene_06.tscn"), preload("res://cutscenes/cutscene_07.tscn")]
+preload("res://cutscenes/cutscene_04.tscn"), "", preload("res://cutscenes/cutscene_06.tscn"), preload("res://cutscenes/cutscene_07.tscn"), "",
+preload("res://cutscenes/cutscene_09.tscn"), preload("res://cutscenes/cutscene_10.tscn")]
 
 var current_cutscene: Node2D
 
@@ -260,15 +261,17 @@ func progress_transition(new_room: int) -> void:
 		await transition_finished
 		global.progress = 4
 		return
-	elif new_room == 3 and progress >= 4 and progress <= 6:
+	elif new_room == 3 and progress == 4:
 		
 		cutscene_six()
 		return
 	elif new_room == 4 and progress == 4:
 		cutscene_seven()
-	
-	else:
-		pass
+	elif new_room == 5 and progress == 4:
+		cutscene_eight()
+	elif new_room == 3 and progress == 5:
+		
+		cutscene_nine()
 
 
 func leaving_the_van() -> void:
@@ -341,7 +344,6 @@ func cutscene_seven() -> void:
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	cutscene.add_child(cutscenes[5].instantiate())
-	print(cutscene.get_children())
 	cutscene.get_child(0).cutscene()
 	
 	await get_tree().create_timer(1).timeout
@@ -353,10 +355,19 @@ func cutscene_seven() -> void:
 	cutscene.get_child(0).queue_free()
 func cutscene_eight() -> void:
 	
-	pass
+	global.progress = 5
 func cutscene_nine() -> void:
 	
-	pass
+	cutscene.add_child(cutscenes[7].instantiate())
+	await global.transition
+	cutscene.get_child(0).queue_free()
+func cutscene_ten() -> void:
+	
+	cutscene.add_child(cutscenes[8].instantiate())
+	
+	await global.transition
+	cutscene.get_child(0).queue_free()
+
 
 
 func _process(_delta: float) -> void:
@@ -370,3 +381,6 @@ func event(action: String) -> void:
 		
 		"clock_activated":
 			global.progress = 3
+		"a":
+			print("fak you")
+ 
