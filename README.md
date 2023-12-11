@@ -1,16 +1,27 @@
-### Clone of Pokemon Emerald in the Godot Gameengine
+# Clone of Pokemon Emerald in the Godot Gameengine
+
+A clone of the Nintendo game Pokemon Emerald in the Godot Gameengine.
+It is in no way finished and I wouldn't recommend cloning the code, because it's quite buggy.
+
+## Programm Description
+
+### Features
+- Wild Pokemon Battles
+- Titlescreen
+- Music 
+- Sound effects
+- Dialogue System
+- 
+
+### RESOURCES
+- Sprites: spritersresource.com/game-boy-advance/pokemon-emerald
+- Music: downloads.khinsider.com/game-soundtracks/album/pokemon-emerald-enhanced-soundtrack/
+- SFX: ...
+- Map: ...
+
+## Executing
 
 
-## NOTE (ONGOING)
-- Project is currently being developed.
-- Probably will be finished around new years, but no promises.
-- Project is currently being bugfixed please don't clone in about a week it will be okay
-
-# RESOURCES
-- Sprites are ripped from spritersresource.com/game-boy-advance/pokemon-emerald
-- Music is ripped from downloads.khinsider.com/game-soundtracks/album/pokemon-emerald-enhanced-soundtrack/
-
-# There is a corespoding youtube video by me, which you can watch.
-- youtube: https://www.youtube.com/watch?v=9SDiq2hfyXs
+#### [My youtube Video](youtube: https://www.youtube.com/watch?v=9SDiq2hfyXs)
 
 
