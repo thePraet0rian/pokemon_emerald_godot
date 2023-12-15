@@ -272,6 +272,7 @@ func progress_transition(new_room: int) -> void:
 	elif new_room == 3 and progress == 5:
 		
 		cutscene_nine()
+		cutscene_ten()
 
 
 func leaving_the_van() -> void:
@@ -382,5 +383,5 @@ func event(action: String) -> void:
 		"clock_activated":
 			global.progress = 3
 		"a":
-			print("fak you")
+			global.start_battle.emit([[12, "Zigzagoon", ["Normal"], 12, 10, 10, 10, 10, 10, 12, 5, 125]], ["Poundw"], 0)
  

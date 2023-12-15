@@ -30,6 +30,8 @@ var player_inventory: Array = []
 
 var progress: int = 0
 
+var debug: bool = true
+
 
 func get_mon_number(pokemon_name: String) -> int:
 	

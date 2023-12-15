@@ -3,9 +3,9 @@ extends CanvasLayer
 
 enum states {MENUE = 0, FIGHT = 1, BAG = 2, POKEMON = 3, RUN = 4, DIALOUGE = 5, NONE = 6, ATTACKING = 7}
 
+
 @onready var anim_player: AnimationPlayer = $anim_player
 @onready var battle_anim_player: AnimationPlayer = $battle_anim_player
-@onready var audio_stream_player: AudioStreamPlayer = $audio_stream_player
 
 
 var player_pokemon: Array = global.player_pokemon
@@ -33,13 +33,14 @@ func set_battle(enemy_pokemon_arr: Array, enemy_moveset_arr: Array, battle_type_
 @onready var enemy_sprite: Sprite2D = $ui/enemy_sprite
 @onready var player_sprite: Sprite2D = $ui/player_sprite
 
-@onready var player_label: Label = $info/player_info/name
-@onready var enemy_label: Label = $info/enemy_info/name
+@onready var player_name: Label = $info/player_info/name
+@onready var enemy_name: Label = $info/enemy_info/name
 
 @onready var player_hp_label: Label = $info/player_info/hp
 
 @onready var enemy_lv_label: Label = $info/enemy_info/level
 @onready var player_lv_label: Label = $info/player_info/level
+
 
 const trainer_battle: int = 1
 const wild_pokemon_battle: int = 0
@@ -52,24 +53,29 @@ func start_battle() -> void:
 	set_pokemon()
 	
 	if battle_type == wild_pokemon_battle:
-		
-		anim_player.play("start")
-		await anim_player.animation_finished
-		start_dialouge(["Wild " + enemy_pokemon[0][1] + " appeared!\n", "Go " + player_pokemon[0][1] + "." ])
-		await self.dialouge_finished
-		anim_player.play("start_02")
-		await anim_player.animation_finished
-		
+		wild_battle_intro()
 	elif battle_type == trainer_battle:
-		
-		anim_player.play("start")
-		await anim_player.animation_finished
-		start_dialouge(["Trainer chalanged you"])
-		await self.dialouge_finished
-		anim_player.play("start_02")
-		await anim_player.animation_finished
+		trainer_battle_intro()
 	
 	battle_anim_player.play("constant")
+
+
+func wild_battle_intro() -> void:
+	
+	anim_player.play("start")
+	await anim_player.animation_finished
+	start_dialouge(["Wild " + enemy_pokemon[0][1] + " appeared!\n", "Go " + player_pokemon[0][1] + "." ])
+	await self.dialouge_finished
+	anim_player.play("start_02")
+	await anim_player.animation_finished
+func trainer_battle_intro() -> void:
+	
+	anim_player.play("start")
+	await anim_player.animation_finished
+	start_dialouge(["Trainer chalanged you"])
+	await self.dialouge_finished
+	anim_player.play("start_02")
+	await anim_player.animation_finished
 
 
 func set_ui() -> void:
@@ -77,12 +83,11 @@ func set_ui() -> void:
 	enemy_sprite.texture = pokemon_data.pokemon_front_sprite[global.get_mon_number(enemy_pokemon[0][1])]
 	player_sprite.texture = pokemon_data.pokemon_back_sprite[global.get_mon_number(player_pokemon[0][1])]
 	
-	enemy_label.text = enemy_pokemon[0][1]
-	player_label.text = player_pokemon[0][1]
+	enemy_name.text = enemy_pokemon[0][1]
+	player_name.text = player_pokemon[0][1]
 	
 	enemy_lv_label.text = "Lv" + str(enemy_pokemon[0][10])
 	player_lv_label.text = "Lv" + str(player_pokemon[0][10])
-	
 	
 	menue_label.text = "What will \n" + player_pokemon[0][1] + " do?"
 	
@@ -95,7 +100,6 @@ const item_scn: PackedScene = preload("res://components/item.tscn")
 func set_bag() -> void:
 	
 	for i in range(5):
-		
 		for j in range(len(global.player_inventory[i])):
 			
 			var item_inst: Label = item_scn.instantiate()
@@ -129,7 +133,6 @@ func set_pokemon() -> void:
 	
 	for i in range(len(player_moveset)):
 		for j in range(len(player_moveset[i])):
-			
 			attack_label[i][j].text = player_moveset[i][j][0]
 
 
@@ -145,8 +148,8 @@ func _input(event: InputEvent) -> void:
 			bag_input(event)
 		states.POKEMON:
 			pokemon_input(event)
-		states.RUN:
-			action(3, "Flee")
+#		states.RUN:
+#			action(3, "Flee")
 		states.DIALOUGE:
 			dialouge_input(event)
 
@@ -212,11 +215,15 @@ func attack_select_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("move_down") and attack_select_index.y < 1:
 		attack_select_index.y += 1
 	
+	pp_attack_label.text = "PP    " + str(player_moveset[attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_moveset[attack_select_index.x][attack_select_index.y][0]][1])
+	type_attack_label.text = "TYPE/" + attacks.attacks[player_moveset[attack_select_index.y][attack_select_index.y][0]][0]
+	
+	attack_select_cursor.position = attack_select_cursor_positons[attack_select_index.x][attack_select_index.y]
+	
 	if event.is_action_pressed("shift"):
 		attack_select.visible = false
 		current_state = states.MENUE
 	elif event.is_action_pressed("space"):
-		
 		sfx_player.play()
 		await sfx_player.finished
 		
@@ -224,11 +231,6 @@ func attack_select_input(event: InputEvent) -> void:
 		attack_select.visible = false
 		current_state = states.NONE
 		action(0, player_moveset[attack_select_index.x][attack_select_index.y][0])
-	
-	pp_attack_label.text = "PP    " + str(player_moveset[attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_moveset[attack_select_index.x][attack_select_index.y][0]][1])
-	type_attack_label.text = "TYPE/" + attacks.attacks[player_moveset[attack_select_index.y][attack_select_index.y][0]][0]
-	
-	attack_select_cursor.position = attack_select_cursor_positons[attack_select_index.x][attack_select_index.y]
 
 
 @onready var bag: Node2D = $bag
@@ -284,7 +286,6 @@ func bag_input(event: InputEvent) -> void:
 
 
 @onready var pokemon: Node2D = $pokemon
-
 
 var pokemon_index: int = 0
 
@@ -358,7 +359,6 @@ func generate_enemy_action() -> Array:
 
 signal action_finished_sig
 
-
 var can: bool = true
 
 
@@ -395,7 +395,6 @@ var enemy_finished: bool = false
 
 @warning_ignore("shadowed_variable")
 func execute_attack(action: String, executer: int) -> void:
-	
 	
 	var hits: int = randi_range(0, 99)
 	var damage: int
@@ -1605,7 +1604,6 @@ func dialouge_input(event: InputEvent) -> void:
 				
 			else:
 				
-				
 				end_dialouge()
 
 
@@ -1618,7 +1616,10 @@ func end_dialouge() -> void:
 	dialouge_nde.visible = false
 	dialouge_pressed = false
 	current_state = states.MENUE
-	emit_signal("dialouge_finished")
+	dialouge_finished.emit()
+
+
+@onready var audio_stream_player: AudioStreamPlayer = $audio_stream_player
 
 
 func playsound() -> void:
