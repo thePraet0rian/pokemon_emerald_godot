@@ -71,7 +71,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(176, 64)]
+"values": [Vector2(-72, 48)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -354,6 +354,18 @@ tracks/26/keys = {
 "points": PackedFloat32Array(312, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("ui/enemy_sprite:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_n0awv"]
 resource_name = "grass_scroll"
@@ -503,6 +515,18 @@ tracks/10/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(312, -0.25, 0, 0.25, 0, 72, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 2)
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ui/enemy_sprite:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_06t66"]
@@ -687,6 +711,18 @@ tracks/3/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ui/enemy_sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(176, 48)]
+}
 
 [sub_resource type="Animation" id="Animation_8e0h4"]
 resource_name = "constant"
@@ -716,6 +752,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(179, 92), Vector2(179, 93), Vector2(179, 92), Vector2(179, 93)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ui/enemy_sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(176, 48), Vector2(176, 47), Vector2(176, 48), Vector2(176, 47)]
 }
 
 [sub_resource type="Animation" id="Animation_drt0x"]
@@ -876,7 +924,7 @@ color = Color(0, 1, 1, 1)
 [node name="ui" type="Node2D" parent="."]
 
 [node name="enemy_sprite" type="Sprite2D" parent="ui"]
-position = Vector2(176, 64)
+position = Vector2(176, 48)
 vframes = 2
 
 [node name="player_sprite" type="Sprite2D" parent="ui"]
@@ -884,7 +932,6 @@ visible = false
 modulate = Color(1, 0.815686, 0, 1)
 position = Vector2(64, 86)
 texture = ExtResource("8_sr64j")
-metadata/_edit_lock_ = true
 
 [node name="menue" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -1318,6 +1365,7 @@ stream = ExtResource("32_u5r33")
 
 [node name="music_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_8fxdj")
+volume_db = -80.0
 autoplay = true
 
 [node name="sfx_player" type="AudioStreamPlayer" parent="."]

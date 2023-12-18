@@ -383,5 +383,5 @@ func event(action: String) -> void:
 		"clock_activated":
 			global.progress = 3
 		"a":
-			global.start_battle.emit([[12, "Zigzagoon", ["Normal"], 12, 10, 10, 10, 10, 10, 12, 5, 125]], ["Poundw"], 0)
+			global.start_battle.emit([[12, "Zigzagoon", ["Normal"], 12, 10, 10, 10, 10, 100, 12, 5, 125]], ["Pound"], 0)
  

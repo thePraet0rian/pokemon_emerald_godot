@@ -56,18 +56,22 @@ func start_battle() -> void:
 		wild_battle_intro()
 	elif battle_type == trainer_battle:
 		trainer_battle_intro()
-	
-	battle_anim_player.play("constant")
 
 
 func wild_battle_intro() -> void:
 	
 	anim_player.play("start")
 	await anim_player.animation_finished
+	
 	start_dialouge(["Wild " + enemy_pokemon[0][1] + " appeared!\n", "Go " + player_pokemon[0][1] + "." ])
 	await self.dialouge_finished
+	
 	anim_player.play("start_02")
 	await anim_player.animation_finished
+	
+	battle_anim_player.play("constant")
+
+
 func trainer_battle_intro() -> void:
 	
 	anim_player.play("start")
@@ -76,7 +80,7 @@ func trainer_battle_intro() -> void:
 	await self.dialouge_finished
 	anim_player.play("start_02")
 	await anim_player.animation_finished
-
+	battle_anim_player.play("constant")
 
 func set_ui() -> void:
 	
@@ -361,23 +365,30 @@ signal action_finished_sig
 
 var can: bool = true
 
+const execute_methods_arr: Array = ["execute_attack", "execute_item", "execute_switch", "execute_flee"]
+const player_first: int = 0
+const enemy_first: int = 0
+
 
 func execute_action(action_order_int: int, player_actions: Array, enemy_actions: Array) -> void:
 	
-	var execute_methods_arr: Array = ["execute_attack", "execute_item", "execute_switch", "execute_flee"]
+	print(player_actions)
+	print(enemy_actions)
 	
-	if action_order_int == 0:
+	if action_order_int == player_first:
 		
 		self.call(execute_methods_arr[player_actions[0]], player_actions[1], 0)
 		await self.action_finished_sig
+		
+		print("yes")
 		
 		if can:
 			self.call(execute_methods_arr[enemy_actions[0]], enemy_actions[1], 1)
 		else:
 			can = true
 			return
-		
-	elif action_order_int == 1:
+	
+	elif action_order_int == enemy_first:
 		
 		self.call(execute_methods_arr[enemy_actions[0]], enemy_actions[1], 1)
 		await self.action_finished_sig
@@ -392,283 +403,138 @@ func execute_action(action_order_int: int, player_actions: Array, enemy_actions:
 var player_finished: bool = false
 var enemy_finished: bool = false
 
+const player_int: int = 0
+const enemy_int: int = 1
 
-@warning_ignore("shadowed_variable")
-func execute_attack(action: String, executer: int) -> void:
+
+func execute_attack(action_str: String, executer: int) -> void:
 	
-	var hits: int = randi_range(0, 99)
+#	var hits: int = 100
 	var damage: int
 	
-	if hits <= attacks.attacks[action][3]:
-		if executer == 0:
+	var player_level: int = player_pokemon[0][10]
+	var attacker_str: String
+	var defender_str: String
+	
+	print("action:" + action_str)
+	
+	if executer == player_int:
+		
+		print("player_attack")
+		
+		attacker_str = player_pokemon[0][1]
+		defender_str = enemy_pokemon[0][1]
+		
+		start_attack_dialouge([player_pokemon[0][1] + " used " + action_str + ".\n"])
+		await dialouge_finished
+		
+		battle_anim_player.play("damage_enemy")
+		playsound()
+		
+		match action_str:
 			
-			start_attack_dialouge([player_pokemon[0][1] + " used " + action + ".\n"])
-			await dialouge_finished
+			"Tackle":
+				
+				damage = damage(action_str, player_level, 7, attacker_str, defender_str)
+				
+				for i in range(damage * 10):
+					
+					await get_tree().create_timer(.01).timeout
+					enemy_pokemon[0][9] -= .1
+					update_ui()
 			
-			battle_anim_player.play("damage_enemy")
-			playsound()
+			"Pound":
+				
+				damage = damage(action_str, player_level, 7, attacker_str, defender_str)
+				
+				for i in range(damage * 10):
+					
+					await get_tree().create_timer(.01).timeout
+					enemy_pokemon[0][9] -= .1
+					update_ui()
 			
-			match action:
+			"Quick Attack":
 				
-				"Absorb":
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-					
-					for i in range((float(damage) / 2) * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						player_pokemon[0][9] += .1
-						update_ui()
+				damage = damage(action_str, player_level, 7, attacker_str, defender_str)
 				
-				"Acid": # Has 10% Chance to lower Defense by 1 stage
+				for i in range(damage * 10):
 					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Acid Armor": # Raises Users Defense by 2 Stages
-					
-					pass
-				
-				"Aerial Ace":
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.1).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Aeroblast":
-					
-					damage = damage(action, player_pokemon[0][10], 30, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.1).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Agility": # Raises the user Speed by 2 stages
-					
-					pass
-				
-				"Air Cutter":
-					
-					damage = damage(action, player_pokemon[0][10], 30, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Amnesia": # Raises the Users Special Defense by 2 Stages
-					pass
-				
-				"Ancient Power": # Has a 10% Chance to rais each stat
-					pass
-				
-				"Arm Thurst":
-					
-					var att: int = randi_range(1, 5)
-					
-					for _i in range(att):
-						damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-						
-						for i in range(damage * 10):
-							
-							await get_tree().create_timer(.01).timeout
-							enemy_pokemon[0][9] -= .1
-							update_ui()
-				
-				"Aromatherapy": # Removes all status effects
-					pass
-				
-				"Assist": #
-					pass 
-				
-				"Astonish":
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Attract": #
-					pass
-				
-				"Aurora Beam": # 10 % Chance to lower Attack 1 stage
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Barrage":
-					
-					var att: int = randi_range(2, 5)
-					
-					for _i in range(att):
-						
-						damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-						
-						for i in range(damage * 10):
-							
-							await get_tree().create_timer(.01).timeout
-							enemy_pokemon[0][9] -= .1
-							update_ui()
-				
-				"Barrier": # Raises Users Defence by 2 Stages
-					pass
-				
-				"Baton Pass": #
-					pass
-				
-				"Beat Up": #
-					pass
-				
-				"Belly Drum": # Max Attack
-					
-					for i in range(float(player_pokemon[0][3]) / 2):
-						
-						await get_tree().create_timer(.01).timeout
-						player_pokemon[0][9] -= 1
-						update_ui()
-				
-				"Bide": # No
-					pass
-				
-				"Bind": # Fak U
-					pass
-				
-				"Bite": # 30 % to Flinch
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Blast Burn": # No
-					pass
-				
-				
-				
-				"Tackle":
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Pound":
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
-				
-				"Quick Attack":
-					
-					damage = damage(action, player_pokemon[0][10], 7, player_pokemon[0][1], enemy_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] -= .1
-						update_ui()
+					await get_tree().create_timer(.01).timeout
+					enemy_pokemon[0][9] -= .1
+					update_ui()
+		
+		
+		attack_finished.emit()
+		update()
+		action_finished_sig.emit()
+		battle_anim_player.stop()
+		
+		player_finished = true
+		
+	elif executer == enemy_int:
+		
+		print("enemy_attack")
+		
+		attacker_str = enemy_pokemon[0][1]
+		defender_str = player_pokemon[0][1]
+		
+		start_attack_dialouge([enemy_pokemon[0][1] + " used " + action_str + ".\n"])
+		await dialouge_finished
+		
+		battle_anim_player.play("damage_player")
+		playsound()
+		
+		match action_str:
 			
-			player_pokemon[0][9] = round(player_pokemon[0][9])
-			emit_signal("attack_finished")
-			update()
-			emit_signal("action_finished_sig")
-			battle_anim_player.stop()
-			player_finished = true
+			"Absorb":
+				
+				damage = damage(action_str, enemy_pokemon[0][10], 7, enemy_pokemon[0][1], player_pokemon[0][1])
+				
+				for i in range(damage * 10):
+					
+					await get_tree().create_timer(.01).timeout
+					player_pokemon[0][9] -= .1
+					update_ui()
+				
+				for i in range((float(damage) / 2) * 10):
+					
+					await get_tree().create_timer(.01).timeout
+					enemy_pokemon[0][9] += .1
+					update_ui()
 			
-		else:
+			"Acid":
+				pass
 			
-			start_attack_dialouge([enemy_pokemon[0][1] + " used " + action + ".\n"])
-			await dialouge_finished
+			"Acid Armor":
+				pass
 			
-			battle_anim_player.play("damage_player")
-			playsound()
-			
-			match action:
+			"Tackle":
 				
-				"Absorb":
-					
-					damage = damage(action, enemy_pokemon[0][10], 7, enemy_pokemon[0][1], player_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						player_pokemon[0][9] -= .1
-						update_ui()
-					
-					for i in range((float(damage) / 2) * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						enemy_pokemon[0][9] += .1
-						update_ui()
+				damage = damage(action_str, enemy_pokemon[0][10], 7, enemy_pokemon[0][1], player_pokemon[0][1])
 				
-				"Acid":
-					pass
-				
-				"Acid Armor":
-					pass
-				
-				"Tackle":
+				for i in range(damage * 10):
 					
-					damage = damage(action, enemy_pokemon[0][10], 7, enemy_pokemon[0][1], player_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						
-						await get_tree().create_timer(.01).timeout
-						player_pokemon[0][9] -= .1
-						update_ui()
-				
-				
-				"Pound":
-					
-					damage = damage(action, enemy_pokemon[0][10], 20, enemy_pokemon[0][1], player_pokemon[0][1])
-					
-					for i in range(damage * 10):
-						await get_tree().create_timer(.01).timeout
-						player_pokemon[0][9] -= .1
-						update_ui()
+					await get_tree().create_timer(.01).timeout
+					player_pokemon[0][9] -= .1
+					update_ui()
 			
 			
-			emit_signal("action_finished_sig") 
-			update()
-			emit_signal("attack_finished")
-			battle_anim_player.stop()
-			enemy_finished = true
+			"Pound":
+				
+				damage = damage(action_str, enemy_pokemon[0][10], 20, enemy_pokemon[0][1], player_pokemon[0][1])
+				
+				for i in range(damage * 10):
+					await get_tree().create_timer(.01).timeout
+					player_pokemon[0][9] -= .1
+					update_ui()
+		
+		
+		attack_finished.emit()
+		update()
+		action_finished_sig.emit()
+		battle_anim_player.stop()
+		
+		enemy_finished = true
 	
 	if player_finished and enemy_finished:
 		
@@ -693,6 +559,11 @@ func start_attack_dialouge(input_arr: Array) -> void:
 			await dialouge_timer.timeout
 			current_dialouge_str += input_arr[i][j]
 			dialouge_label.text = current_dialouge_str
+	
+	await get_tree().create_timer(.5).timeout
+	
+	current_dialouge_str = ""
+	dialouge_label.text = ""
 	
 	emit_signal("dialouge_finished")
 	attacking()

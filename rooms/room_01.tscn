@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6314mpbb31q2"]
+[gd_scene load_steps=7 format=3 uid="uid://b6314mpbb31q2"]
 
 [ext_resource type="Texture2D" uid="uid://bwenod3wu7r3u" path="res://room_assets/iterior_assets.png" id="1_cws0x"]
 [ext_resource type="PackedScene" uid="uid://wxhxheo61txe" path="res://components/transition.tscn" id="2_wshqm"]
 [ext_resource type="PackedScene" uid="uid://c7qwguxr61pmx" path="res://dialogue/dialouge_object.tscn" id="3_1ktjk"]
+[ext_resource type="PackedScene" uid="uid://bix8jmu3q7aea" path="res://components/event.tscn" id="4_bvjj8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7jm2k"]
 texture = ExtResource("1_cws0x")
@@ -536,3 +537,10 @@ object = 3
 [node name="dialouge_object_5" parent="." instance=ExtResource("3_1ktjk")]
 position = Vector2(136, -8)
 object = 4
+
+[node name="event" parent="." instance=ExtResource("4_bvjj8")]
+position = Vector2(40, 40)
+event = "a"
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="event"]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)

@@ -1,5 +1,6 @@
+res://battle/battle.tscn
+res://battle/battle.gd
 res://rooms/room_03.scn
-res://main.gd
 res://cutscenes/cutscene_09.tscn
 res://rooms/routes/arr_03.tscn
 res://cutscenes/cutscene_10.tscn
@@ -8,6 +9,5 @@ res://rooms/routes/arr_02.tscn
 res://rooms/routes/arr_01.tscn
 res://main.tscn
 res://components/event.tscn
-res://pokemon_data.gd
-res://battle/battle.gd
-res://global.gd
+res://rooms/room_01.tscn
+res://main.gd
