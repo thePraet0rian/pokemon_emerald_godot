@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cinnty0qyxw25"]
+[gd_scene load_steps=4 format=3 uid="uid://cinnty0qyxw25"]
 
 [ext_resource type="Texture2D" uid="uid://bs43uktxb2vxy" path="res://room_assets/extra/bag.png" id="1_7y1av"]
+[ext_resource type="Script" path="res://cutscenes/cutscene_10.gd" id="1_kb6ma"]
 [ext_resource type="PackedScene" uid="uid://bix8jmu3q7aea" path="res://components/event.tscn" id="2_7hb3x"]
 
 [node name="cutscene_10" type="Node2D"]
+script = ExtResource("1_kb6ma")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
 position = Vector2(-72, -200)
