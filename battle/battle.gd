@@ -204,6 +204,7 @@ func match_menue_input() -> void:
 @onready var attack_select_cursor: Sprite2D = $attack_select/attack_select_cursor
 
 var attack_select_index: Vector2i = Vector2i.ZERO
+var attack_pressed: bool = false
 
 const attack_select_cursor_positons: Array = [[Vector2(11, 128), Vector2(11, 146)], [Vector2(83, 128), Vector2(83, 146)]]
 
@@ -227,7 +228,10 @@ func attack_select_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shift"):
 		attack_select.visible = false
 		current_state = states.MENUE
-	elif event.is_action_pressed("space"):
+	elif event.is_action_pressed("space") and !attack_pressed:
+		
+		attack_pressed = true
+		
 		sfx_player.play()
 		await sfx_player.finished
 		
@@ -235,6 +239,8 @@ func attack_select_input(event: InputEvent) -> void:
 		attack_select.visible = false
 		current_state = states.NONE
 		action(0, player_moveset[attack_select_index.x][attack_select_index.y][0])
+		
+		attack_pressed = false
 
 
 @onready var bag: Node2D = $bag
@@ -1421,6 +1427,7 @@ var dialouge_pressed: bool = false
 
 func start_dialouge(input_arr: Array) -> void:
 	
+	dialouge_pressed = true
 	current_state = states.NONE
 	
 	dialouge_nde.visible = true
@@ -1437,6 +1444,7 @@ func start_dialouge(input_arr: Array) -> void:
 			dialouge_label.text = current_dialouge_str
 	
 	current_state = states.DIALOUGE
+	dialouge_pressed = false
 
 
 @onready var sfx_player: AudioStreamPlayer = $sfx_player
@@ -1447,10 +1455,11 @@ func dialouge_input(event: InputEvent) -> void:
 	if !dialouge_pressed:
 		if event.is_action_pressed("space"):
 			
+			dialouge_pressed = true
+			
 			sfx_player.play()
 			await sfx_player.finished
 			
-			dialouge_pressed = true
 			
 			if dialouge_line < len(dialouge_text):
 				

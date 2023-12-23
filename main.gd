@@ -368,6 +368,10 @@ func cutscene_ten() -> void:
 	
 	await global.transition
 	cutscene.get_child(0).queue_free()
+func cutscene_eleven() -> void:
+	
+	await global.end_battle
+	global.transition.emit(6, Vector2(8, -136), 0)
 
 
 
@@ -384,4 +388,5 @@ func event(action: String) -> void:
 			global.progress = 3
 		"a":
 			global.start_battle.emit([[12, "Zigzagoon", ["Normal"], 12, 10, 10, 10, 10, 100, 12, 5, 125]], ["Pound"], 0)
+			cutscene_eleven()
  

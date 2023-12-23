@@ -10,6 +10,11 @@ res://components/event.tscn
 res://battle/battle.tscn
 res://rooms/room_01.tscn
 res://rooms/routes/arr_00.tscn
-res://cutscenes/cutscene_10.gd
-res://main.gd
 res://cutscenes/cutscene_01.tscn
+res://battle/battle.gd
+res://main.gd
+res://rooms/room_05.tscn
+res://rooms/room_06.tscn
+res://components/npc.tscn
+res://components/npc.gd
+res://rooms/room_04.tscn

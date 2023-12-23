@@ -1,7 +1,96 @@
-[gd_scene load_steps=3 format=3 uid="uid://xa22fo13s7np"]
+[gd_scene load_steps=9 format=3 uid="uid://xa22fo13s7np"]
 
 [ext_resource type="Script" path="res://components/npc.gd" id="1_chn85"]
 [ext_resource type="Texture2D" uid="uid://b6bddjs0dy14b" path="res://npc_assets/npc_01.png" id="2_dnu3u"]
+
+[sub_resource type="Animation" id="Animation_2kdkl"]
+resource_name = "move_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 8, 2, 9, 2]
+}
+
+[sub_resource type="Animation" id="Animation_7renu"]
+resource_name = "move_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 10, 3, 11, 3]
+}
+
+[sub_resource type="Animation" id="Animation_o2wig"]
+resource_name = "move_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 6, 1, 7, 1]
+}
+
+[sub_resource type="Animation" id="Animation_xgi3o"]
+resource_name = "move_down"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 0, 5, 0]
+}
+
+[sub_resource type="Animation" id="Animation_8yqu0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhyey"]
+_data = {
+"RESET": SubResource("Animation_8yqu0"),
+"move_down": SubResource("Animation_xgi3o"),
+"move_left": SubResource("Animation_2kdkl"),
+"move_right": SubResource("Animation_7renu"),
+"move_up": SubResource("Animation_o2wig")
+}
 
 [node name="npc" type="Area2D"]
 script = ExtResource("1_chn85")
@@ -18,3 +107,17 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [node name="collision_polygon_2d" type="CollisionPolygon2D" parent="npc"]
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="ray_cast_2d" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dhyey")
+}
+
+[node name="area_2d" type="Area2D" parent="."]
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
