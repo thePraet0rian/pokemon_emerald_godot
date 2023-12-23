@@ -15,6 +15,7 @@ enum states {moving = 0, not_moving = 1}
 @export var can_right: bool = true
 @export var can_up: bool = true
 @export var can_down: bool = true
+@export var time: int = 1
 
 
 @onready var sprite: Sprite2D = $sprite_2d
@@ -30,6 +31,8 @@ func _ready() -> void:
 	
 	sprite.texture = txt
 	sprite.offset = sprite_offset
+	
+	timer.wait_time = time
 	
 	
 	if state == states.moving:

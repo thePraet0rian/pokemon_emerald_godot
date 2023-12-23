@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://crful2nfyevct"]
+
+[ext_resource type="Script" path="res://components/set_clock.gd" id="1_2st73"]
+[ext_resource type="Texture2D" uid="uid://cta2tqg1353hf" path="res://room_assets/clock/clock.png" id="2_iynke"]
+[ext_resource type="Texture2D" uid="uid://b3jhyxvxn6h5" path="res://room_assets/clock/a_button_sign.png" id="3_w08an"]
+[ext_resource type="Texture2D" uid="uid://ulng66xchilw" path="res://room_assets/clock/confirm.png" id="4_qvlmj"]
+[ext_resource type="Texture2D" uid="uid://3r58dmhj7rim" path="res://room_assets/clock/wheel.png" id="5_obdxn"]
+[ext_resource type="Texture2D" uid="uid://3453cerq1dcb" path="res://room_assets/clock/am_sign.png" id="6_6muju"]
+[ext_resource type="Texture2D" uid="uid://cop5h1pk841bt" path="res://room_assets/clock/minute_hand.png" id="7_l2p3y"]
+[ext_resource type="Texture2D" uid="uid://bbi8lm7idht8o" path="res://room_assets/clock/hour_hand.png" id="8_eqorj"]
+
+[node name="set_clock" type="CanvasLayer"]
+script = ExtResource("1_2st73")
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 240.0
+offset_bottom = 160.0
+color = Color(0.282353, 0.690196, 0.721569, 1)
+
+[node name="organize" type="Node2D" parent="."]
+
+[node name="clock" type="Sprite2D" parent="organize"]
+position = Vector2(120, 80)
+texture = ExtResource("2_iynke")
+
+[node name="a_button" type="Sprite2D" parent="organize"]
+position = Vector2(180, 136)
+texture = ExtResource("3_w08an")
+
+[node name="confirm" type="Sprite2D" parent="organize"]
+position = Vector2(212, 136)
+texture = ExtResource("4_qvlmj")
+
+[node name="buttons" type="Sprite2D" parent="organize"]
+position = Vector2(32, 129)
+texture = ExtResource("5_obdxn")
+
+[node name="am_pm_dial" type="Sprite2D" parent="organize"]
+position = Vector2(120, 110)
+texture = ExtResource("6_6muju")
+
+[node name="hour_hand" type="Sprite2D" parent="organize"]
+position = Vector2(120, 80)
+texture = ExtResource("7_l2p3y")
+
+[node name="minute_hand" type="Sprite2D" parent="organize"]
+position = Vector2(120, 80)
+texture = ExtResource("8_eqorj")

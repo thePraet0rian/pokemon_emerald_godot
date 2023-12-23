@@ -533,3 +533,4 @@ txt = ExtResource("4_sbg75")
 state = 0
 can_up = false
 can_down = false
+time = 3
