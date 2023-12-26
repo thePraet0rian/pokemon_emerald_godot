@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://bksb6g7o7x1xf"]
+
+[ext_resource type="Texture2D" uid="uid://djixcp3hamxt5" path="res://components/home_pc/home_pc_background.png" id="1_3ugil"]
+[ext_resource type="Script" path="res://components/home_pc/home_pc.gd" id="1_48ghu"]
+[ext_resource type="Texture2D" uid="uid://bqjdu1sgt7qk5" path="res://dialouge_assets/dialouge_background.png" id="2_mq6x4"]
+[ext_resource type="FontFile" uid="uid://dlcuup21h36of" path="res://assets/pokefont_new.ttf" id="4_1fioc"]
+[ext_resource type="Texture2D" uid="uid://dmp0fucbg5jx0" path="res://battle_assets/menue_cursor.png" id="5_lmri0"]
+
+[node name="home_pc" type="CanvasLayer"]
+script = ExtResource("1_48ghu")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(49, 45)
+texture = ExtResource("1_3ugil")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+position = Vector2(120, 136)
+texture = ExtResource("2_mq6x4")
+
+[node name="textbox" type="Label" parent="sprite_2d"]
+offset_left = -100.0
+offset_top = -10.0
+offset_right = -60.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "asdf"
+
+[node name="main_menue" type="Node2D" parent="."]
+
+[node name="item_storage" type="Label" parent="main_menue"]
+offset_left = 23.0
+offset_top = 17.0
+offset_right = 133.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "ITEM STORAGE"
+
+[node name="mailbox" type="Label" parent="main_menue"]
+offset_left = 23.0
+offset_top = 34.0
+offset_right = 63.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "MAILBOX"
+
+[node name="decoration" type="Label" parent="main_menue"]
+offset_left = 23.0
+offset_top = 51.0
+offset_right = 79.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "DECORATION"
+
+[node name="label_3" type="Label" parent="main_menue"]
+offset_left = 23.0
+offset_top = 68.0
+offset_right = 63.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "TURN OFF"
+
+[node name="cursor" type="Sprite2D" parent="main_menue"]
+position = Vector2(15, 36)
+texture = ExtResource("5_lmri0")

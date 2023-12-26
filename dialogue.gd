@@ -13,6 +13,9 @@ const object_01: Array = [["Dad might like this program.\n"], ["Better get going
 const object_02: Array = [["The time is already set.\n"]]
 const object_03: Array = [["It is a Nintendo GameCube\n"], ["A Game Boy Advance is connected\n to serve as the Controller.\n"]]
 const object_04: Array = [["The map is too dirty to read\n"]]
-const object_05: Array = [["The pc is unpluged.\n"]]
+const object_05: Array = [["May booted up the PC.\n"]]
+
+const object_06: Array = [[]]
+const object_07: Array = [[]]
 
 const object_dialogue_string: Array = [object_01, object_02, object_03, object_04, object_05]

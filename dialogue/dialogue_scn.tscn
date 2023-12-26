@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://csaq2igbcd127"]
 
-[ext_resource type="FontFile" uid="uid://byc8v8aboxcx1" path="res://assets/pokefont_new.ttf" id="1_5vqde"]
+[ext_resource type="FontFile" uid="uid://dlcuup21h36of" path="res://assets/pokefont_new.ttf" id="1_5vqde"]
 [ext_resource type="Script" path="res://dialogue/dialogue_scn.gd" id="1_afyve"]
 [ext_resource type="Texture2D" uid="uid://bqjdu1sgt7qk5" path="res://dialouge_assets/dialouge_background.png" id="2_1lilf"]
 [ext_resource type="AudioStream" uid="uid://brfoisv0yik4" path="res://sfx/confirm.wav" id="4_urlky"]

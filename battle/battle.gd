@@ -685,7 +685,7 @@ func experience() -> void:
 	
 	check_for_level_up()
 	
-	emit_signal("experience_end")
+	experience_end.emit()
 
 
 func check_for_level_up() -> void:
@@ -1468,9 +1468,7 @@ func dialouge_input(event: InputEvent) -> void:
 				
 				if current_dialouge_str.find("\n") == -1:
 					
-					
 					for i in range(len(dialouge_text[dialouge_line])):
-						
 						
 						await dialouge_timer.timeout
 						current_dialouge_str += dialouge_text[dialouge_line][i]

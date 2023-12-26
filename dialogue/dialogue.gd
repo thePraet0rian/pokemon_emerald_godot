@@ -49,9 +49,6 @@ func draw_first_two_lines(line_int: int) -> void:
 				dialog_window.text += "\n"
 				previos_i += 1
 	
-#	dialog_window.text = "asdfasdf \n asdfasfd"
-	
-	
 	is_pressed = false
 	pressed = false
 
@@ -83,7 +80,7 @@ func _input(event: InputEvent) -> void:
 					draw_first_two_lines(line)
 					test_line = 1
 				else:
-					global.emit_signal("end_dialogue")
+					global.end_dialogue.emit()
 			
 			is_pressed = false
 

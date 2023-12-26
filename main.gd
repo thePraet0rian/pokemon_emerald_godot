@@ -26,12 +26,14 @@ func _ready() -> void:
 	global.connect("transition", Callable(self, "transition"))
 	global.connect("start_battle", Callable(self, "start_battle"))
 	global.connect("end_battle", Callable(self, "end_battle"))
-	global.connect("start_dialogue", Callable(self, "start_dialogue"))
-	global.connect("end_dialogue", Callable(self, "end_dialogue"))
+	global.start_dialogue.connect(start_dialogue)
+	global.end_dialogue.connect(end_dialogue)
 	global.connect("start_game", Callable(self, "start_game"))
 	global.connect("save_game", Callable(self, "save_game"))
 	global.connect("enter_new_area", Callable(self, "enter_new_area"))
+	
 	global.object.connect(event)
+	global.enable_player.connect(enable_player)
 
 
 const save_path: String = "user://savefile.save"
@@ -131,17 +133,19 @@ const dialogue_scn: PackedScene = preload("res://dialogue/dialogue_scn.tscn")
 
 var dialogue_inst: CanvasLayer
 
-
-func start_dialogue(text: Array) -> void:
+func start_dialogue(text: Array, mode: bool) -> void:
 	
 	dialogue_inst = dialogue_scn.instantiate()
 	dialogue_inst.set_text(text)
+	dialogue_inst.set_mode(mode)
 	add_child(dialogue_inst)
 
 
-func end_dialogue() -> void:
+func end_dialogue(mode: bool) -> void:
 	
-	player.process_mode = Node.PROCESS_MODE_INHERIT
+	if mode:
+		player.process_mode = Node.PROCESS_MODE_INHERIT
+	
 	dialogue_inst.queue_free()
 
 
@@ -161,6 +165,11 @@ func save_game() -> void:
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(data)
 	file.close()
+
+
+func enable_player() -> void:
+	
+	player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func stop_music() -> void:
@@ -233,46 +242,67 @@ preload("res://cutscenes/cutscene_04.tscn"), "", preload("res://cutscenes/cutsce
 preload("res://cutscenes/cutscene_09.tscn"), preload("res://cutscenes/cutscene_10.tscn")]
 
 var current_cutscene: Node2D
+var events: Array = global.events
 
 
 func progress_transition(new_room: int) -> void:
 	
 	var progress: int = global.progress
 	
-	if new_room == 3 and progress == 0:
+	match new_room:
 		
-		leaving_the_van()
-		await transition_finished
-		global.progress = 1
-		return
-	elif new_room == 2 and progress == 1:
+		0:
+			pass
 		
-		cutscene_two()
-		await transition_finished
-		global.progress = 2
-		return 
-	elif new_room == 2 and progress == 2:
+		1:
+			pass
 		
-		cutscene_four()
-		return
-	elif new_room == 2 and progress == 3:
+		2:
+			if !events[1]:
+				
+				cutscene_two()
+				await transition_finished
+				events[1] = true
+			
+			elif !events[2]:
+				
+				cutscene_four()
+			
+			elif !events[3]:
+				
+				cutscene_five()
+				await transition_finished
+				events[3] = true
+			
 		
-		cutscene_five()
-		await transition_finished
-		global.progress = 4
-		return
-	elif new_room == 3 and progress == 4:
+		3:
+			if !events[0]:
+				
+				leaving_the_van()
+				await transition_finished
+				events[0] = true
+			
+			elif !events[4]:
+				
+				cutscene_six()
+			
+			elif !events[7] and events[6]:
+				
+				cutscene_nine()
+				cutscene_ten()
 		
-		cutscene_six()
-		return
-	elif new_room == 4 and progress == 4:
-		cutscene_seven()
-	elif new_room == 5 and progress == 4:
-		cutscene_eight()
-	elif new_room == 3 and progress == 5:
+		4:
+			
+			if !events[5]:
+				
+				cutscene_seven()
 		
-		cutscene_nine()
-		cutscene_ten()
+		5:
+			
+			if !events[6]:
+				
+				cutscene_eight()
+
 
 
 func leaving_the_van() -> void:
@@ -289,7 +319,7 @@ func leaving_the_van() -> void:
 	await cutscene_player.animation_finished
 	set_process(false)
 	
-	global.start_dialogue.emit([["Placeholder."]])
+	start_dialogue([["Playerholder."]], true)
 	await global.end_dialogue
 	
 	current_cutscene.play_animation("cutscene")
@@ -310,6 +340,8 @@ func leaving_the_van() -> void:
 	await transition_finished
 	
 	$cutscenes/cutscene_01.queue_free()
+
+
 func cutscene_two() -> void:
 	
 	rooms.get_child(0).cutscene()
@@ -317,29 +349,35 @@ func cutscene_two() -> void:
 	
 	await transition_finished
 	$cutscenes/cutscene_02.queue_free()
+
+
 func cutscene_four() -> void:
 	
 	rooms.get_child(0).cutscene()
 	cutscene.add_child(cutscenes[2].instantiate())
 	
-	global.start_dialogue.emit([["Placeholder."]])
+	start_dialogue([["Placeholder."]], false)
 	await global.end_dialogue
 	
 	global.progress = 3
 	transition(1, Vector2(24, 9), 0)
 	await transition_finished
 	$cutscenes/cutscene_04.queue_free()
+
+
 func cutscene_five() -> void:
 	
-	print("yews")
-	global.start_dialogue.emit([["Look your fahter was on tv."]])
+	start_dialogue([["Look your father was on tv."]], false)
 	await global.end_dialogue
+
+
 func cutscene_six() -> void:
 	
 	cutscene.add_child(cutscenes[4].instantiate())
-	
 	await global.transition
 	cutscene.get_child(0).queue_free()
+
+
 func cutscene_seven() -> void:
 	
 	player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -349,30 +387,47 @@ func cutscene_seven() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	global.start_dialogue.emit([["Placeholder."]])
+	start_dialogue([["Placeholder."]], false)
 	await global.end_dialogue
+	
+	events[5] = true
 	
 	await global.transition
 	cutscene.get_child(0).queue_free()
+
+
 func cutscene_eight() -> void:
 	
-	global.progress = 5
+	events[6] = true
+	events[4] = true
+
+
 func cutscene_nine() -> void:
 	
 	cutscene.add_child(cutscenes[7].instantiate())
 	await global.transition
 	cutscene.get_child(0).queue_free()
+
+
 func cutscene_ten() -> void:
 	
 	cutscene.add_child(cutscenes[8].instantiate())
 	
 	await global.transition
 	cutscene.get_child(0).queue_free()
+
+
 func cutscene_eleven() -> void:
 	
 	await global.end_battle
 	global.transition.emit(6, Vector2(8, -136), 0)
+	events[7] = true
 
+
+func home_pc() -> void:
+	
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	add_child(home_pc_scn.instantiate())
 
 
 func _process(_delta: float) -> void:
@@ -380,13 +435,22 @@ func _process(_delta: float) -> void:
 	player.position = player_position
 
 
+const clock_scn: PackedScene = preload("res://components/set_clock.tscn")
+const home_pc_scn: PackedScene = preload("res://components/home_pc/home_pc.tscn")
+
+
 func event(action: String) -> void:
 	
 	match action:
 		
 		"clock_activated":
-			global.progress = 3
+			player.process_mode = Node.PROCESS_MODE_DISABLED
+			add_child(clock_scn.instantiate())
+		"clock_set":
+			events[2] = true
+			player.process_mode = Node.PROCESS_MODE_INHERIT
 		"a":
 			global.start_battle.emit([[12, "Zigzagoon", ["Normal"], 12, 10, 10, 10, 10, 100, 12, 5, 125]], ["Pound"], 0)
 			cutscene_eleven()
- 
+		"home_pc":
+			home_pc()

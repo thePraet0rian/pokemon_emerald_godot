@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpjcpj1elmx7"]
+[gd_scene load_steps=4 format=3 uid="uid://bpjcpj1elmx7"]
 
 [ext_resource type="PackedScene" uid="uid://xa22fo13s7np" path="res://components/npc.tscn" id="1_b76yt"]
 [ext_resource type="Texture2D" uid="uid://b6mim3gt4xv8b" path="res://npc_assets/npc_02.png" id="2_ry4w3"]
+[ext_resource type="PackedScene" uid="uid://cmba3loukcya3" path="res://rooms/routes/arr_00.tscn" id="3_un8iy"]
 
 [node name="cutscene_six" type="Node2D"]
 
@@ -13,3 +14,5 @@ txt = ExtResource("2_ry4w3")
 
 [node name="collision_polygon_2d" type="CollisionPolygon2D" parent="static_body_2d"]
 polygon = PackedVector2Array(-32, -96, -32, -80, -16, -80, -16, -96)
+
+[node name="arr_00" parent="." instance=ExtResource("3_un8iy")]

@@ -19,6 +19,8 @@ signal animation_finished
 
 signal object()
 
+signal enable_player
+
 var current_room: int = 0
 var current_area: int = 0
 var display_areas: Array = []
@@ -29,8 +31,10 @@ var player_moveset: Array = []
 var player_inventory: Array = []
 
 var progress: int = 0
-
 var debug: bool = true
+var time: int = 0
+
+var events: Array[bool] = [false, false, false, false, false, false, false, false, false]
 
 
 func get_mon_number(pokemon_name: String) -> int:

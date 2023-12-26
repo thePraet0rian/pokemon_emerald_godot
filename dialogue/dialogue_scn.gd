@@ -9,11 +9,16 @@ var text_arr: Array
 var current_index: int = 0
 var current_line: int = 2
 var pressed: bool = true
-
+var process_md: bool = false
 
 func set_text(input: Array) -> void:
 	
 	text_arr = input
+
+
+func set_mode(mode: bool) -> void:
+	
+	process_md = mode
 
 
 func _ready() -> void:
@@ -54,8 +59,7 @@ func _input(event: InputEvent) -> void:
 		if current_index >= len(text_arr):
 			
 			await audio_player.finished
-			global.emit_signal("end_dialogue")
-			print("end_dialogue")
+			global.end_dialogue.emit(process_md)
 		else:
 			
 			label.text = label.text.erase(0, label.text.find("\n") + 1)
