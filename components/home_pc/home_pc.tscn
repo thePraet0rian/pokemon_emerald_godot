@@ -10,6 +10,7 @@
 script = ExtResource("1_48ghu")
 
 [node name="background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(49, 45)
 texture = ExtResource("1_3ugil")
 
@@ -28,6 +29,7 @@ theme_override_font_sizes/font_size = 8
 text = "asdf"
 
 [node name="main_menue" type="Node2D" parent="."]
+visible = false
 
 [node name="item_storage" type="Label" parent="main_menue"]
 offset_left = 23.0
@@ -75,4 +77,58 @@ text = "TURN OFF"
 
 [node name="cursor" type="Sprite2D" parent="main_menue"]
 position = Vector2(15, 36)
+texture = ExtResource("5_lmri0")
+
+[node name="item_storage" type="Node2D" parent="."]
+visible = false
+
+[node name="label" type="Label" parent="item_storage"]
+offset_left = 24.0
+offset_top = 17.0
+offset_right = 85.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "WITHDRAW ITEM"
+
+[node name="label_2" type="Label" parent="item_storage"]
+offset_left = 24.0
+offset_top = 34.0
+offset_right = 78.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "deposit item"
+uppercase = true
+
+[node name="label_3" type="Label" parent="item_storage"]
+offset_left = 24.0
+offset_top = 51.0
+offset_right = 65.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "toss item"
+uppercase = true
+
+[node name="label_4" type="Label" parent="item_storage"]
+offset_left = 25.0
+offset_top = 68.0
+offset_right = 65.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("4_1fioc")
+theme_override_font_sizes/font_size = 8
+text = "cancel"
+uppercase = true
+
+[node name="sprite_2d" type="Sprite2D" parent="item_storage"]
+position = Vector2(16, 19)
 texture = ExtResource("5_lmri0")

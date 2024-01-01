@@ -5,13 +5,14 @@ It is in no way finished and I wouldn't recommend cloning the code, because it's
 
 ## Programm Description
 
+
 ### Features
 - Wild Pokemon Battles
 - Titlescreen
 - Music 
 - Sound effects
 - Dialogue System
-- 
+ 
 
 ### RESOURCES
 - Sprites: spritersresource.com/game-boy-advance/pokemon-emerald
@@ -19,8 +20,11 @@ It is in no way finished and I wouldn't recommend cloning the code, because it's
 - SFX: ...
 - Map: ...
 
-## Executing
+### Executing
+- Don't
 
+
+### Youtube
 
 #### [My youtube Video](https://www.youtube.com/watch?v=9SDiq2hfyXs)
 

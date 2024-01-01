@@ -19,3 +19,7 @@ Events: Array[bool]
 [7]:
 [8]:
 
+Style sheet:
+
+- Font color: #505050
+- Font shadow: #cdcdcd

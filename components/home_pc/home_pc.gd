@@ -32,7 +32,13 @@ func _input(event: InputEvent) -> void:
 		
 		states.main_menue:
 			
+			text_box_nde.text = "What would you like to do?"
 			main_menue(event)
+		
+		states.item_storage:
+			
+			text_box_nde.text = "Take out items from the PC."
+			item_storage(event)
 
 
 @onready var main_menue_cursor: Sprite2D = $main_menue/cursor
@@ -84,7 +90,7 @@ func mailbox() -> void:
 	global.start_dialogue.emit([["There is no mail here."]], false)
 	await global.end_dialogue
 	
-	reset_main_dialogue()
+	text_box_nde.text = "What would you like to do?"
 	current_state = states.main_menue
 
 
@@ -97,28 +103,10 @@ func decoration() -> void:
 	global.start_dialogue.emit([["There are no decorations"]], false)
 	await global.end_dialogue
 	
-	reset_main_dialogue()
+	text_box_nde.text = "What would you like to do?"
 	current_state = states.main_menue
 
 
-const default_str: String = "What would you like to do?"
-
-
-func reset_main_dialogue() -> void:
+func item_storage(event: InputEvent) -> void:
 	
-	current_state = states.none
-	
-	main_menue_nde.visible = false
-	background.visible = false
-	
-	
-	text_box_nde.text = ""
-	
-	for i in range(len(default_str)):
-		
-		text_box_nde.text += default_str[i]
-		await get_tree().create_timer(0.05).timeout
-	
-	current_state = states.main_menue
-	main_menue_nde.visible = true
-	background.visible = true
+	pass

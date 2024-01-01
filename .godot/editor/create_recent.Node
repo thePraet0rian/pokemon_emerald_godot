@@ -1,8 +1,8 @@
+Sprite2D
+Label
+Node2D
 Node3D
 Area3D
-Label
-Sprite2D
-Node2D
 CanvasLayer
 Camera2D
 CollisionPolygon2D
