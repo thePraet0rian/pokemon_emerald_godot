@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bksb6g7o7x1xf"]
+[gd_scene load_steps=7 format=3 uid="uid://bksb6g7o7x1xf"]
 
 [ext_resource type="Texture2D" uid="uid://djixcp3hamxt5" path="res://components/home_pc/home_pc_background.png" id="1_3ugil"]
 [ext_resource type="Script" path="res://components/home_pc/home_pc.gd" id="1_48ghu"]
 [ext_resource type="Texture2D" uid="uid://bqjdu1sgt7qk5" path="res://dialouge_assets/dialouge_background.png" id="2_mq6x4"]
 [ext_resource type="FontFile" uid="uid://dlcuup21h36of" path="res://assets/pokefont_new.ttf" id="4_1fioc"]
 [ext_resource type="Texture2D" uid="uid://dmp0fucbg5jx0" path="res://battle_assets/menue_cursor.png" id="5_lmri0"]
+[ext_resource type="PackedScene" uid="uid://bye2ovu4hnvgh" path="res://components/home_pc/withdraw_item.tscn" id="6_4mc28"]
 
 [node name="home_pc" type="CanvasLayer"]
 script = ExtResource("1_48ghu")
@@ -13,10 +14,13 @@ script = ExtResource("1_48ghu")
 visible = false
 position = Vector2(49, 45)
 texture = ExtResource("1_3ugil")
+metadata/_edit_lock_ = true
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(120, 136)
 texture = ExtResource("2_mq6x4")
+metadata/_edit_lock_ = true
 
 [node name="textbox" type="Label" parent="sprite_2d"]
 offset_left = -100.0
@@ -30,6 +34,7 @@ text = "asdf"
 
 [node name="main_menue" type="Node2D" parent="."]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="item_storage" type="Label" parent="main_menue"]
 offset_left = 23.0
@@ -81,6 +86,7 @@ texture = ExtResource("5_lmri0")
 
 [node name="item_storage" type="Node2D" parent="."]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="label" type="Label" parent="item_storage"]
 offset_left = 24.0
@@ -129,6 +135,9 @@ theme_override_font_sizes/font_size = 8
 text = "cancel"
 uppercase = true
 
-[node name="sprite_2d" type="Sprite2D" parent="item_storage"]
+[node name="cursor" type="Sprite2D" parent="item_storage"]
 position = Vector2(16, 19)
 texture = ExtResource("5_lmri0")
+
+[node name="withdraw_item" parent="." instance=ExtResource("6_4mc28")]
+visible = false

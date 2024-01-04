@@ -546,4 +546,7 @@ current_state = 1
 position = Vector2(-136, 8)
 polygon = PackedVector2Array(144, 0, 128, 0, 128, -24, 144, -24)
 
+[node name="camera_2d" type="Camera2D" parent="."]
+position = Vector2(136, 8)
+
 [connection signal="area_exited" from="event" to="event" method="_on_area_exited"]

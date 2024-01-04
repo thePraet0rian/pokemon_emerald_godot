@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bye2ovu4hnvgh"]
+
+[ext_resource type="Texture2D" uid="uid://bp0rtfcmr3s4q" path="res://components/home_pc/pc_withdraw.png" id="1_6blwt"]
+[ext_resource type="Script" path="res://components/home_pc/withdraw_item.gd" id="1_a7s6p"]
+[ext_resource type="Texture2D" uid="uid://dbthk2nlox5k3" path="res://components/home_pc/pc_withdraw_info.png" id="2_ru6vi"]
+[ext_resource type="FontFile" uid="uid://dlcuup21h36of" path="res://assets/pokefont_new.ttf" id="3_uf4hu"]
+[ext_resource type="Texture2D" uid="uid://bidxfx7jc6hgp" path="res://components/home_pc/pc_withdraw_title.png" id="4_6tdss"]
+[ext_resource type="Texture2D" uid="uid://bmvdmb8fx16a7" path="res://components/home_pc/pc_withdraw_icon.png" id="5_bevjl"]
+[ext_resource type="Texture2D" uid="uid://dmp0fucbg5jx0" path="res://battle_assets/menue_cursor.png" id="8_5h8hh"]
+
+[node name="withdraw_item" type="Node2D"]
+script = ExtResource("1_a7s6p")
+metadata/_edit_lock_ = true
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(180, 80)
+texture = ExtResource("1_6blwt")
+
+[node name="info" type="Sprite2D" parent="."]
+position = Vector2(60, 128)
+texture = ExtResource("2_ru6vi")
+
+[node name="label" type="Label" parent="info"]
+offset_left = -52.0
+offset_top = -16.0
+offset_right = 36.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("3_uf4hu")
+theme_override_font_sizes/font_size = 8
+text = "Go back to the previous menue."
+autowrap_mode = 3
+
+[node name="title" type="Sprite2D" parent="."]
+position = Vector2(60, 17)
+texture = ExtResource("4_6tdss")
+
+[node name="label" type="Label" parent="title"]
+offset_left = -54.0
+offset_top = -11.0
+offset_right = 54.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("3_uf4hu")
+theme_override_font_sizes/font_size = 8
+text = "WITHDRAW ITEM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="Sprite2D" parent="."]
+position = Vector2(18, 79)
+texture = ExtResource("5_bevjl")
+
+[node name="item_icon" type="Sprite2D" parent="icon"]
+
+[node name="items" type="Node2D" parent="."]
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(132, 26)
+texture = ExtResource("8_5h8hh")

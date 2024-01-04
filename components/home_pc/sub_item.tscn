@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://pdxhagfvdw2t"]
+
+[ext_resource type="FontFile" uid="uid://dlcuup21h36of" path="res://assets/pokefont_new.ttf" id="1_cwupb"]
+[ext_resource type="Script" path="res://components/home_pc/sub_item.gd" id="1_wmsuy"]
+
+[node name="sub_item" type="Node2D"]
+script = ExtResource("1_wmsuy")
+
+[node name="label" type="Label" parent="."]
+offset_left = 72.0
+offset_right = 77.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_cwupb")
+theme_override_font_sizes/font_size = 8
+text = "x
+"
+
+[node name="name" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_cwupb")
+theme_override_font_sizes/font_size = 8
+text = "potion"
+uppercase = true
+
+[node name="count" type="Label" parent="."]
+offset_left = 80.0
+offset_right = 96.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_cwupb")
+theme_override_font_sizes/font_size = 8
+text = "100
+"
+horizontal_alignment = 1

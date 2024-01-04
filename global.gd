@@ -29,6 +29,7 @@ var player_pokemon: Array = []
 var player_moveset: Array = []
 
 var player_inventory: Array = []
+var global_pc_storage: Array[Array] = [["Potion", 1], ["Potion", 1], ["Potion", 1], ["Potion", 1], ["Potion", 1], ["Potion", 1], ["Potion", 1], ["Potion", 1], ["Potion", 1]]
 
 var progress: int = 0
 var debug: bool = true
