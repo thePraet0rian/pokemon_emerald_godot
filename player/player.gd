@@ -295,8 +295,6 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 		
 		if area.type == 1:
 			
-			print("yes 1ww")
-			
 			new_room = area.new_room
 			save_pos = area.saves
 			next_position = area.next_position
