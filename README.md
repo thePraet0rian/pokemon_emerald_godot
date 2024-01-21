@@ -1,6 +1,6 @@
 # Clone of Pokemon Emerald in the Godot Gameengine
 
-A clone of the Nintendo game Pokemon Emerald in the Godot Gameengine.
+A clone of the Nintendo game Pokemon Emerald in the Godot Game engine.
 It is in no way finished and I wouldn't recommend cloning the code, because it's quite buggy.
 
 ## Programm Description
