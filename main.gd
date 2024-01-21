@@ -59,7 +59,7 @@ func start() -> void:
 	global.player_pokemon.append_array(data[1])
 	global.player_moveset.append_array(data[2])
 	global.player_inventory.append_array(data[3])
-	
+
 	play_music()
 
 

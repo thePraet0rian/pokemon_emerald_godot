@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name player
 
+
 @onready var ray_cast: RayCast2D = $ray_cast
 @onready var anim_tree: AnimationTree = $anim_tree
 @onready var anim_tree_prop = $anim_tree.get("parameters/playback")
@@ -360,3 +361,4 @@ func open_inventory() -> void:
 	var inventroy_inst: CanvasLayer = inventory_scn.instantiate()
 	get_parent().add_child(inventroy_inst)
 	process_mode = Node.PROCESS_MODE_DISABLED
+
