@@ -152,7 +152,6 @@ _data = {
 [node name="main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_1kc81")
-player_position = Vector2(-8, 52)
 
 [node name="rooms" type="Node2D" parent="."]
 

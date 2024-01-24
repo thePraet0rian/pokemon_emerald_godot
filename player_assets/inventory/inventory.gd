@@ -33,13 +33,13 @@ func check_selection() -> void:
 			pass
 		4:
 			global.emit_signal("save_game")
-			global.emit_signal("start_dialogue", [["Saving don't turn the device off."]])
+			#global.emit_signal("start_dialogue", [["Saving don't turn the device off."]])
 			queue_free()
 		5:
 			pass
 			# option
 		6:
-			get_parent().get_node("player").process_mode = Node.PROCESS_MODE_ALWAYS
+			get_parent().get_node("player").process_mode = Node.PROCESS_MODE_INHERIT
 			queue_free()
 
 

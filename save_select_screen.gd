@@ -11,7 +11,7 @@ const textures: Array = [preload("res://titlescreen_assets/load_game.png"), prel
 const save_path: String = "user://savefile.save"
 const main: PackedScene = preload("res://main.tscn")
 
-var data: Array = [[0, Vector2(8, 6)], [[global.get_mon_number("Treecko"), "Treecko", ["Grass"], 19.0, 11.0, 10.0, 11.0, 20, 10.0, 19, 5, 125]], [[["Pound", 35], ["Absorb", 20]], [["Leer", 30], ["Quick Attack", 30]]], [[["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]]]]
+var data: Array = [[3, Vector2(8, 40), 0], [[global.get_mon_number("Treecko"), "Treecko", ["Grass"], 19.0, 11.0, 10.0, 11.0, 20, 10.0, 19, 5, 125]], [[["Pound", 35], ["Absorb", 20]], [["Leer", 30], ["Quick Attack", 30]]], [[["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]], [["CLOSE BAG", -1]]]]
 var index: int = 0
 var current_state: states = states.normal
 
@@ -51,8 +51,8 @@ func execute() -> void:
 	
 	if index == 0:
 		
-		var file = FileAccess.open(save_path, FileAccess.WRITE)
-		file.store_var(data)
+		#var file = FileAccess.open(save_path, FileAccess.WRITE)
+		#file.store_var(data)
 		anim_player.play("fade")
 		await anim_player.animation_finished
 		

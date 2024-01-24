@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://tkh6xtfte64x"]
+
+[ext_resource type="Script" path="res://components/home_pc/deposit_items.gd" id="1_6j8q5"]
+[ext_resource type="Texture2D" uid="uid://dmly66s5bfei7" path="res://battle_assets/bag_background.png" id="2_jshvd"]
+[ext_resource type="Texture2D" uid="uid://ddgcqtt8h4ida" path="res://battle_assets/bag_assets/bag_01.png" id="3_nrj8x"]
+[ext_resource type="Texture2D" uid="uid://bi5v4q4colv5k" path="res://battle_assets/bag_assets/point.png" id="4_lslo3"]
+
+[node name="deposit_items" type="Node2D"]
+script = ExtResource("1_6j8q5")
+
+[node name="bag_background" type="Sprite2D" parent="."]
+position = Vector2(120, 80)
+texture = ExtResource("2_jshvd")
+
+[node name="label" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 6.0
+offset_right = 102.0
+offset_bottom = 29.0
+horizontal_alignment = 1
+
+[node name="bag" type="Sprite2D" parent="."]
+position = Vector2(71, 67)
+scale = Vector2(1, 1)
+texture = ExtResource("3_nrj8x")
+
+[node name="point" type="Sprite2D" parent="."]
+position = Vector2(44, 29)
+texture = ExtResource("4_lslo3")
+
+[node name="items" type="Node2D" parent="."]
+
+[node name="pokeballs" type="Node2D" parent="."]
+
+[node name="tms" type="Node2D" parent="."]
+
+[node name="berries" type="Node2D" parent="."]
+
+[node name="key_items" type="Node2D" parent="."]

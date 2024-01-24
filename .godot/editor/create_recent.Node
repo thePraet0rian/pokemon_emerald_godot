@@ -1,6 +1,6 @@
-Sprite2D
-Label
 Node2D
+Label
+Sprite2D
 Camera2D
 Node3D
 Area3D
@@ -12,8 +12,3 @@ Area2D
 AnimationPlayer
 RayCast2D
 Timer
-StaticBody2D
-NinePatchRect
-TileMap
-Node
-AnimationTree

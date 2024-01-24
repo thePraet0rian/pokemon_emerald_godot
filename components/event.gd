@@ -32,7 +32,7 @@ func _on_area_exited(area: Area2D) -> void:
 		set_process(false)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("space"):
 		global.object.emit(event)

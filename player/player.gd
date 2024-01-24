@@ -48,6 +48,8 @@ func _ready() -> void:
 	
 	inital_position = position
 	previous_positon = inital_position
+	
+	global.end_dialogue.connect(_on_end_dialogue_sig)
 
 
 func _input(event: InputEvent) -> void:
@@ -263,8 +265,14 @@ func start_dialouge() -> void:
 			global.object.emit(dialogue_sig)
 			
 			process_mode = Node.PROCESS_MODE_DISABLED
-			global.emit_signal("start_dialogue", text)
+			global.emit_signal("start_dialogue", text, true)
 			can_talk = false
+
+
+func _on_end_dialogue_sig(_mode: bool) -> void:
+	
+	can_talk = true
+
 
 
 var next_position: Vector2 = Vector2.ZERO

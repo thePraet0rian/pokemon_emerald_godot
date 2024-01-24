@@ -1,214 +1,147 @@
 extends Node2D
+class_name main
+## Main script for pokemon emerald
 
-
-@onready var rooms: Node2D = $rooms
-@onready var player: player
 @onready var anim_player: AnimationPlayer = $animation_player
-@onready var music_player: AudioStreamPlayer = $music_player
-
-const battle_scn: PackedScene = preload("res://battle/battle.tscn")
-
-signal transition_finished
-
-
-const rooms_arr: Array = [preload("res://rooms/room_00.tscn"), preload("res://rooms/room_01.tscn"), preload("res://rooms/room_02.tscn"), 
-preload("res://rooms/room_03.scn"), preload("res://rooms/room_04.tscn"), preload("res://rooms/room_05.tscn"), 
-preload("res://rooms/room_06.tscn"), preload("res://rooms/room_07.tscn"), preload("res://rooms/room_08.tscn"),
-preload("res://rooms/room_09.tscn"), preload("res://rooms/room_10.tscn")]
-
+@onready var sfx_player: AudioStreamPlayer = $sfx_player
+@onready var rooms: Node2D = $rooms
 
 
 func _ready() -> void:
 	
-	set_process(false)
 	start()
-	
-	global.connect("transition", Callable(self, "transition"))
-	global.connect("start_battle", Callable(self, "start_battle"))
-	global.connect("end_battle", Callable(self, "end_battle"))
-	global.start_dialogue.connect(start_dialogue)
-	global.end_dialogue.connect(end_dialogue)
-	global.connect("start_game", Callable(self, "start_game"))
-	global.connect("save_game", Callable(self, "save_game"))
-	global.connect("enter_new_area", Callable(self, "enter_new_area"))
-	
-	global.object.connect(event)
-	global.enable_player.connect(enable_player)
+	connect_signals() 
 
 
 const save_path: String = "user://savefile.save"
-var data: Array 
+const player_scn: PackedScene = preload("res://player/player.tscn")
+const rooms_arr: Array[PackedScene] = [preload("res://rooms/room_00.tscn"), preload("res://rooms/room_01.tscn"), preload("res://rooms/room_02.tscn"), preload("res://rooms/room_03.scn"), preload("res://rooms/room_04.tscn"), preload("res://rooms/room_05.tscn"), preload("res://rooms/room_06.tscn"), preload("res://rooms/room_07.tscn"), preload("res://rooms/room_08.tscn"),preload("res://rooms/room_09.tscn"), preload("res://rooms/room_10.tscn")]
+
+var saved_data: Array
+var player_inst: player
 
 
 func start() -> void:
 	
 	anim_player.play("fade_out")
 	
-	data = FileAccess.open(save_path, FileAccess.READ).get_var().duplicate()
+	saved_data = FileAccess.open(save_path, FileAccess.READ).get_var().duplicate()
+	print(saved_data)
 	
-	global.current_room = data[0][0]
+	global.current_room = saved_data[0][0]
+	global.current_area = saved_data[0][2]
+	rooms.add_child(rooms_arr[saved_data[0][0]].instantiate())
 	
-	rooms.add_child(rooms_arr[global.current_room].instantiate())
-	
-	var player_inst: CharacterBody2D = player_scn.instantiate()
+	player_inst = player_scn.instantiate()
 	rooms.get_child(0).get_node("tilemap").add_child(player_inst)
-	player_inst.position = data[0][1]
-	player = $rooms.get_child(0).get_node("tilemap").get_node("player")
+	
+	if saved_data[0][0] == 3:
+		_on_enter_new_route(global.current_area)
+	
+	player_inst.position = saved_data[0][1]
 	
 	global.player_pokemon.clear()
-	global.player_pokemon.append_array(data[1])
-	global.player_moveset.append_array(data[2])
-	global.player_inventory.append_array(data[3])
-
-	play_music()
-
-
-@onready var sfx_player: AudioStreamPlayer = $sfx_player
-
-const player_scn: PackedScene = preload("res://player/player.tscn")
-
-var new_room_int: int = 0
-var new_player_position: Vector2
-var player_trans_inst
-var transition_type: int
-var room_inst: Node2D
-
-
-func transition(new_room: int, next_position: Vector2, trans_type: int) -> void:
+	global.player_pokemon.append_array(saved_data[1])
+	global.player_moveset.append_array(saved_data[2])
+	global.player_inventory.append_array(saved_data[3])
 	
-	player_trans_inst = player_scn.instantiate()
-	player_trans_inst.position = next_position
-	new_room_int = new_room
-	global.current_room = new_room
-	anim_player.play("fade_in")
-	room_inst = rooms_arr[new_room].instantiate()
-	transition_type = trans_type
-	
-	sfx_player.play()
-	await sfx_player.finished
+	play_room_music()
 
 
-func end_transtition() -> void:
-	
-	
-	if transition_type == 0:
-		player.queue_free()
-	
-	rooms.get_child(0).queue_free()
-	rooms.add_child(room_inst)
-	
-	
-	await get_tree().create_timer(1).timeout
-	
-	rooms.get_child(0).get_node("tilemap").add_child(player_trans_inst)
-	player = $rooms.get_child(0).get_node("tilemap").get_node("player")
-	
-	play_music()
-	anim_player.play("fade_out")
-	enter_new_area(global.current_area)
-	transition_finished.emit()
-	progress_transition(new_room_int)
+@onready var music_player: AudioStreamPlayer = $music_player
 
 
-func start_battle(enemy_pokemon: Array, enemy_moveset: Array, battle_type: int) -> void:
-	
-	stop_music()
-	player = get_node("rooms").get_child(0).get_node("tilemap").get_child(0)
-	player.process_mode = Node.PROCESS_MODE_DISABLED
-	
-	var battle_instance = battle_scn.instantiate()
-	add_child(battle_instance)
-	
-	battle_instance.set_battle(enemy_pokemon, enemy_moveset, battle_type)
-
-
-func end_battle() -> void:
-	
-	player.process_mode = Node.PROCESS_MODE_INHERIT
-	get_node("battle").queue_free()
-	play_music()
-
-
-const dialogue_scn: PackedScene = preload("res://dialogue/dialogue_scn.tscn")
-
-var dialogue_inst: CanvasLayer
-
-func start_dialogue(text: Array, mode: bool) -> void:
-	
-	dialogue_inst = dialogue_scn.instantiate()
-	dialogue_inst.set_text(text)
-	dialogue_inst.set_mode(mode)
-	add_child(dialogue_inst)
-
-
-func end_dialogue(mode: bool) -> void:
-	
-	if mode:
-		player.process_mode = Node.PROCESS_MODE_INHERIT
-	
-	dialogue_inst.queue_free()
-
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	
-	if anim_name == "fade_in":
-		end_transtition()
-
-
-func save_game() -> void:
-	
-	data.clear()
-	print(data)
-	data.append_array([[global.current_room, player.position], global.player_pokemon, global.player_moveset, global.player_inventory])
-	print(data)
-	
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(data)
-	file.close()
-
-
-func enable_player() -> void:
-	
-	player.process_mode = Node.PROCESS_MODE_INHERIT
-
-
-func stop_music() -> void:
-	
-	music_player.stop()
-	music_player.set_stream(null)
-
-
-func play_music() -> void:
+func play_room_music() -> void:
 	
 	match global.current_room:
 		
 		0:
 			if !music_player.stream == load("res://sounds/1-05 Littleroot Town.mp3"):
 				music_player.stream = load("res://sounds/1-05 Littleroot Town.mp3")
-			else: return
 		1:
 			if !music_player.stream == load("res://sounds/1-05 Littleroot Town.mp3"):
 				music_player.stream = load("res://sounds/1-05 Littleroot Town.mp3")
-			else: return
 		2:
 			if !music_player.stream == load("res://sounds/1-05 Littleroot Town.mp3"):
 				music_player.stream = load("res://sounds/1-05 Littleroot Town.mp3")
-			else: return
 		3:
 			if !music_player.stream == load("res://sounds/1-05 Littleroot Town.mp3"):
 				music_player.stream = load("res://sounds/1-05 Littleroot Town.mp3")
-			else:
-				return
 	
 	music_player.play()
 
 
-func enter_new_area(new_area: int) -> void:
+func play_route_music() -> void: #TODO: Implement the route music player
+	pass 
+
+
+func connect_signals() -> void:
+	
+	global.transition.connect(_on_transition_sig)
+	
+	global.start_battle.connect(_on_start_battle_sig)
+	global.end_battle.connect(_on_end_battle_sig)
+	
+	global.start_dialogue.connect(_on_start_dialogue_sig)
+	global.end_dialogue.connect(_on_end_dialogue_sig)
+	
+	global.save_game.connect(_on_save_game_sig)
+	
+	global.enter_new_area.connect(_on_enter_new_route)
+
+
+var new_room: int 
+var room_inst: Node2D
+var trans_type: int
+var next_position: Vector2
+
+
+func _on_transition_sig(_new_room: int, _next_position: Vector2, _trans_type: int) -> void:
+	
+	next_position = _next_position
+	new_room = _new_room
+	
+	global.current_room = _new_room
+	
+	anim_player.play("fade_in")
+	
+	room_inst = rooms_arr[new_room].instantiate()
+	trans_type = _trans_type
+	
+	sfx_player.play() 
+	
+	await anim_player.animation_finished
+	end_transtition()
+
+
+func end_transtition() -> void:
+	
+	if trans_type == 0:
+		player_inst.queue_free()
+	
+	rooms.get_child(0).queue_free()
+	rooms.add_child(room_inst)
+	
+	await get_tree().create_timer(.5).timeout
+	
+	player_inst = player_scn.instantiate()
+	player_inst.position = next_position
+	rooms.get_child(0).get_node("tilemap").add_child(player_inst)
+	
+	play_room_music()
+	anim_player.play("fade_out")
+	
+	_on_enter_new_route(global.current_area)
+	#transition_finished.emit()
+	#progress_transition(new_room_int)
+
+
+func _on_enter_new_route(_area: int) -> void:
 	
 	var displayed_areas: Array = []
-	var current_area: int = new_area
+	var current_area: int = _area
 	
-	match new_area:
+	match _area:
 		
 		0:
 			displayed_areas = [0, 1]
@@ -217,7 +150,7 @@ func enter_new_area(new_area: int) -> void:
 		2:
 			displayed_areas = [1, 2, 3, 4]
 		3:
-			displayed_areas = [2, 3] # weird water connection
+			displayed_areas = [2, 3] #TODO: weird water connection
 		4:
 			displayed_areas = [2, 4, 5]
 		5:
@@ -228,10 +161,135 @@ func enter_new_area(new_area: int) -> void:
 			displayed_areas = []
 	
 	global.current_area = current_area
-	
 	global.enter_new_room.emit(displayed_areas, current_area)
 
 
+const battle_scn: PackedScene = preload("res://battle/battle.tscn")
+
+
+func _on_start_battle_sig(_enemy_pokemon: Array, _enemy_moveset: Array, _battle_type: int) -> void:
+	
+	stop_music()
+	player_inst.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	var battle_instance = battle_scn.instantiate()
+	add_child(battle_instance)
+	
+	battle_instance.set_battle(_enemy_pokemon, _enemy_moveset, _battle_type)
+
+
+func _on_end_battle_sig() -> void:
+	
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+	get_node("battle").queue_free()
+	play_room_music()
+
+
+const dialogue_scn: PackedScene = preload("res://dialogue/dialogue_scn.tscn")
+
+var dialogue_inst: CanvasLayer
+
+
+func _on_start_dialogue_sig(_text: Array, _mode: bool) -> void:
+	
+	dialogue_inst = dialogue_scn.instantiate()
+	dialogue_inst.set_text(_text)
+	dialogue_inst.set_mode(_mode)
+	add_child(dialogue_inst)
+
+
+func _on_end_dialogue_sig(_mode: bool) -> void:
+	
+	if _mode:
+		player_inst.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	dialogue_inst.queue_free()
+
+
+var save_data: Array = []
+
+func _on_save_game_sig() -> void:
+	
+	save_data.append_array([[global.current_room, player_inst.position, global.current_area], global.player_pokemon, global.player_moveset, global.player_inventory])
+	print(save_data)
+	
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(save_data)
+	file.close()
+
+
+func stop_music() -> void:
+	
+	music_player.stop()
+
+
+var events: Array = global.events
+
+
+func unique_room_events(room: int) -> void:
+	
+	match room:
+		0:
+			pass
+			
+		1:
+			pass
+		
+		2:
+			if !events[1]:
+				
+				pass
+				#cutscene_two()
+				#await transition_finished
+				#events[1] = true
+			
+			elif !events[2]:
+				
+				pass
+				#cutscene_four()
+			
+			elif !events[3]:
+				
+				pass
+				#cutscene_five()
+				#await transition_finished
+				#events[3] = true
+			
+		
+		3:
+			if !events[0]:
+				
+				pass
+				#leaving_the_van()
+				#await transition_finished
+				#events[0] = true
+			
+			elif !events[4]:
+				
+				pass
+				#cutscene_six()
+			
+			elif !events[7] and events[6]:
+				
+				pass
+				#cutscene_nine()
+				#cutscene_ten()
+		
+		4:
+			
+			if !events[5]:
+				
+				pass
+				#cutscene_seven()
+		
+		5:
+			
+			if !events[6]:
+				
+				pass
+				#cutscene_eight()
+
+"""
 @onready var cutscene_player: AnimationPlayer = $cutscene_player
 @onready var cutscene: Node2D = $cutscenes
 
@@ -454,3 +512,4 @@ func event(action: String) -> void:
 			cutscene_eleven()
 		"home_pc":
 			home_pc()
+"""
