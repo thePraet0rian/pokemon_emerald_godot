@@ -3,7 +3,12 @@ extends Node
 
 signal transition()
 signal enter_new_room()
+
 signal enter_new_area()
+signal update_area()
+
+signal entered_new_route()
+signal update_routes()
 
 signal start_battle()
 signal end_battle()
@@ -20,6 +25,8 @@ signal animation_finished
 signal object()
 
 signal enable_player
+
+var player_name: String = "Johannes"
 
 var current_room: int = 0
 var current_area: int = 0

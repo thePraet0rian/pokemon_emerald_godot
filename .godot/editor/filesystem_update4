@@ -1,15 +1,2 @@
 res://player/player.tscn
-res://components/home_pc/deposit_items.gd
-res://components/home_pc/home_pc.tscn
-res://battle/battle.tscn
-res://components/home_pc/deposit_items.tscn
-res://main.tscn
-res://main.gd
-res://rooms/room_00.tscn
-res://rooms/room_01.tscn
-res://rooms/room_03.scn
-res://player_assets/inventory/inventory.gd
-res://components/event.gd
-res://save_select_screen.gd
-res://dialogue/dialogue_scn.tscn
 res://player/player.gd

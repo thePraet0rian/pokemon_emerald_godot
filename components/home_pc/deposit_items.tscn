@@ -21,7 +21,6 @@ horizontal_alignment = 1
 
 [node name="bag" type="Sprite2D" parent="."]
 position = Vector2(71, 67)
-scale = Vector2(1, 1)
 texture = ExtResource("3_nrj8x")
 
 [node name="point" type="Sprite2D" parent="."]

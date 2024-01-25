@@ -87,86 +87,130 @@ func _physics_process(delta: float) -> void:
 		if jumping:
 			jump(delta)
 
+var test_2: bool = true
+@onready var anim_player: AnimationPlayer = $anim_player
+
 
 func player_input() -> void:
 	
-	if input_direction.y == 0: input_direction.x = Input.get_axis("move_left", "move_right")
-	if input_direction.x == 0: input_direction.y = Input.get_axis("move_up", "move_down")
-	
-	if input_direction == Vector2(-1, 0):
-		hitbox.rotation = 1.5708
-	elif input_direction == Vector2(0, -1):
-		hitbox.rotation = 3.14159
-	elif input_direction == Vector2(1, 0):
-		hitbox.rotation = -1.5708
-	elif input_direction == Vector2(0, 1):
-		hitbox.rotation = 0
-	
-	if touched:
+	if test_2:
+		if input_direction.y == 0: input_direction.x = Input.get_axis("move_left", "move_right")
+		if input_direction.x == 0: input_direction.y = Input.get_axis("move_up", "move_down") 
 		
-		if Input.is_action_pressed("move_left") && matching.x == -1:
-			transition()
-		elif Input.is_action_pressed("move_left") && matching.x != -1: 
-			touched = false
 		
-		if Input.is_action_pressed("move_right") && matching.x == 1:
-			transition()
-		elif Input.is_action_pressed("move_right") && matching.x != 1:
-			touched = false
+		var moving_down: bool = !(sprite.frame == 2 or sprite.frame == 0 or sprite.frame == 1)
+		var moving_up: bool = !(sprite.frame == 7 or sprite.frame == 8 or sprite.frame == 6)
+		var moving_left: bool = !(sprite.frame == 9 or sprite.frame == 10 or sprite.frame == 11)
+		var moving_right: bool = !(sprite.frame == 4 or sprite.frame == 5 or sprite.frame == 3)
 		
-		if Input.is_action_pressed("move_up") && matching.y == -1:
-			transition()
-		elif Input.is_action_pressed("move_up") && matching.y != -1:
-			touched = false
+		if input_direction == Vector2(0, 1) and moving_down: 
+			anim_tree.active = false
+			sprite.frame = 1
+			anim_tree_prop.travel("idle")
+			test_2 = false
+			await get_tree().create_timer(.1).timeout
+			test_2 = true
+			anim_tree.active = true
+			return
+		elif input_direction == Vector2(0, -1) and moving_up:
+			anim_tree.active = false
+			sprite.frame = 7
+			test_2 = false
+			await get_tree().create_timer(.1).timeout
+			test_2 = true
+			anim_tree.active = true
+			return
+		elif input_direction == Vector2(-1, 0) and moving_left: 
+			anim_tree.active = false
+			sprite.frame = 11
+			test_2 = false
+			await get_tree().create_timer(.1).timeout
+			test_2 = true
+			anim_tree.active = true
+			return
+		elif input_direction == Vector2(1, 0) and moving_right:
+			anim_tree.active = false
+			sprite.frame = 4
+			anim_tree_prop.travel("idle")
+			test_2 = false
+			await get_tree().create_timer(.1).timeout
+			test_2 = true
+			anim_tree.active = true
+			return
 		
-		if Input.is_action_pressed("move_down") && matching.y == 1:
-			transition()
-		elif Input.is_action_pressed("move_down") && matching.y != 1:
-			touched = false
-	
-	if jumpable:
+		if input_direction == Vector2(-1, 0):
+			hitbox.rotation = 1.5708
+		elif input_direction == Vector2(0, -1):
+			hitbox.rotation = 3.14159
+		elif input_direction == Vector2(1, 0):
+			hitbox.rotation = -1.5708
+		elif input_direction == Vector2(0, 1):
+			hitbox.rotation = 0
 		
-		if Input.is_action_just_pressed("move_left") && ledge_direction != Vector2(-1, 0):
-			jumpable = false
-		elif Input.is_action_just_pressed("move_right") && ledge_direction != Vector2(1, 0):
-			("right")
-			jumpable = false
-		elif Input.is_action_just_pressed("move_up") && ledge_direction != Vector2(0, -1):
-			jumpable = false
-		elif Input.is_action_just_pressed("move_down") && ledge_direction != Vector2(0, 1):
-			jumpable = false
-	
-	
-	if Input.is_action_pressed("shift"):
-		running = true
-		walk_speed = 10.0
-	else:
-		running = false
-		walk_speed = 6.0
-	
-	var step: Vector2 = input_direction * TILE_SIZE
-	ray_cast.target_position = step
-	ray_cast.force_raycast_update()
-	
-	if !jumpable:
-		if !ray_cast.is_colliding():
-			if input_direction != Vector2.ZERO:
+		if touched:
+			
+			if Input.is_action_pressed("move_left") && matching.x == -1:
+				transition()
+			elif Input.is_action_pressed("move_left") && matching.x != -1: 
+				touched = false
+			
+			if Input.is_action_pressed("move_right") && matching.x == 1:
+				transition()
+			elif Input.is_action_pressed("move_right") && matching.x != 1:
+				touched = false
+			
+			if Input.is_action_pressed("move_up") && matching.y == -1:
+				transition()
+			elif Input.is_action_pressed("move_up") && matching.y != -1:
+				touched = false
+			
+			if Input.is_action_pressed("move_down") && matching.y == 1:
+				transition()
+			elif Input.is_action_pressed("move_down") && matching.y != 1:
+				touched = false
+		
+		if jumpable:
+			
+			if Input.is_action_just_pressed("move_left") && ledge_direction != Vector2(-1, 0):
+				jumpable = false
+			elif Input.is_action_just_pressed("move_right") && ledge_direction != Vector2(1, 0):
+				("right")
+				jumpable = false
+			elif Input.is_action_just_pressed("move_up") && ledge_direction != Vector2(0, -1):
+				jumpable = false
+			elif Input.is_action_just_pressed("move_down") && ledge_direction != Vector2(0, 1):
+				jumpable = false
+		
+		
+		if Input.is_action_pressed("shift"):
+			running = true
+			walk_speed = 10.0
+		else:
+			running = false
+			walk_speed = 6.0
+		
+		var step: Vector2 = input_direction * TILE_SIZE
+		ray_cast.target_position = step
+		ray_cast.force_raycast_update()
+		
+		if !jumpable:
+			if !ray_cast.is_colliding():
+				if input_direction != Vector2.ZERO:
+					
+					inital_position = position
+					is_moving = true
+		else:
+			
+			if input_direction == ledge.direction and jumpable: 
 				
 				inital_position = position
-				is_moving = true
-		
-	else:
-		
-		if input_direction == ledge.direction and jumpable: 
-			
-			inital_position = position
-			percent = 0.0  
-			jumping = true
-		elif input_direction != ledge.direction && input_direction != Vector2.ZERO:
-			
-			inital_position = position
-			jumpable = false
-			jumping = false
+				percent = 0.0  
+				jumping = true
+			elif input_direction != ledge.direction && input_direction != Vector2.ZERO:
+				
+				inital_position = position
+				jumpable = false
+				jumping = false
 
 
 var jumping: bool = false
@@ -274,7 +318,6 @@ func _on_end_dialogue_sig(_mode: bool) -> void:
 	can_talk = true
 
 
-
 var next_position: Vector2 = Vector2.ZERO
 
 
@@ -363,6 +406,7 @@ func _on_on_touched_area_exited(area: Area2D) -> void:
 
 
 const inventory_scn: PackedScene = preload("res://player_assets/inventory/inventory.tscn")
+
 
 func open_inventory() -> void:
 	

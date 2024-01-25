@@ -1,3 +1,4 @@
+CharacterBody2D
 Node2D
 Label
 Sprite2D
@@ -11,4 +12,3 @@ ColorRect
 Area2D
 AnimationPlayer
 RayCast2D
-Timer

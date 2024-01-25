@@ -35,10 +35,10 @@ func start() -> void:
 	player_inst = player_scn.instantiate()
 	rooms.get_child(0).get_node("tilemap").add_child(player_inst)
 	
+	player_inst.position = saved_data[0][1]
+	
 	if saved_data[0][0] == 3:
 		_on_enter_new_route(global.current_area)
-	
-	player_inst.position = saved_data[0][1]
 	
 	global.player_pokemon.clear()
 	global.player_pokemon.append_array(saved_data[1])
@@ -87,7 +87,7 @@ func connect_signals() -> void:
 	
 	global.save_game.connect(_on_save_game_sig)
 	
-	global.enter_new_area.connect(_on_enter_new_route)
+	global.entered_new_route.connect(_on_enter_new_route)
 
 
 var new_room: int 
@@ -122,6 +122,7 @@ func end_transtition() -> void:
 	rooms.get_child(0).queue_free()
 	rooms.add_child(room_inst)
 	
+	
 	await get_tree().create_timer(.5).timeout
 	
 	player_inst = player_scn.instantiate()
@@ -131,7 +132,9 @@ func end_transtition() -> void:
 	play_room_music()
 	anim_player.play("fade_out")
 	
-	_on_enter_new_route(global.current_area)
+	if new_room == 3:
+		_on_enter_new_route(global.current_area)
+	
 	#transition_finished.emit()
 	#progress_transition(new_room_int)
 
@@ -161,7 +164,7 @@ func _on_enter_new_route(_area: int) -> void:
 			displayed_areas = []
 	
 	global.current_area = current_area
-	global.enter_new_room.emit(displayed_areas, current_area)
+	global.update_routes.emit(displayed_areas)
 
 
 const battle_scn: PackedScene = preload("res://battle/battle.tscn")
@@ -288,6 +291,12 @@ func unique_room_events(room: int) -> void:
 				
 				pass
 				#cutscene_eight()
+
+
+
+
+
+
 
 """
 @onready var cutscene_player: AnimationPlayer = $cutscene_player

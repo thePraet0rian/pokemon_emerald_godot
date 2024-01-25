@@ -168,7 +168,6 @@ offset_bottom = 160.0
 color = Color(0, 0, 0, 1)
 
 [node name="music_player" type="AudioStreamPlayer" parent="."]
-volume_db = -80.0
 
 [node name="sfx_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0l16n")

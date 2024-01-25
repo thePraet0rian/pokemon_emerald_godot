@@ -955,6 +955,7 @@ theme_override_font_sizes/font_size = 8
 autowrap_mode = 3
 
 [node name="bag" type="Node2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="bag_background" type="Sprite2D" parent="bag"]
@@ -1326,7 +1327,6 @@ theme_override_font_sizes/font_size = 8
 wait_time = 0.05
 
 [node name="anim" type="Node2D" parent="."]
-visible = false
 
 [node name="ball" type="Sprite2D" parent="anim"]
 visible = false

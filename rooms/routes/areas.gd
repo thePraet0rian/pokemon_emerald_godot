@@ -1,46 +1,46 @@
 extends Area2D
 
 
+const areas: Array = [preload("res://rooms/routes/arr_00.tscn"), preload("res://rooms/routes/arr_01.tscn"), preload("res://rooms/routes/arr_02.tscn"), preload("res://rooms/routes/arr_03.tscn"), preload("res://rooms/routes/arr_04.tscn"), preload("res://rooms/routes/arr_05.tscn"), preload("res://rooms/routes/arr_06.tscn"), preload("res://rooms/routes/arr_07.tscn")]
+
+var currently_active: bool = false
+var currently_instanced: bool = false
 
 @export var area_number: int = 0
 
-var current_active: bool = false
-var currently_instanced: bool = false
 
-const areas: Array = [preload("res://rooms/routes/arr_00.tscn"), preload("res://rooms/routes/arr_01.tscn"), preload("res://rooms/routes/arr_02.tscn"), preload("res://rooms/routes/arr_03.tscn"), preload("res://rooms/routes/arr_04.tscn"), preload("res://rooms/routes/arr_05.tscn"), preload("res://rooms/routes/arr_06.tscn"), preload("res://rooms/routes/arr_07.tscn")]
-
-
-func _ready() -> void:
+func _ready():
+	
 	get_child(0).queue_free()
-	global.connect("enter_new_room", Callable(self, "enter_new_room"))
+	global.update_routes.connect(enter_new_route)
 
 
-func enter_new_room(active_rooms: Array, current_room: int) -> void:
+var active_rooms: Array
+
+
+func enter_new_route(_active_rooms: Array) -> void:
+	
+	var current_route = global.current_area
+	active_rooms = _active_rooms.duplicate()
 	
 	if area_number in active_rooms:
 		
-		if current_room == area_number:
-			current_active = true
+		if current_route == area_number:
+			currently_active = true
+		else:
+			currently_active = false
 		
 		call_deferred("enable_collision")
+		
 	else:
 		
 		call_deferred("disable_collision")
 
 
-func disable_collision() -> void:
-	
-	$collision_polygon_2d.disabled = true
-	
-	for i in range(0, len(get_children())):
-		if "arr" in get_child(i).name:
-			get_child(1).queue_free()
-			currently_instanced = false
-
-
 func enable_collision() -> void:
 	
-	$collision_polygon_2d.disabled = false
+	if $collision_polygon_2d != null:
+		$collision_polygon_2d.disabled = false
 	
 	if !currently_instanced:
 		var child: Node2D = areas[area_number].instantiate()
@@ -48,14 +48,27 @@ func enable_collision() -> void:
 		currently_instanced = true
 
 
+func disable_collision() -> void:
+	
+	var children: Array = get_children()
+	
+	for i in range(len(children)):
+		
+		if children[i].name != "collision_polygon_2d":
+			children[i].queue_free()
+			currently_instanced = false
+
+
 func _on_area_entered(area: Area2D) -> void:
 	
-	if "on_entered" in area.name and !current_active:
+	if "on_entered" in area.name and !currently_active:
 		
-		global.emit_signal("enter_new_area", area_number)
+		print("Player Entered Route")
+		global.entered_new_route.emit(area_number)
 
 
 func _on_area_exited(area: Area2D) -> void:
 	
 	if "on_entered" in area.name:
-		current_active = false
+		currently_active = false
+

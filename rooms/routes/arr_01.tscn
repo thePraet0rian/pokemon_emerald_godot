@@ -3372,6 +3372,9 @@ position = Vector2(-120, -184)
 
 [node name="encounter_tile_8" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
 position = Vector2(-120, -168)
+pokemon_names = ["Rayquaza", "Rayquaza", "Rayquaza", "Rayquaza", "Rayquaza", "Rayquaza"]
+pokemon_levels = [100, 100, 100, 100, 100, 100]
+pokemon_chance = [100, 100, 100, 100, 100, 100]
 
 [node name="encounter_tile_9" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
 position = Vector2(-136, -168)
