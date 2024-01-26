@@ -98,10 +98,10 @@ func player_input() -> void:
 		if input_direction.x == 0: input_direction.y = Input.get_axis("move_up", "move_down") 
 		
 		
-		var moving_down: bool = !(sprite.frame == 2 or sprite.frame == 0 or sprite.frame == 1)
-		var moving_up: bool = !(sprite.frame == 7 or sprite.frame == 8 or sprite.frame == 6)
-		var moving_left: bool = !(sprite.frame == 9 or sprite.frame == 10 or sprite.frame == 11)
-		var moving_right: bool = !(sprite.frame == 4 or sprite.frame == 5 or sprite.frame == 3)
+		var moving_down: bool = !(sprite.frame == 2 or sprite.frame == 0 or sprite.frame == 1 or sprite.frame == 12 or sprite.frame == 13 or sprite.frame == 14)
+		var moving_up: bool = !(sprite.frame == 7 or sprite.frame == 8 or sprite.frame == 6 or sprite.frame == 18 or sprite.frame == 19 or sprite.frame == 20)
+		var moving_left: bool = !(sprite.frame == 9 or sprite.frame == 10 or sprite.frame == 11  or sprite.frame == 21 or sprite.frame == 22 or sprite.frame == 23)
+		var moving_right: bool = !(sprite.frame == 4 or sprite.frame == 5 or sprite.frame == 3 or sprite.frame == 15 or sprite.frame == 16 or sprite.frame == 17)
 		
 		if input_direction == Vector2(0, 1) and moving_down: 
 			anim_tree.active = false

@@ -1,6 +1,6 @@
 extends Node2D
 class_name main
-## Main script for pokemon emerald
+
 
 @onready var anim_player: AnimationPlayer = $animation_player
 @onready var sfx_player: AudioStreamPlayer = $sfx_player
@@ -10,7 +10,7 @@ class_name main
 func _ready() -> void:
 	
 	start()
-	connect_signals() 
+	connect_signals()
 
 
 const save_path: String = "user://savefile.save"
@@ -26,7 +26,6 @@ func start() -> void:
 	anim_player.play("fade_out")
 	
 	saved_data = FileAccess.open(save_path, FileAccess.READ).get_var().duplicate()
-	print(saved_data)
 	
 	global.current_room = saved_data[0][0]
 	global.current_area = saved_data[0][2]
@@ -111,6 +110,7 @@ func _on_transition_sig(_new_room: int, _next_position: Vector2, _trans_type: in
 	sfx_player.play() 
 	
 	await anim_player.animation_finished
+	
 	end_transtition()
 
 

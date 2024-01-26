@@ -16,7 +16,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("space"):
-		
+			
 		if animation_playing == "start":
 			animation_player.stop()
 			animation_player.play("cycle")

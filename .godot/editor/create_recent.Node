@@ -1,3 +1,4 @@
+TileMap
 CharacterBody2D
 Node2D
 Label
@@ -11,4 +12,3 @@ CollisionShape2D
 ColorRect
 Area2D
 AnimationPlayer
-RayCast2D

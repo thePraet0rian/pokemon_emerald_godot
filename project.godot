@@ -37,6 +37,10 @@ movie_writer/movie_file="/home/vincent/programming_godot/pokemon_emerald/test/te
 naming/node_name_num_separator=2
 naming/node_name_casing=2
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/bottom_panel_shortcuts/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false
