@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://muvjf2sdta6m"]
+
+[ext_resource type="Script" path="res://player/inventory.gd" id="1_8aa5o"]
+[ext_resource type="Texture2D" uid="uid://dmly66s5bfei7" path="res://battle_assets/bag_background.png" id="2_5lfh8"]
+[ext_resource type="Texture2D" uid="uid://cxy3po8cffb4b" path="res://battle_assets/bag_assets/item_sign.png" id="3_saxh3"]
+[ext_resource type="Texture2D" uid="uid://dt6udy5p26d08" path="res://battle_assets/bag_assets/arrow_left.png" id="4_e6hd5"]
+[ext_resource type="Texture2D" uid="uid://fgkbhpwk7x53" path="res://battle_assets/bag_assets/arrow_right.png" id="5_wfbwo"]
+[ext_resource type="Texture2D" uid="uid://d0d8txveb63yh" path="res://battle_assets/bag_assets/ball.png" id="6_hok8t"]
+[ext_resource type="Texture2D" uid="uid://bi5v4q4colv5k" path="res://battle_assets/bag_assets/point.png" id="7_dl4vv"]
+[ext_resource type="Texture2D" uid="uid://ddgcqtt8h4ida" path="res://battle_assets/bag_assets/bag_01.png" id="8_67n13"]
+
+[node name="inventory" type="CanvasLayer"]
+script = ExtResource("1_8aa5o")
+
+[node name="bag_background" type="Sprite2D" parent="."]
+position = Vector2(120, 80)
+texture = ExtResource("2_5lfh8")
+
+[node name="item_sign" type="Sprite2D" parent="."]
+position = Vector2(64, 16)
+texture = ExtResource("3_saxh3")
+
+[node name="arrow_left" type="Sprite2D" parent="."]
+position = Vector2(28, 16)
+texture = ExtResource("4_e6hd5")
+
+[node name="arrow_right" type="Sprite2D" parent="."]
+position = Vector2(100, 16)
+texture = ExtResource("5_wfbwo")
+
+[node name="ball" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("6_hok8t")
+
+[node name="point" type="Sprite2D" parent="."]
+position = Vector2(44, 29)
+texture = ExtResource("7_dl4vv")
+
+[node name="bag" type="Sprite2D" parent="."]
+position = Vector2(71, 67)
+texture = ExtResource("8_67n13")
+
+[node name="item" type="Node2D" parent="."]
+
+[node name="pokeball" type="Node2D" parent="."]
+
+[node name="tm" type="Node2D" parent="."]
+
+[node name="berries" type="Node2D" parent="."]
+
+[node name="key" type="Node2D" parent="."]

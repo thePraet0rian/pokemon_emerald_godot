@@ -324,10 +324,10 @@ offset_bottom = 160.0
 color = Color(0, 0, 0, 1)
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
-autoplay = "start"
 libraries = {
 "": SubResource("AnimationLibrary_6lfvo")
 }
+autoplay = "start"
 
 [node name="color_rect" type="ColorRect" parent="."]
 offset_right = 240.0

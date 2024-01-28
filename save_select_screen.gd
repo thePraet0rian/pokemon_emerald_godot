@@ -51,8 +51,8 @@ func execute() -> void:
 	
 	if index == 0:
 		
-		#var file = FileAccess.open(save_path, FileAccess.WRITE)
-		#file.store_var(data)
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_var(data)
 		anim_player.play("fade")
 		await anim_player.animation_finished
 		

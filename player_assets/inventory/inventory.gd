@@ -19,6 +19,9 @@ func _input(event: InputEvent) -> void:
 		check_selection()
 
 
+const inventory_scn: PackedScene = preload("res://player/inventory.tscn")
+
+
 func check_selection() -> void:
 	
 	match index:
@@ -28,7 +31,7 @@ func check_selection() -> void:
 		1:
 			pass
 		2:
-			pass
+			get_parent().add_child(inventory_scn.instantiate())
 		3:
 			pass
 		4:
