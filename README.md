@@ -21,7 +21,7 @@ It is in no way finished and I wouldn't recommend cloning the code, because it's
 - Map: ...
 
 ### Executing
-- Don't
+- Still lacking many features.
 
 
 ### Youtube
