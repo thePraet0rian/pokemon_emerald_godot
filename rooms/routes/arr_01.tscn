@@ -3350,279 +3350,370 @@ layer_1/tile_data = PackedInt32Array(-589835, 1048576, 6, -589834, 1114112, 6, -
 [node name="encounter_tiles" type="Node2D" parent="."]
 
 [node name="encounter_tile" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -216)
 
 [node name="encounter_tile_2" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -216)
 
 [node name="encounter_tile_3" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -200)
 
 [node name="encounter_tile_4" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -200)
 
 [node name="encounter_tile_5" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -200)
 
 [node name="encounter_tile_6" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -184)
 
 [node name="encounter_tile_7" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-120, -184)
 
 [node name="encounter_tile_8" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-120, -168)
 pokemon_names = ["Rayquaza", "Rayquaza", "Rayquaza", "Rayquaza", "Rayquaza", "Rayquaza"]
 pokemon_levels = [100, 100, 100, 100, 100, 100]
 pokemon_chance = [100, 100, 100, 100, 100, 100]
 
 [node name="encounter_tile_9" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -168)
 
 [node name="encounter_tile_10" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -152)
 
 [node name="encounter_tile_11" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -152)
 
 [node name="encounter_tile_12" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -152)
 
 [node name="encounter_tile_13" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -168)
 
 [node name="encounter_tile_14" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -168)
 
 [node name="encounter_tile_15" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -184)
 
 [node name="encounter_tile_16" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -184)
 
 [node name="encounter_tile_17" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-184, -184)
 
 [node name="encounter_tile_18" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-200, -184)
 
 [node name="encounter_tile_19" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-200, -200)
 
 [node name="encounter_tile_20" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-184, -200)
 
 [node name="encounter_tile_21" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-24, -264)
 
 [node name="encounter_tile_22" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-24, -248)
 
 [node name="encounter_tile_23" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-24, -232)
 
 [node name="encounter_tile_24" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -264)
 
 [node name="encounter_tile_25" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -248)
 
 [node name="encounter_tile_26" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -232)
 
 [node name="encounter_tile_27" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -216)
 
 [node name="encounter_tile_28" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -216)
 
 [node name="encounter_tile_29" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -216)
 
 [node name="encounter_tile_30" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -200)
 
 [node name="encounter_tile_31" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -184)
 
 [node name="encounter_tile_32" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -184)
 
 [node name="encounter_tile_33" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -200)
 
 [node name="encounter_tile_34" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -216)
 
 [node name="encounter_tile_35" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(56, -216)
 
 [node name="encounter_tile_36" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(56, -232)
 
 [node name="encounter_tile_37" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(56, -248)
 
 [node name="encounter_tile_38" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -248)
 
 [node name="encounter_tile_39" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -264)
 
 [node name="encounter_tile_40" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -264)
 
 [node name="encounter_tile_41" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -280)
 
 [node name="encounter_tile_42" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -280)
 
 [node name="encounter_tile_43" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -264)
 
 [node name="encounter_tile_44" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -248)
 
 [node name="encounter_tile_45" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -232)
 
 [node name="encounter_tile_46" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -232)
 
 [node name="encounter_tile_47" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -232)
 
 [node name="encounter_tile_48" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -248)
 
 [node name="encounter_tile_49" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -344)
 
 [node name="encounter_tile_50" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -344)
 
 [node name="encounter_tile_51" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -328)
 
 [node name="encounter_tile_52" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -328)
 
 [node name="encounter_tile_53" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -344)
 
 [node name="encounter_tile_54" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -344)
 
 [node name="encounter_tile_55" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -328)
 
 [node name="encounter_tile_56" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(56, -328)
 
 [node name="encounter_tile_57" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(56, -344)
 
 [node name="encounter_tile_58" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(72, -344)
 
 [node name="encounter_tile_59" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(72, -360)
 
 [node name="encounter_tile_60" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(56, -360)
 
 [node name="encounter_tile_61" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -360)
 
 [node name="encounter_tile_62" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -376)
 
 [node name="encounter_tile_63" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(40, -392)
 
 [node name="encounter_tile_64" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -392)
 
 [node name="encounter_tile_65" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -392)
 
 [node name="encounter_tile_66" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -376)
 
 [node name="encounter_tile_67" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -376)
 
 [node name="encounter_tile_68" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-8, -360)
 
 [node name="encounter_tile_69" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(8, -360)
 
 [node name="encounter_tile_70" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -360)
 
 [node name="encounter_tile_71" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(24, -376)
 
 [node name="encounter_tile_72" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-120, -376)
 
 [node name="encounter_tile_73" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-120, -360)
 
 [node name="encounter_tile_74" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -360)
 
 [node name="encounter_tile_75" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -344)
 
 [node name="encounter_tile_76" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -344)
 
 [node name="encounter_tile_77" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -328)
 
 [node name="encounter_tile_78" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -328)
 
 [node name="encounter_tile_79" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -344)
 
 [node name="encounter_tile_80" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-184, -344)
 
 [node name="encounter_tile_81" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-200, -344)
 
 [node name="encounter_tile_82" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-200, -360)
 
 [node name="encounter_tile_83" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-184, -360)
 
 [node name="encounter_tile_84" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -360)
 
 [node name="encounter_tile_85" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -376)
 
 [node name="encounter_tile_86" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-168, -392)
 
 [node name="encounter_tile_87" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -392)
 
 [node name="encounter_tile_89" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -376)
 
 [node name="encounter_tile_90" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -360)
 
 [node name="encounter_tile_91" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-152, -376)
 
 [node name="encounter_tile_88" parent="encounter_tiles" instance=ExtResource("2_xq1x7")]
+z_index = 1
 position = Vector2(-136, -392)
 
 [node name="ledges" type="Node2D" parent="."]
