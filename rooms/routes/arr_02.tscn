@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://uyxm8eoi2o4g"]
+[gd_scene load_steps=6 format=3 uid="uid://uyxm8eoi2o4g"]
 
 [ext_resource type="Texture2D" uid="uid://d2nxv1swp11jp" path="res://room_assets/exterior_tileset_02.png" id="1_s2xvv"]
 [ext_resource type="PackedScene" uid="uid://nnd1o5w5bc5g" path="res://components/animated_transition.tscn" id="2_ejjsb"]
+[ext_resource type="PackedScene" uid="uid://c7qwguxr61pmx" path="res://dialogue/dialouge_object.tscn" id="3_wbmy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dlyou"]
 texture = ExtResource("1_s2xvv")
@@ -402,6 +403,7 @@ texture = ExtResource("1_s2xvv")
 13:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:5/0/physics_layer_0/angular_velocity = 0.0
 14:5/animation_columns = 4
+14:5/animation_speed = 4.0
 14:5/animation_frame_0/duration = 1.0
 14:5/animation_frame_1/duration = 1.0
 14:5/animation_frame_2/duration = 1.0
@@ -3392,3 +3394,6 @@ position = Vector2(-128, -496)
 transition_position = Vector2(8, -8)
 next_room = 11
 door_type = 2
+
+[node name="dialouge_object" parent="." instance=ExtResource("3_wbmy4")]
+position = Vector2(-24, -456)
