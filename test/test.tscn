@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://camjvmy4ytvme"]
+[gd_scene load_steps=6 format=3 uid="uid://camjvmy4ytvme"]
 
 [ext_resource type="PackedScene" uid="uid://cdoxpqaqs23g5" path="res://player/player.tscn" id="1_rj0lu"]
 [ext_resource type="PackedScene" uid="uid://tpexuiss48cl" path="res://trainer/trainer.tscn" id="2_or1al"]
+[ext_resource type="Shader" path="res://battle/start_battle.gdshader" id="3_atvjm"]
+[ext_resource type="Texture2D" uid="uid://dpcftpwyuj874" path="res://battle_assets/backgrounds/scroll_grass/grass_01.png" id="4_d3xpa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0g1s"]
+shader = ExtResource("3_atvjm")
+shader_parameter/speed = 1.0
 
 [node name="main" type="Node2D"]
 
@@ -11,3 +17,9 @@ position = Vector2(112, -32)
 [node name="camera_2d" type="Camera2D" parent="player"]
 
 [node name="trainer" parent="." instance=ExtResource("2_or1al")]
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_w0g1s")
+position = Vector2(120, -17)
+texture = ExtResource("4_d3xpa")

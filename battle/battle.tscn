@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c0nreck7c7rdk"]
+[gd_scene load_steps=47 format=3 uid="uid://c0nreck7c7rdk"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_ik5ly"]
 [ext_resource type="Texture2D" uid="uid://1ieaejkmc3gf" path="res://battle_assets/backgrounds/grass_01.png" id="1_n3k5q"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://k2b6g8gy5pp3" path="res://battle_assets/choose_pokemon.png" id="18_24r3a"]
 [ext_resource type="Texture2D" uid="uid://dpcftpwyuj874" path="res://battle_assets/backgrounds/scroll_grass/grass_01.png" id="21_b7qoe"]
 [ext_resource type="Texture2D" uid="uid://g2v4baiol8mq" path="res://battle_assets/characters/ball.png" id="22_i6o03"]
+[ext_resource type="Shader" path="res://battle/start_battle.gdshader" id="22_vfben"]
 [ext_resource type="Texture2D" uid="uid://c8vq6tnfwa4as" path="res://battle_assets/characters/may_01.png" id="22_wruql"]
 [ext_resource type="Texture2D" uid="uid://c17qrjafhffvw" path="res://battle_assets/characters/may_02.png" id="23_kgw0j"]
 [ext_resource type="Texture2D" uid="uid://bh57wt41itrif" path="res://battle_assets/characters/may_03.png" id="24_rm216"]
@@ -34,6 +35,10 @@
 [ext_resource type="AudioStream" uid="uid://c65pmmk1yu3rg" path="res://battle_assets/spawnpokemon.mp3.wav" id="32_u5r33"]
 [ext_resource type="AudioStream" uid="uid://bwik4w13x1wk0" path="res://sounds/1-08 Wild Pokémon Battle!.mp3" id="33_8fxdj"]
 [ext_resource type="AudioStream" uid="uid://brfoisv0yik4" path="res://sfx/confirm.wav" id="34_sap1j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_234hh"]
+shader = ExtResource("22_vfben")
+shader_parameter/speed = 1.0
 
 [sub_resource type="Animation" id="Animation_26idq"]
 length = 0.001
@@ -471,58 +476,46 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(308, 106), Vector2(64, 106)]
 }
-tracks/7/type = "value"
+tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("intro_scroll/Sprite2D:texture")
+tracks/7/path = NodePath("intro_scroll:position:x")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("21_b7qoe"), ExtResource("25_5lmuu"), ExtResource("26_55xph"), ExtResource("27_6yr7w"), ExtResource("21_b7qoe"), ExtResource("25_5lmuu"), ExtResource("26_55xph"), ExtResource("27_6yr7w"), ExtResource("21_b7qoe"), ExtResource("25_5lmuu"), ExtResource("26_55xph"), ExtResource("27_6yr7w"), ExtResource("21_b7qoe"), ExtResource("25_5lmuu"), ExtResource("26_55xph"), ExtResource("27_6yr7w"), ExtResource("21_b7qoe"), ExtResource("25_5lmuu"), ExtResource("26_55xph"), ExtResource("27_6yr7w")]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.2, 0.5, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
 }
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("intro_scroll:position:x")
+tracks/8/path = NodePath("intro_scroll:position:y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.2, 0.5, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, -13.5, 127, -0.2, 25.5, 0.2, -18.5),
 "times": PackedFloat32Array(0, 2)
 }
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("intro_scroll:position:y")
+tracks/9/path = NodePath("anim/may:position:x")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 1.5, -13.5, 127, -0.2, 25.5, 0.2, -18.5),
-"times": PackedFloat32Array(0, 2)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("anim/may:position:x")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(312, -0.25, 0, 0.25, 0, 72, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 2)
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("ui/enemy_sprite:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ui/enemy_sprite:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -955,6 +948,7 @@ theme_override_font_sizes/font_size = 8
 autowrap_mode = 3
 
 [node name="bag" type="Node2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="bag_background" type="Sprite2D" parent="bag"]
@@ -1226,6 +1220,7 @@ position = Vector2(92, 144)
 texture = ExtResource("18_24r3a")
 
 [node name="attack_select" type="Node2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="background" type="Sprite2D" parent="attack_select"]
@@ -1302,6 +1297,8 @@ theme_override_font_sizes/font_size = 8
 position = Vector2(0, 127)
 
 [node name="Sprite2D" type="Sprite2D" parent="intro_scroll"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_234hh")
 position = Vector2(128, 73)
 texture = ExtResource("21_b7qoe")
 
@@ -1369,3 +1366,5 @@ autoplay = true
 
 [node name="sfx_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("34_sap1j")
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
