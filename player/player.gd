@@ -59,6 +59,11 @@ func _input(event: InputEvent) -> void:
 		$collsion_polygon.visible = get_tree().debug_collisions_hint
 		$on_entered/hitbox.visible = get_tree().debug_collisions_hint
 		$on_touched/hitbox.visible = get_tree().debug_collisions_hint
+	
+	if nurse_enabled: 
+		if event.is_action_pressed("space"):
+			
+			global.nurse.emit(len(global.player_pokemon))
 
 
 func _physics_process(delta: float) -> void:
@@ -252,7 +257,6 @@ func jump(delta: float) -> void:
 
 func animation() -> void:
 	
-	
 	if input_direction != Vector2.ZERO:
 		
 		
@@ -340,6 +344,8 @@ var animated_transition_position: Vector2 = Vector2.ZERO
 
 var dialogue_sig: String = ""
 
+var nurse_enabled: bool = false
+
 
 func _on_on_touched_area_entered(area: Area2D) -> void:
 	
@@ -385,6 +391,10 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 		new_room = area.next_room
 		animated_transition_position = area.transition_position
 		can_animated_transition = true
+	
+	elif "nurse" in area.name:
+		
+		nurse_enabled = true
 
 
 var jumpable: bool = false

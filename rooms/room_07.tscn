@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://wl0stnwr7bcv"]
+[gd_scene load_steps=9 format=3 uid="uid://wl0stnwr7bcv"]
 
 [ext_resource type="Texture2D" uid="uid://bwenod3wu7r3u" path="res://room_assets/iterior_assets.png" id="1_k07cd"]
 [ext_resource type="PackedScene" uid="uid://wxhxheo61txe" path="res://components/transition.tscn" id="2_beux0"]
+[ext_resource type="Texture2D" uid="uid://dgbxhblgfttnc" path="res://assets/pokecenter/display.png" id="3_1p7au"]
+[ext_resource type="Script" path="res://npc/nurse_joy.gd" id="3_dwrxk"]
+[ext_resource type="Texture2D" uid="uid://jbe8hn3u6bpp" path="res://assets/pokecenter/heal_table.png" id="4_h3n3u"]
+[ext_resource type="Texture2D" uid="uid://bo5lmhsk7qhuy" path="res://npc_assets/npc_07.png" id="5_vos1f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4a3ub"]
 texture = ExtResource("1_k07cd")
@@ -264,3 +268,24 @@ new_room = 3
 polygon = [Vector2(-16, -8), Vector2(16, -8), Vector2(-8, 8), Vector2(8, 8)]
 type = 1
 next_position = Vector2(-104, -472)
+
+[node name="nurse_joy" type="Node2D" parent="."]
+script = ExtResource("3_dwrxk")
+
+[node name="display" type="Sprite2D" parent="nurse_joy"]
+position = Vector2(13, -128)
+texture = ExtResource("3_1p7au")
+
+[node name="sprite_2d" type="Sprite2D" parent="nurse_joy"]
+position = Vector2(-16, -113)
+texture = ExtResource("4_h3n3u")
+
+[node name="sprite_2d_2" type="Sprite2D" parent="nurse_joy"]
+position = Vector2(8, -108)
+texture = ExtResource("5_vos1f")
+hframes = 4
+
+[node name="nurse" type="Area2D" parent="nurse_joy"]
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="nurse_joy/nurse"]
+polygon = PackedVector2Array(16, -88, 0, -88, 0, -99, 16, -99)

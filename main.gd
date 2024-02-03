@@ -87,6 +87,8 @@ func connect_signals() -> void:
 	global.save_game.connect(_on_save_game_sig)
 	
 	global.entered_new_route.connect(_on_enter_new_route)
+	
+	global.nurse.connect(_on_nurse_sig)
 
 
 var new_room: int 
@@ -294,7 +296,13 @@ func unique_room_events(room: int) -> void:
 
 
 
+func _on_nurse_sig(pokemon_count: int) -> void:
+	
+	disable_player_process.call_deferred()
 
+func disable_player_process() -> void:
+	
+	player_inst.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 

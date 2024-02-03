@@ -26,6 +26,8 @@ signal object()
 
 signal enable_player
 
+signal nurse()
+
 var player_name: String = "Johannes"
 
 var current_room: int = 0
