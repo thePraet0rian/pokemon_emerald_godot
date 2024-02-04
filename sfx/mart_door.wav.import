@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cuioqj332wrt8"
-path="res://.godot/imported/emerald_0032.wav-ed22beba81f808c4fa1b52993433a0b6.sample"
+uid="uid://cdcsiyo1f4nq6"
+path="res://.godot/imported/mart_door.wav-2643ab2860eecd7c4c6dcbd16ef198e5.sample"
 
 [deps]
 
-source_file="res://sfx/emerald_0032.wav"
-dest_files=["res://.godot/imported/emerald_0032.wav-ed22beba81f808c4fa1b52993433a0b6.sample"]
+source_file="res://sfx/mart_door.wav"
+dest_files=["res://.godot/imported/mart_door.wav-2643ab2860eecd7c4c6dcbd16ef198e5.sample"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cdcsiyo1f4nq6"
-path="res://.godot/imported/emerald_00B5.wav-8d6e267f76c93f511f46e4bcd423bbdc.sample"
+uid="uid://b78d4sygh7crm"
+path="res://.godot/imported/car.wav-2547be1faf3ed17d0fbd9a3c73e9cf75.sample"
 
 [deps]
 
-source_file="res://sfx/emerald_00B5.wav"
-dest_files=["res://.godot/imported/emerald_00B5.wav-8d6e267f76c93f511f46e4bcd423bbdc.sample"]
+source_file="res://sfx/car.wav"
+dest_files=["res://.godot/imported/car.wav-2547be1faf3ed17d0fbd9a3c73e9cf75.sample"]
 
 [params]
 

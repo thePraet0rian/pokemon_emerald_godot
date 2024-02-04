@@ -76,11 +76,14 @@ func trainer_battle_intro() -> void:
 	
 	anim_player.play("start")
 	await anim_player.animation_finished
-	start_dialouge(["Trainer chalanged you"])
+	
+	start_dialouge(["%s would like to battle!" % "LADY CINDY"]) 
 	await self.dialouge_finished
+	
 	anim_player.play("start_02")
 	await anim_player.animation_finished
 	battle_anim_player.play("constant")
+
 
 func set_ui() -> void:
 	

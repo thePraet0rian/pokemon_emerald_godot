@@ -1,75 +1,65 @@
 extends CanvasLayer
 
 
+signal line_written
+
 @onready var timer: Timer = $timer
 @onready var label: Label = $label
 @onready var audio_player: AudioStreamPlayer = $audio_stream_player
 
-var text_arr: Array
-var current_index: int = 0
-var current_line: int = 2
+var return_mode: bool 
+var text: Array
+var line: int = 0
 var pressed: bool = true
-var process_md: bool = false
-
-func set_text(input: Array) -> void:
-	
-	text_arr = input
 
 
-func set_mode(mode: bool) -> void:
-	
-	process_md = mode
+func set_text(_input_arr: Array) -> void:
+	text = _input_arr
+	print(text)
+func set_mode(_mode: bool) -> void:
+	return_mode = _mode
 
 
 func _ready() -> void:
 	
-	print(text_arr)
-	print("ready")
+	print("read")
+	write_line(0)
 	
-	var first_line: int = 1
-#	first_line = int(len(text_arr) > 2) + 1
-	
-	label.text = ""
-	
-	for i in range(first_line):
-		for j in range(len(text_arr[0][i])):
-			
-			await timer.timeout
-			label.text += text_arr[0][i][j]
-	
-	pressed = false 
+	await line_written
+	line = 1
 
 
 func _input(event: InputEvent) -> void:
 	
-	if event.is_action_pressed("space") and !pressed:
+	if !pressed and event.is_action_pressed("space"):
 		
 		audio_player.play()
-		
 		pressed = true
 		
-		print(current_line)
-		
-		if current_line >= len(text_arr[current_index]):
+		if line >= len(text):
 			
-			label.text = ""
-			current_index += 1
-			current_line = 0
-		
-		if current_index >= len(text_arr):
-			
-			await audio_player.finished
-			global.end_dialogue.emit(process_md)
+			print("dialogue end")
+			global.end_dialogue.emit(return_mode)
+			queue_free()
 		else:
 			
-			label.text = label.text.erase(0, label.text.find("\n") + 1)
-			
-			for j in range(len(text_arr[current_index][current_line])):
-				
-				await timer.timeout
-				label.text += text_arr[current_index][current_line][j]
-			
-			current_line += 1
-			
+			print("is reached")
+			label.text = ""
+			write_line(line)
+			await line_written
+			line += 1
+
+
+func write_line(_line: int) -> void:
+	
+	if len(text) == 0:
+		print("dialogue exception")
+		queue_free()
+	
+	for i in range(len(text[_line])):
 		
-		pressed = false
+		await timer.timeout
+		label.text += text[_line][i]
+	
+	pressed = false
+	line_written.emit()

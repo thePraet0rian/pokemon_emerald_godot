@@ -18,7 +18,7 @@ func _ready() -> void:
 	main_menue_nde.visible = false
 	item_storage_nde.visible = false
 	
-	global.start_dialogue.emit([["May booted up the PC\n"], ["What would you like to do"]], false)
+	#global.start_dialogue.emit([["May booted up the PC\n"], ["What would you like to do"]], false)
 	await global.end_dialogue
 	
 	background.visible = true
@@ -97,7 +97,7 @@ func mailbox() -> void:
 	
 	current_state = states.none
 	
-	global.start_dialogue.emit([["There is no mail here."]], false)
+	#global.start_dialogue.emit([["There is no mail here."]], false)
 	await global.end_dialogue
 	
 	text_box_nde.text = "What would you like to do?"
@@ -110,7 +110,7 @@ func decoration() -> void:
 	
 	current_state = states.none
 	
-	global.start_dialogue.emit([["There are no decorations"]], false)
+	#global.start_dialogue.emit([["There are no decorations"]], false)
 	await global.end_dialogue
 	
 	text_box_nde.text = "What would you like to do?"

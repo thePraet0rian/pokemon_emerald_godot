@@ -48,22 +48,18 @@ func _ready() -> void:
 	
 	inital_position = position
 	previous_positon = inital_position
-	
-	global.end_dialogue.connect(_on_end_dialogue_sig)
 
 
 func _input(event: InputEvent) -> void:
+	
+	if event.is_action_pressed("space"):
+		action()
 	
 	if event.is_action_pressed("debug"):
 		get_tree().debug_collisions_hint = not get_tree().debug_collisions_hint
 		$collsion_polygon.visible = get_tree().debug_collisions_hint
 		$on_entered/hitbox.visible = get_tree().debug_collisions_hint
 		$on_touched/hitbox.visible = get_tree().debug_collisions_hint
-	
-	if nurse_enabled: 
-		if event.is_action_pressed("space"):
-			
-			global.nurse.emit(len(global.player_pokemon))
 
 
 func _physics_process(delta: float) -> void:
@@ -72,7 +68,6 @@ func _physics_process(delta: float) -> void:
 		open_inventory()
 	
 	animation()
-	start_dialouge()
 	
 	if can_move:
 		
@@ -91,6 +86,7 @@ func _physics_process(delta: float) -> void:
 		
 		if jumping:
 			jump(delta)
+
 
 var test_2: bool = true
 @onready var anim_player: AnimationPlayer = $anim_player
@@ -223,6 +219,7 @@ var jumping: bool = false
 
 func move(delta: float) -> void:
 	
+	
 	percent += walk_speed * delta
 	
 	if percent >= 1.0:
@@ -299,27 +296,45 @@ func animated_transition() -> void:
 	can_animated_transition = false
 
 
+
+func action() -> void:
+	
+	$on_touched.process_mode = Node.PROCESS_MODE_DISABLED
+	$on_touched.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	var objects: Array = $on_touched.get_overlapping_areas()
+	var str: String = ""
+	
+	for i in range(len(objects)):
+		
+		if "dialouge_object" in str(objects[i]):
+			action_dialogue_object(objects[i].text)
+			
+		elif "nurse" in str(objects[i]):
+			action_nurse()
+
+
+func action_dialogue_object(text: Array) -> void:
+	
+	print("dialogue_object")
+	
+	sfx_player.play()
+	await sfx_player.finished
+	
+	#global.object.emit(dialogue_sig)
+	
+	process_mode = Node.PROCESS_MODE_DISABLED
+	global.start_dialogue.emit(text, true)
+
+
+func action_nurse() -> void:
+	
+	global.nurse.emit(len(global.player_pokemon))
+	nurse_enabled = false
+	can_talk = false
+
+
 @onready var sfx_player: AudioStreamPlayer = $sfx_player
-
-
-func start_dialouge() -> void:
-	
-	if can_talk:
-		if Input.is_action_just_pressed("space"):
-			
-			sfx_player.play()
-			await sfx_player.finished
-			
-			global.object.emit(dialogue_sig)
-			
-			process_mode = Node.PROCESS_MODE_DISABLED
-			global.emit_signal("start_dialogue", text, true)
-			can_talk = false
-
-
-func _on_end_dialogue_sig(_mode: bool) -> void:
-	
-	can_talk = true
 
 
 var next_position: Vector2 = Vector2.ZERO
@@ -369,15 +384,6 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 		area.direction = input_direction
 		area.update()
 	
-	elif "dialouge_object" in area.name:
-		
-		can_talk = true
-		text.clear()
-		text.append_array(area.text)
-		
-		if area.sig != "":
-			dialogue_sig = area.sig
-	
 	elif "ledge" in area.name:
 		
 		if input_direction == area.direction:
@@ -391,10 +397,6 @@ func _on_on_touched_area_entered(area: Area2D) -> void:
 		new_room = area.next_room
 		animated_transition_position = area.transition_position
 		can_animated_transition = true
-	
-	elif "nurse" in area.name:
-		
-		nurse_enabled = true
 
 
 var jumpable: bool = false
@@ -423,4 +425,3 @@ func open_inventory() -> void:
 	var inventroy_inst: CanvasLayer = inventory_scn.instantiate()
 	get_parent().add_child(inventroy_inst)
 	process_mode = Node.PROCESS_MODE_DISABLED
-

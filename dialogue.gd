@@ -9,7 +9,7 @@ const npc_dialogue_string: Array =  [npc_01, npc_02, npc_03]
 
 
 
-const object_01: Array = [["Dad might like this program.\n"], ["Better get going!"]]
+const object_01: Array = ["This is a test."]
 const object_02: Array = [["The time is already set.\n"]]
 const object_03: Array = [["It is a Nintendo GameCube\n"], ["A Game Boy Advance is connected\n to serve as the Controller.\n"]]
 const object_04: Array = [["The map is too dirty to read\n"]]

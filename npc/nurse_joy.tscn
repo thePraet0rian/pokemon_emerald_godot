@@ -1,0 +1,275 @@
+[gd_scene load_steps=13 format=3 uid="uid://745guf35p7uu"]
+
+[ext_resource type="Script" path="res://npc/nurse_joy.gd" id="1_2dryc"]
+[ext_resource type="Texture2D" uid="uid://dgbxhblgfttnc" path="res://assets/pokecenter/display.png" id="2_1a4l5"]
+[ext_resource type="Texture2D" uid="uid://knl3ct8k4vo1" path="res://assets/pokecenter/display_2.png" id="3_cejpx"]
+[ext_resource type="Texture2D" uid="uid://jbe8hn3u6bpp" path="res://assets/pokecenter/heal_table.png" id="3_not5s"]
+[ext_resource type="Texture2D" uid="uid://bo5lmhsk7qhuy" path="res://npc_assets/npc_07.png" id="4_swfsr"]
+[ext_resource type="PackedScene" uid="uid://dlb1beb2luscv" path="res://ui_elements/dialogue.tscn" id="5_ma3s1"]
+[ext_resource type="Texture2D" uid="uid://cobj3est6jbgb" path="res://assets/pokecenter/pokeball.png" id="5_yg6a6"]
+[ext_resource type="PackedScene" uid="uid://dnd5ar8tvfwvw" path="res://ui_elements/option_selection.tscn" id="6_vjey5"]
+[ext_resource type="AudioStream" uid="uid://na16cwr840yn" path="res://sfx/audio.mp3" id="9_qjgjx"]
+
+[sub_resource type="Animation" id="Animation_4x5d5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("display/sprite_2d:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_2d/pokeball_01:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite_2d/pokeball_02:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprite_2d/pokeball_03:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprite_2d/pokeball_04:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sprite_2d/pokeball_05:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sprite_2d/pokeball_06:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wh5c3"]
+resource_name = "1"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("display/sprite_2d:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_2d/pokeball_01:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite_2d/pokeball_02:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprite_2d/pokeball_03:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprite_2d/pokeball_04:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sprite_2d/pokeball_05:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sprite_2d/pokeball_06:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("audio_stream_player")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.737248,
+"start_offset": 0.0,
+"stream": ExtResource("9_qjgjx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_61k7j"]
+_data = {
+"1": SubResource("Animation_wh5c3"),
+"RESET": SubResource("Animation_4x5d5")
+}
+
+[node name="nurse_joy" type="Node2D"]
+script = ExtResource("1_2dryc")
+
+[node name="display" type="Sprite2D" parent="."]
+position = Vector2(13, -128)
+texture = ExtResource("2_1a4l5")
+
+[node name="sprite_2d" type="Sprite2D" parent="display"]
+position = Vector2(-1, -1)
+texture = ExtResource("3_cejpx")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+position = Vector2(-16, -113)
+texture = ExtResource("3_not5s")
+
+[node name="pokeball_01" type="Sprite2D" parent="sprite_2d"]
+position = Vector2(-3, -3)
+texture = ExtResource("5_yg6a6")
+hframes = 4
+
+[node name="pokeball_02" type="Sprite2D" parent="sprite_2d"]
+position = Vector2(3, -3)
+texture = ExtResource("5_yg6a6")
+hframes = 4
+
+[node name="pokeball_03" type="Sprite2D" parent="sprite_2d"]
+position = Vector2(-3, 1)
+texture = ExtResource("5_yg6a6")
+hframes = 4
+
+[node name="pokeball_04" type="Sprite2D" parent="sprite_2d"]
+position = Vector2(3, 1)
+texture = ExtResource("5_yg6a6")
+hframes = 4
+
+[node name="pokeball_05" type="Sprite2D" parent="sprite_2d"]
+position = Vector2(-3, 5)
+texture = ExtResource("5_yg6a6")
+hframes = 4
+
+[node name="pokeball_06" type="Sprite2D" parent="sprite_2d"]
+position = Vector2(3, 5)
+texture = ExtResource("5_yg6a6")
+hframes = 4
+
+[node name="sprite_2d_2" type="Sprite2D" parent="."]
+position = Vector2(8, -108)
+texture = ExtResource("4_swfsr")
+hframes = 4
+
+[node name="nurse" type="Area2D" parent="."]
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="nurse"]
+polygon = PackedVector2Array(16, -88, 0, -88, 0, -99, 16, -99)
+
+[node name="dialogue" parent="." instance=ExtResource("5_ma3s1")]
+visible = false
+
+[node name="option_selection" parent="." instance=ExtResource("6_vjey5")]
+visible = false
+
+[node name="anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_61k7j")
+}
+
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="."]

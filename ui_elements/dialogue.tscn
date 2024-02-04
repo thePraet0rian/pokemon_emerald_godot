@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlb1beb2luscv"]
+
+[ext_resource type="Script" path="res://ui_elements/dialogue.gd" id="1_8skqu"]
+[ext_resource type="Texture2D" uid="uid://bqjdu1sgt7qk5" path="res://dialouge_assets/dialouge_background.png" id="1_u7mqj"]
+[ext_resource type="FontFile" uid="uid://dlcuup21h36of" path="res://assets/pokefont_new.ttf" id="2_uujp8"]
+
+[node name="dialogue" type="CanvasLayer"]
+script = ExtResource("1_8skqu")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+position = Vector2(120, 136)
+texture = ExtResource("1_u7mqj")
+
+[node name="dialogue_label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 123.0
+offset_right = 79.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0.313726, 0.313726, 0.313726, 1)
+theme_override_colors/font_shadow_color = Color(0.803922, 0.803922, 0.803922, 1)
+theme_override_fonts/font = ExtResource("2_uujp8")
+theme_override_font_sizes/font_size = 8
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true

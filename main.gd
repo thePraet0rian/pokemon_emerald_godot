@@ -197,6 +197,7 @@ var dialogue_inst: CanvasLayer
 
 func _on_start_dialogue_sig(_text: Array, _mode: bool) -> void:
 	
+	print(_text)
 	dialogue_inst = dialogue_scn.instantiate()
 	dialogue_inst.set_text(_text)
 	dialogue_inst.set_mode(_mode)
@@ -206,7 +207,7 @@ func _on_start_dialogue_sig(_text: Array, _mode: bool) -> void:
 func _on_end_dialogue_sig(_mode: bool) -> void:
 	
 	if _mode:
-		player_inst.process_mode = Node.PROCESS_MODE_INHERIT
+		enable_player_process.call_deferred()
 	
 	dialogue_inst.queue_free()
 
@@ -296,14 +297,16 @@ func unique_room_events(room: int) -> void:
 
 
 
-func _on_nurse_sig(pokemon_count: int) -> void:
+func _on_nurse_sig(_pokemon_count: int) -> void:
 	
 	disable_player_process.call_deferred()
 
 func disable_player_process() -> void:
 	
 	player_inst.process_mode = Node.PROCESS_MODE_DISABLED
-
+func enable_player_process() -> void:
+	
+	player_inst.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 """
@@ -394,7 +397,7 @@ func leaving_the_van() -> void:
 	await cutscene_player.animation_finished
 	set_process(false)
 	
-	start_dialogue([["Playerholder."]], true)
+	#start_dialogue([["Playerholder."]], true)
 	await global.end_dialogue
 	
 	current_cutscene.play_animation("cutscene")
@@ -431,7 +434,7 @@ func cutscene_four() -> void:
 	rooms.get_child(0).cutscene()
 	cutscene.add_child(cutscenes[2].instantiate())
 	
-	start_dialogue([["Placeholder."]], false)
+	#start_dialogue([["Placeholder."]], false)
 	await global.end_dialogue
 	
 	global.progress = 3
@@ -442,7 +445,7 @@ func cutscene_four() -> void:
 
 func cutscene_five() -> void:
 	
-	start_dialogue([["Look your father was on tv."]], false)
+	#start_dialogue([["Look your father was on tv."]], false)
 	await global.end_dialogue
 
 
@@ -462,7 +465,7 @@ func cutscene_seven() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	start_dialogue([["Placeholder."]], false)
+	#start_dialogue([["Placeholder."]], false)
 	await global.end_dialogue
 	
 	events[5] = true

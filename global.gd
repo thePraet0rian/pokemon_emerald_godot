@@ -27,6 +27,7 @@ signal object()
 signal enable_player
 
 signal nurse()
+signal player_area_update
 
 var player_name: String = "Johannes"
 

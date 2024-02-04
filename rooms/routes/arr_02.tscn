@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://uyxm8eoi2o4g"]
+[gd_scene load_steps=7 format=3 uid="uid://uyxm8eoi2o4g"]
 
 [ext_resource type="Texture2D" uid="uid://d2nxv1swp11jp" path="res://room_assets/exterior_tileset_02.png" id="1_s2xvv"]
 [ext_resource type="PackedScene" uid="uid://nnd1o5w5bc5g" path="res://components/animated_transition.tscn" id="2_ejjsb"]
 [ext_resource type="PackedScene" uid="uid://c7qwguxr61pmx" path="res://dialogue/dialouge_object.tscn" id="3_wbmy4"]
+[ext_resource type="PackedScene" uid="uid://tpexuiss48cl" path="res://trainer/trainer.tscn" id="4_aucow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dlyou"]
 texture = ExtResource("1_s2xvv")
@@ -3397,3 +3398,7 @@ door_type = 2
 
 [node name="dialouge_object" parent="." instance=ExtResource("3_wbmy4")]
 position = Vector2(-24, -456)
+
+[node name="trainer" parent="." instance=ExtResource("4_aucow")]
+position = Vector2(-30, -498)
+pokemon_arr = [[0, "Rayquaza", 100, 100, 100, 100, 100, 100, 100, 100, 100]]
