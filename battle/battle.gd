@@ -96,7 +96,7 @@ func set_ui() -> void:
 	enemy_lv_label.text = "Lv" + str(enemy_pokemon[0][10])
 	player_lv_label.text = "Lv" + str(player_pokemon[0][10])
 	
-	menue_label.text = "What will \n" + player_pokemon[0][1] + " do?"
+	menue_label.text = "What will \n%s do?" % str(player_pokemon[0][1])
 	
 	update_ui()
 
