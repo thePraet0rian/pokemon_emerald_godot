@@ -156,7 +156,7 @@ func _input(event: InputEvent) -> void:
 		states.POKEMON:
 			pokemon_input(event)
 #		states.RUN:
-#			action(3, "Flee")
+#			action(3, "Flee")ug
 		states.DIALOUGE:
 			dialouge_input(event)
 

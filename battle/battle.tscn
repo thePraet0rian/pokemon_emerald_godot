@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c0nreck7c7rdk"]
+[gd_scene load_steps=45 format=3 uid="uid://c0nreck7c7rdk"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_ik5ly"]
 [ext_resource type="Texture2D" uid="uid://1ieaejkmc3gf" path="res://battle_assets/backgrounds/grass_01.png" id="1_n3k5q"]
@@ -11,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dl5j30oc57k1v" path="res://battle_assets/backgrounds/enemy_pokemon_grass.png" id="7_w2hoc"]
 [ext_resource type="FontFile" uid="uid://cp4f262bau5iy" path="res://assets/pokefont_big.ttf" id="8_ctgnh"]
 [ext_resource type="Texture2D" uid="uid://3qi43fmkdimb" path="res://battle_assets/backgrounds/player_pokemon_grass.png" id="8_f8qc5"]
+[ext_resource type="Texture2D" uid="uid://kfbqdrn8twjj" path="res://battle_assets/pokecount.png" id="8_ikaky"]
 [ext_resource type="Texture2D" uid="uid://dwfv2b3bi381c" path="res://battle_assets/pokemon/treecko/back.png" id="8_sr64j"]
 [ext_resource type="Texture2D" uid="uid://dbtcanods1xaq" path="res://battle_assets/attack_select_background.png" id="9_86bq8"]
+[ext_resource type="Texture2D" uid="uid://icgge7fc2xq8" path="res://battle_assets/pokeball.png" id="9_un7rc"]
 [ext_resource type="Texture2D" uid="uid://dmly66s5bfei7" path="res://battle_assets/bag_background.png" id="10_q6ilx"]
 [ext_resource type="Texture2D" uid="uid://cxy3po8cffb4b" path="res://battle_assets/bag_assets/item_sign.png" id="11_scf2t"]
 [ext_resource type="Texture2D" uid="uid://ddgcqtt8h4ida" path="res://battle_assets/bag_assets/bag_01.png" id="12_3cf1f"]
@@ -28,10 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://c8vq6tnfwa4as" path="res://battle_assets/characters/may_01.png" id="22_wruql"]
 [ext_resource type="Texture2D" uid="uid://c17qrjafhffvw" path="res://battle_assets/characters/may_02.png" id="23_kgw0j"]
 [ext_resource type="Texture2D" uid="uid://bh57wt41itrif" path="res://battle_assets/characters/may_03.png" id="24_rm216"]
-[ext_resource type="Texture2D" uid="uid://u3q1exar5vtx" path="res://battle_assets/backgrounds/scroll_grass/grass_02.png" id="25_5lmuu"]
 [ext_resource type="Texture2D" uid="uid://cwjfw76ut8nxs" path="res://battle_assets/characters/may_04.png" id="25_w7lha"]
-[ext_resource type="Texture2D" uid="uid://dvlnhpn6quw57" path="res://battle_assets/backgrounds/scroll_grass/grass_03.png" id="26_55xph"]
-[ext_resource type="Texture2D" uid="uid://dpfe8yroc7ll8" path="res://battle_assets/backgrounds/scroll_grass/grass_04.png" id="27_6yr7w"]
 [ext_resource type="AudioStream" uid="uid://c65pmmk1yu3rg" path="res://battle_assets/spawnpokemon.mp3.wav" id="32_u5r33"]
 [ext_resource type="AudioStream" uid="uid://bwik4w13x1wk0" path="res://sounds/1-08 Wild Pokémon Battle!.mp3" id="33_8fxdj"]
 [ext_resource type="AudioStream" uid="uid://brfoisv0yik4" path="res://sfx/confirm.wav" id="34_sap1j"]
@@ -372,23 +371,6 @@ tracks/27/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_n0awv"]
-resource_name = "grass_scroll"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("intro_scroll/Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("21_b7qoe"), ExtResource("25_5lmuu"), ExtResource("26_55xph"), ExtResource("27_6yr7w")]
-}
-
 [sub_resource type="Animation" id="Animation_2swml"]
 resource_name = "start"
 length = 2.5
@@ -651,7 +633,6 @@ tracks/9/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8lv3r"]
 _data = {
 "RESET": SubResource("Animation_26idq"),
-"grass_scroll": SubResource("Animation_n0awv"),
 "start": SubResource("Animation_2swml"),
 "start_02": SubResource("Animation_06t66")
 }
@@ -824,6 +805,7 @@ texture = ExtResource("8_f8qc5")
 metadata/_edit_lock_ = true
 
 [node name="player_hp_bar" type="ColorRect" parent="info"]
+visible = false
 offset_left = 295.0
 offset_top = 91.0
 offset_right = 343.0
@@ -831,6 +813,7 @@ offset_bottom = 95.0
 color = Color(0, 0.886656, 0.0859693, 1)
 
 [node name="enemy_hp_bar" type="ColorRect" parent="info"]
+visible = false
 offset_left = -69.0
 offset_top = 33.0
 offset_right = -21.0
@@ -838,6 +821,7 @@ offset_bottom = 35.0
 color = Color(0, 0.886656, 0.0859693, 1)
 
 [node name="enemy_info" type="Sprite2D" parent="info"]
+visible = false
 position = Vector2(-58, 30)
 texture = ExtResource("2_cirgy")
 
@@ -913,6 +897,63 @@ offset_right = 43.0
 offset_bottom = 17.0
 scale = Vector2(1e-05, 1)
 color = Color(0, 1, 1, 1)
+
+[node name="pokemon_count_player" type="Sprite2D" parent="info"]
+position = Vector2(189, 98)
+texture = ExtResource("8_ikaky")
+
+[node name="pokeball_1" type="Sprite2D" parent="info/pokemon_count_player"]
+position = Vector2(-111, -62)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_2" type="Sprite2D" parent="info/pokemon_count_player"]
+position = Vector2(-121, -62)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_3" type="Sprite2D" parent="info/pokemon_count_player"]
+position = Vector2(-131, -62)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_4" type="Sprite2D" parent="info/pokemon_count_player"]
+position = Vector2(-141, -62)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_5" type="Sprite2D" parent="info/pokemon_count_player"]
+position = Vector2(-151, -62)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_6" type="Sprite2D" parent="info/pokemon_count_player"]
+position = Vector2(-161, -62)
+texture = ExtResource("9_un7rc")
+
+[node name="pokemon_counter_player" type="Sprite2D" parent="info"]
+position = Vector2(51, 42)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_ikaky")
+
+[node name="pokeball_1" type="Sprite2D" parent="info/pokemon_counter_player"]
+position = Vector2(-111, 50)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_2" type="Sprite2D" parent="info/pokemon_counter_player"]
+position = Vector2(-121, 50)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_3" type="Sprite2D" parent="info/pokemon_counter_player"]
+position = Vector2(-131, 50)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_4" type="Sprite2D" parent="info/pokemon_counter_player"]
+position = Vector2(-141, 50)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_5" type="Sprite2D" parent="info/pokemon_counter_player"]
+position = Vector2(-151, 50)
+texture = ExtResource("9_un7rc")
+
+[node name="pokeball_6" type="Sprite2D" parent="info/pokemon_counter_player"]
+position = Vector2(-161, 50)
+texture = ExtResource("9_un7rc")
 
 [node name="ui" type="Node2D" parent="."]
 
@@ -1367,5 +1408,3 @@ autoplay = true
 
 [node name="sfx_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("34_sap1j")
-
-[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
