@@ -72,16 +72,30 @@ func wild_battle_intro() -> void:
 	battle_anim_player.play("constant")
 
 
+@onready var enemy_pokeballs: Array = [$info/pokeballs_enemy/pokeball_1, $info/pokeballs_enemy/pokeball_2, $info/pokeballs_enemy/pokeball_3, $info/pokeballs_enemy/pokeball_4, $info/pokeballs_enemy/pokeball_5, $info/pokeballs_enemy/pokeball_6]
+@onready var player_pokeballs: Array = [$info/pokeballs_player/pokeball_1, $info/pokeballs_player/pokeball_2, $info/pokeballs_player/pokeball_3, $info/pokeballs_player/pokeball_4, $info/pokeballs_player/pokeball_5, $info/pokeballs_player/pokeball_6]
+
+
 func trainer_battle_intro() -> void:
 	
-	anim_player.play("start")
+	for i in range(len(player_pokemon)):
+		player_pokeballs[i].frame = 0
+	
+	for i in range(len(enemy_pokemon)):
+		enemy_pokeballs[i].frame = 0
+	
+	anim_player.play("start_trainer_battle")
 	await anim_player.animation_finished
 	
-	start_dialouge(["%s would like to battle!" % "LADY CINDY"]) 
+	start_dialouge(["%s would like to battle!" % "LADY CINDY"]) #TODO transmit trainer name and class
 	await self.dialouge_finished
 	
-	anim_player.play("start_02")
+	start_dialouge(["Trainer sent out pokemon_1."])
+	await self.dialouge_finished
+	
+	anim_player.play("start_trainer_battle_02")
 	await anim_player.animation_finished
+	
 	battle_anim_player.play("constant")
 
 
