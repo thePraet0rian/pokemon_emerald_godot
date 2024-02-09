@@ -1420,10 +1420,10 @@ tracks/1/path = NodePath("anim/may:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.5, 2.05),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.5, 2.05, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(72, 88), Vector2(2, 88)]
+"values": [Vector2(72, 88), Vector2(2, 88), Vector2(-28, 88)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1466,7 +1466,7 @@ tracks/5/path = NodePath("anim/ball:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.05, 2.05, 3.05),
+"times": PackedFloat32Array(0.05, 2.05, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -1478,7 +1478,7 @@ tracks/6/path = NodePath("ui/player_sprite:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.05, 3.05),
+"times": PackedFloat32Array(0.05, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
