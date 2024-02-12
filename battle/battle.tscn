@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://c0nreck7c7rdk"]
 
-[ext_resource type="Script" path="res://battle/battle.gd" id="1_ik5ly"]
+[ext_resource type="Script" path="res://battle/battle_.gd" id="1_788ls"]
 [ext_resource type="Texture2D" uid="uid://1ieaejkmc3gf" path="res://battle_assets/backgrounds/grass_01.png" id="1_n3k5q"]
 [ext_resource type="Texture2D" uid="uid://bjgpg1v6vm0ys" path="res://battle_assets/enemy_info.png" id="2_cirgy"]
 [ext_resource type="Texture2D" uid="uid://dk0t8e6e6ggkp" path="res://battle_assets/player_info.png" id="3_rie7x"]
@@ -268,7 +268,7 @@ tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
@@ -1816,6 +1816,54 @@ tracks/34/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("info/enemy_info:position")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.45),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-58, 30), Vector2(52, 30), Vector2(66, 30)]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("info/enemy_hp_bar:position")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.45),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-69, 33), Vector2(41, 33), Vector2(55, 33)]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("info/player_hp_bar:position")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(1.5, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(295, 91), Vector2(174, 90)]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("info/player_info:position")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(1.5, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 92), Vector2(179, 92)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8lv3r"]
 _data = {
@@ -1840,22 +1888,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(64, 86)]
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("info/player_info:position")
+tracks/1/path = NodePath("ui/enemy_sprite:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(179, 93)]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ui/enemy_sprite:modulate:a")
+tracks/2/path = NodePath("ui/player_sprite:modulate:a")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1863,24 +1910,13 @@ tracks/2/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ui/player_sprite:modulate:a")
+tracks/3/path = NodePath("ui/enemy_sprite:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ui/enemy_sprite:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1971,7 +2007,7 @@ _data = {
 }
 
 [node name="battle" type="CanvasLayer"]
-script = ExtResource("1_ik5ly")
+script = ExtResource("1_788ls")
 
 [node name="background" type="TextureRect" parent="."]
 offset_right = 240.0
@@ -2024,20 +2060,21 @@ text = "WINGULL\""
 uppercase = true
 
 [node name="level" type="Label" parent="info/enemy_info"]
-offset_left = 18.0
+offset_left = 12.0
 offset_top = -6.0
-offset_right = 58.0
+offset_right = 39.0
 offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.215427, 0.215427, 0.215427, 1)
 theme_override_colors/font_shadow_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_fonts/font = ExtResource("4_7yrxv")
 theme_override_font_sizes/font_size = 8
-text = "Lv12"
+text = "Lv100"
+horizontal_alignment = 1
 
 [node name="player_info" type="Sprite2D" parent="info"]
-visible = false
-position = Vector2(179, 93)
+position = Vector2(300, 92)
 texture = ExtResource("3_rie7x")
+metadata/_edit_group_ = true
 
 [node name="name" type="Label" parent="info/player_info"]
 offset_left = -36.5

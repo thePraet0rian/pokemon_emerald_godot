@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 
+
 enum states {MENUE = 0, FIGHT = 1, BAG = 2, POKEMON = 3, RUN = 4, DIALOUGE = 5, NONE = 6, ATTACKING = 7}
 
 
@@ -9,20 +10,18 @@ enum states {MENUE = 0, FIGHT = 1, BAG = 2, POKEMON = 3, RUN = 4, DIALOUGE = 5, 
 
 
 var player_pokemon: Array = global.player_pokemon
-var player_moveset: Array = global.player_moveset
+var player_inventory: Array = global.player_inventory
 
 var enemy_pokemon: Array
-var enemy_moveset: Array
 
 var battle_type: int
 var current_state: states = states.NONE
 
 
-func set_battle(enemy_pokemon_arr: Array, enemy_moveset_arr: Array, battle_type_int: int) -> void:
+func set_battle(_enemy_pokemon_arr: Array, _enemy_moveset_arr: Array, _battle_type_int: int) -> void:
 	
-	enemy_pokemon = enemy_pokemon_arr
-	enemy_moveset = enemy_moveset_arr
-	battle_type = battle_type_int
+	enemy_pokemon = _enemy_pokemon_arr
+	battle_type = _battle_type_int
 	
 	start_battle()
 
@@ -120,6 +119,9 @@ const item_scn: PackedScene = preload("res://components/item.tscn")
 
 func set_bag() -> void:
 	
+	player_inventory = global.player_inventory.duplicate()
+	print(player_inventory)
+	
 	for i in range(5):
 		for j in range(len(global.player_inventory[i])):
 			
@@ -152,9 +154,9 @@ func set_pokemon() -> void:
 		pokeball[i].visible = true
 		pokemons[i].texture = pokemon_normal_textures[i]
 	
-	for i in range(len(player_moveset)):
-		for j in range(len(player_moveset[i])):
-			attack_label[i][j].text = player_moveset[i][j][0]
+	for i in range(len(player_pokemon[1])):
+		for j in range(len(player_pokemon[1][i])):
+			attack_label[i][j].text = player_pokemon[1][i][j][0]
 
 
 func _input(event: InputEvent) -> void:
@@ -169,8 +171,6 @@ func _input(event: InputEvent) -> void:
 			bag_input(event)
 		states.POKEMON:
 			pokemon_input(event)
-#		states.RUN:
-#			action(3, "Flee")ug
 		states.DIALOUGE:
 			dialouge_input(event)
 
@@ -237,8 +237,8 @@ func attack_select_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("move_down") and attack_select_index.y < 1:
 		attack_select_index.y += 1
 	
-	pp_attack_label.text = "PP    " + str(player_moveset[attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_moveset[attack_select_index.x][attack_select_index.y][0]][1])
-	type_attack_label.text = "TYPE/" + attacks.attacks[player_moveset[attack_select_index.y][attack_select_index.y][0]][0]
+	pp_attack_label.text = "PP    " + str(player_pokemon[1][attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_pokemon[1][attack_select_index.x][attack_select_index.y][0]][1])
+	type_attack_label.text = "TYPE/" + attacks.attacks[player_pokemon[1][attack_select_index.y][attack_select_index.y][0]][0]
 	
 	attack_select_cursor.position = attack_select_cursor_positons[attack_select_index.x][attack_select_index.y]
 	
@@ -255,7 +255,7 @@ func attack_select_input(event: InputEvent) -> void:
 		battle_anim_player.stop()
 		attack_select.visible = false
 		current_state = states.NONE
-		action(0, player_moveset[attack_select_index.x][attack_select_index.y][0])
+		action(0, player_pokemon[1][attack_select_index.x][attack_select_index.y][0])
 		
 		attack_pressed = false
 
@@ -639,8 +639,8 @@ func update_ui() -> void:
 	
 	player_hp_label.text = str(round(player_pokemon[0][9])) + "/" + str(player_pokemon[0][3])
 	
-	pp_attack_label.text = "PP    " + str(player_moveset[attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_moveset[attack_select_index.x][attack_select_index.y][0]][1])
-	type_attack_label.text = "TYPE/" + attacks.attacks[player_moveset[attack_select_index.y][attack_select_index.y][0]][0]
+	pp_attack_label.text = "PP    " + str(player_pokemon[1][attack_select_index.x][attack_select_index.y][1]) + "/" + str(attacks.attacks[player_pokemon[1][attack_select_index.x][attack_select_index.y][0]][1])
+	type_attack_label.text = "TYPE/" + attacks.attacks[player_pokemon[1][attack_select_index.y][attack_select_index.y][0]][0]
 
 
 func cubed(input: int) -> float:

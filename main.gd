@@ -41,8 +41,7 @@ func start() -> void:
 	
 	global.player_pokemon.clear()
 	global.player_pokemon.append_array(saved_data[1])
-	global.player_moveset.append_array(saved_data[2])
-	global.player_inventory.append_array(saved_data[3])
+	global.player_inventory.append_array(saved_data[2])
 	
 	play_room_music()
 
