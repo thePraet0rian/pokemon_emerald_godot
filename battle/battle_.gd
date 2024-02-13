@@ -11,7 +11,7 @@ class_name battle
 @onready var sfx_player: AudioStreamPlayer = $sfx_player
 
 
-var player_pokemon: Array
+var player_pokemon: Array = global.player_pokemon
 var enemy_pokemon: Array
 
 var player_inventory: Array = global.player_inventory
@@ -28,8 +28,8 @@ var battle_type: int
 
 
 
-@onready var player_sprite: Sprite2D = $ui/enemy_sprite
-@onready var enemy_sprite: Sprite2D = $ui/player_sprite
+@onready var player_sprite: Sprite2D = $ui/player_sprite
+@onready var enemy_sprite: Sprite2D = $ui/enemy_sprite
 
 @onready var player_name_label: Label = $info/player_info/name
 @onready var enemy_name_label: Label = $info/enemy_info/name
@@ -40,13 +40,15 @@ var battle_type: int
 @onready var menue_label: Label = $menue/Label
 
 
-func set_battle(_enemy_pokemon_arr: Array, _res: Array, _battle_type: int) -> void:
+func set_battle(_enemy_pokemon_arr: Array, _battle_type: int) -> void:
 	
+	print(_enemy_pokemon_arr)
 	enemy_pokemon = _enemy_pokemon_arr
 	battle_type = _battle_type
 	
 	set_bag()
 	set_attacks()
+	set_battle_interface()
 	play_battle_intro(_battle_type) 
 
 
@@ -69,10 +71,15 @@ const item_scn: PackedScene = preload("res://components/item.tscn")
 
 func set_bag() -> void: #TODO: finish
 	
+	print(player_inventory)
+	
 	for i in range(5):
 		for j in range(len(player_inventory[i])):
 			
 			var item_inst: Label = item_scn.instantiate()
+			types[i].add_child(item_inst)
+			item_inst.text = player_inventory[i][j][0]
+			item_inst.position = Vector2(120, 24 + 16 * j)
 
 
 @onready var attack_labels: Array = [[$attack_select/attack_01, $attack_select/attack_02], [$attack_select/attack_03, $attack_select/attack_04]]
@@ -80,15 +87,24 @@ func set_bag() -> void: #TODO: finish
 
 func set_attacks() -> void:
 	
-	for i in range(len(player_pokemon[1])):
-		for j in range(len(player_pokemon[1][i])):
-			attack_labels[i][j].text = player_pokemon[1][i][j][0]
+	for i in range(len(player_pokemon[0][1])):
+		for j in range(len(player_pokemon[0][1][i])):
+			attack_labels[i][j].text = player_pokemon[0][1][i][j][0]
 
 
 func play_battle_intro(_battle_type: int) -> void:
 	
-	anim_player.play("start")
-	await anim_player.animation_finished
+	if _battle_type == 0:
+		pass
+	elif _battle_type == 1:
+		
+		anim_player.play("start_trainer_battle")
+		await anim_player.animation_finished
+		
+		start_dialogue(["Lady somehting would like to battle"])
+		await dialogue_finished
+		
+		anim_player.play("start_trainer_battle_02")
 
 
 
@@ -97,6 +113,7 @@ func play_battle_intro(_battle_type: int) -> void:
 
 
 
+@onready var menue_select: Node2D = $menue
 @onready var attack_select: Node2D = $attack_select
 @onready var pokemon_select: Node2D = $pokemon
 @onready var item_select: Node2D = $bag
@@ -105,7 +122,7 @@ func play_battle_intro(_battle_type: int) -> void:
 enum states {MENUE, ATTACK_SELECT, POKEMON_SELECT, ITEM_SELECT, DIALOGUE, NULL}
 
 
-var current_state: states = states.MENUE
+var current_state: states = states.NULL
 
 
 func _input(event: InputEvent) -> void:
@@ -117,9 +134,11 @@ func _input(event: InputEvent) -> void:
 		states.ATTACK_SELECT:
 			attack_select_input(event)
 		states.POKEMON_SELECT:
-			pass
+			pokemon_select_input(event)
 		states.ITEM_SELECT:
-			pass
+			item_select_input(event)
+		states.DIALOGUE:
+			dialogue_input(event)
 
 
 ###########################################################
@@ -170,7 +189,7 @@ func match_menue_input() -> void:
 		pokemon_select.visible = true
 		current_state = states.POKEMON_SELECT
 	elif menue_cursor_index == Vector2i(1, 1):
-		global.end_battle.emit()
+		action([3, "Flee"])
 
 
 @onready var attack_select_cursor: Sprite2D = $attack_select/attack_select_cursor
@@ -217,18 +236,81 @@ func attack_select_input(event: InputEvent) -> void:
 
 func update_attack_select_ui() -> void: #TODO: Finish
 	
-	attack_pp_label.text = ("PP    " + str(player_pokemon[player_current_pokemon][1][attack_select_index.y][attack_select_index.x]))
-	attack_type_label.text = ("TYPE/" + str(attacks.attacks[player_pokemon[player_current_pokemon][1][attack_select_index.y][attack_select_index.x]]))
+	attack_select_cursor.position = attack_select_cursor_positions[attack_select_index.x][attack_select_index.y]
+	
+	attack_pp_label.text = ("PP    " + str(player_pokemon[player_current_pokemon][1][attack_select_index.y][attack_select_index.x][1]))
+	attack_type_label.text = ("TYPE/" + str(attacks.attacks[player_pokemon[player_current_pokemon][1][attack_select_index.y][attack_select_index.x][0]][0]))
 
 
 func pokemon_select_input(event: InputEvent) -> void:
 	
-	pass
+	if event.is_action_pressed("shift"):
+		
+		menue_select.visible = true
+		pokemon_select.visible = false
+		current_state = states.MENUE
 
 
-func bag_select_input(event: InputEvent) -> void:
+@onready var types: Array[Node2D] = [$bag/items, $bag/pokeballs, $bag/tm, $bag/berries, $bag/key_items]
+
+@onready var item_select_point: Sprite2D = $bag/point
+@onready var item_select_bag: Sprite2D = $bag/bag
+@onready var item_select_cursor: Sprite2D = $bag/bag_cursor
+@onready var item_select_info: Sprite2D = $bag/info
+
+
+const item_select_info_textures: Array[Resource] = [preload("res://battle_assets/bag_assets/item_sign.png"), preload("res://battle_assets/bag_assets/pokeball_sign.png"), preload("res://battle_assets/bag_assets/tmandhm_sign.png"), preload("res://battle_assets/bag_assets/berries_sign.png"), preload("res://battle_assets/bag_assets/key_items_sign.png")]
+const item_select_bag_textures: Array[Resource] = [preload("res://battle_assets/bag_assets/bag_01.png"), preload("res://battle_assets/bag_assets/bag_02.png"), preload("res://battle_assets/bag_assets/bag_03.png"), preload("res://battle_assets/bag_assets/bag_04.png"), preload("res://battle_assets/bag_assets/bag_05.png")]
+const item_select_point_positions: Array[Vector2] = [Vector2(44, 29), Vector2(52, 29), Vector2(60, 29), Vector2(68, 29), Vector2(76, 29)]
+
+
+var item_select_index: Vector2i = Vector2i.ZERO
+
+
+func item_select_input(event: InputEvent) -> void:
 	
-	pass
+	if event.is_action_pressed("move_left"):
+		
+		if item_select_index.x != 0:
+			item_select_index.x -= 1
+		else:
+			item_select_index.x = 4
+	elif event.is_action_pressed("move_right"):
+		
+		if item_select_index.x != 4:
+			item_select_index.x += 1
+		else:
+			item_select_index.x = 0
+	
+	item_select_update()
+	
+	if event.is_action_pressed("move_up"):
+		item_select_index.y -= 1
+	elif event.is_action_pressed("move_down"):
+		item_select_index.y += 1
+	
+	item_select_cursor.position.y
+	
+	if event.is_action_pressed("shift"):
+		
+		menue_select.visible = true
+		item_select.visible = false
+		current_state = states.MENUE
+
+
+func item_select_update() -> void:
+	
+	item_select_point.position = item_select_point_positions[item_select_index.x]
+	
+	item_select_bag.texture = item_select_bag_textures[item_select_index.x]
+	item_select_info.texture = item_select_info_textures[item_select_index.x]
+	
+	for i in range(len(types)):
+		
+		if i == item_select_index.x:
+			types[i].visible = true
+		else:
+			types[i].visible = false
 
 
 
@@ -239,13 +321,15 @@ func bag_select_input(event: InputEvent) -> void:
 
 func action(_player_actions: Array) -> void:
 	
+	print("battle action")
+	
 	var player_actions: Array = _player_actions
 	var enemy_actions: Array = generate_enemy_actions()
 	
 	if player_actions[0] < enemy_actions[0]:
-		pass
+		execute_actions(1, player_actions, enemy_actions)
 	elif player_actions[0] > enemy_actions[0]:
-		pass
+		execute_actions(0, player_actions, enemy_actions)
 	elif player_actions[0] == 0 and enemy_actions[0] == 0:
 		pass
 	else:
@@ -263,31 +347,48 @@ func generate_enemy_actions() -> Array:
 
 
 const player_first: int = 0
-const enemy_first: int = 0
+const enemy_first: int = 1
+
+var execute_methods_arr: Array = [execute_attack, execute_item, execute_change, execute_flee]
+
+signal action_finished_sig
 
 
-func execute_actions(action_order: int, player_actions, enemy_actions) -> void:
+func execute_actions(action_order: int, player_actions: Array, enemy_actions: Array) -> void:
 	
 	if action_order == player_first:
-		pass
+		
+		execute_methods_arr[player_actions[0]].call(player_actions[1], 1)
+		await action_finished_sig
+		
+		execute_methods_arr[enemy_actions[0]].call(enemy_actions[1], 0)
 	else:
+		
+		execute_methods_arr[enemy_actions[0]].call(player_actions[1], 0)
+		await action_finished_sig
+		
+		execute_methods_arr[player_actions[0]].call(player_actions[1], 1)
+
+
+func execute_attack(action: String, opponent: int) -> void:
+	pass
+
+
+func execute_item(action: String, opponent: int) -> void:
+	pass
+
+
+func execute_change(action: String, opponent: int) -> void:
+	pass
+
+
+func execute_flee(action: String, opponent: int) -> void:
+	
+	if battle_type == 0:
 		pass
-
-
-func execute_attack() -> void:
-	pass
-
-
-func execute_item() -> void:
-	pass
-
-
-func execute_change() -> void:
-	pass
-
-
-func execute_flee() -> void:
-	pass
+	elif battle_type == 1:
+		
+		start_dialogue(["You cant run..."])
 
 
 
@@ -295,3 +396,64 @@ func execute_flee() -> void:
 
 
 
+@onready var dialogue_nde: Node2D = $dialouge
+@onready var dialogue_timer: Timer = $dialouge/timer
+@onready var dialogue_label: Label = $dialouge/text_label
+
+
+var dialogue_text: Array
+var dialogue_pressed: bool = true
+var dialogue_line: int = 1
+
+signal dialogue_finished
+
+func start_dialogue(input_arr: Array) -> void:
+	
+	current_state = states.NULL
+	
+	dialogue_nde.visible = true
+	dialogue_text = input_arr.duplicate()
+	dialogue_timer.start()
+	dialogue_line = 1
+	
+	for i in range(1):
+		for j in range(len(input_arr[i])):
+			
+			await dialogue_timer.timeout
+			dialogue_label.text += input_arr[i][j]
+	
+	current_state = states.DIALOGUE
+	dialogue_pressed = false
+
+
+func dialogue_input(event: InputEvent) -> void:
+	
+	if !dialogue_pressed:
+		if event.is_action_pressed("space"):
+			
+			dialogue_pressed = true
+			
+			sfx_player.play()
+			await sfx_player.finished
+			
+			if dialogue_line < len(dialogue_text):
+				
+				dialogue_label.text = ""
+				
+				for i in range(len(dialogue_text[dialogue_line])):
+					await dialogue_timer.timeout
+					dialogue_label.text = dialogue_text[dialogue_line][i]
+				
+			else:
+				end_dialogue()
+
+
+func end_dialogue() -> void:
+	
+	dialogue_timer.stop()
+	dialogue_label.text = ""
+	menue_select.visible = true
+	dialogue_nde.visible = false
+	dialogue_pressed = false
+	current_state = states.MENUE
+	dialogue_finished.emit()

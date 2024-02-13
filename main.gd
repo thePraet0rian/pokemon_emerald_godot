@@ -171,7 +171,9 @@ func _on_enter_new_route(_area: int) -> void:
 const battle_scn: PackedScene = preload("res://battle/battle.tscn")
 
 
-func _on_start_battle_sig(_enemy_pokemon: Array, _enemy_moveset: Array, _battle_type: int) -> void:
+func _on_start_battle_sig(_enemy_pokemon: Array, _battle_type: int) -> void:
+	
+	print(_enemy_pokemon)
 	
 	stop_music()
 	player_inst.process_mode = Node.PROCESS_MODE_DISABLED
@@ -179,12 +181,12 @@ func _on_start_battle_sig(_enemy_pokemon: Array, _enemy_moveset: Array, _battle_
 	var battle_instance = battle_scn.instantiate()
 	add_child(battle_instance)
 	
-	battle_instance.set_battle(_enemy_pokemon, _enemy_moveset, _battle_type)
+	battle_instance.set_battle(_enemy_pokemon, _battle_type)
 
 
 func _on_end_battle_sig() -> void:
 	
-	player.process_mode = Node.PROCESS_MODE_INHERIT
+	player_inst.process_mode = Node.PROCESS_MODE_INHERIT
 	get_node("battle").queue_free()
 	play_room_music()
 

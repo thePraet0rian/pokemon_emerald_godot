@@ -3381,4 +3381,3 @@ position = Vector2(-88, 24)
 
 [node name="trainer" parent="." instance=ExtResource("7_oak10")]
 position = Vector2(-64, -64)
-pokemon_arr = [[0, "Rayquaza", 100, 100, 100, 100, 100, 100, 100, 100, 100]]
