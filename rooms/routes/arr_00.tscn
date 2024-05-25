@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmba3loukcya3"]
+[gd_scene load_steps=9 format=3 uid="uid://cmba3loukcya3"]
 
 [ext_resource type="Texture2D" uid="uid://d2nxv1swp11jp" path="res://room_assets/exterior_tileset_02.png" id="1_cov8l"]
 [ext_resource type="PackedScene" uid="uid://nnd1o5w5bc5g" path="res://components/animated_transition.tscn" id="3_0btel"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://4c43wr4i42nk" path="res://npc_assets/npc_03.png" id="4_3tvr4"]
 [ext_resource type="Texture2D" uid="uid://dijt7x7m74ov7" path="res://npc_assets/npc_04.png" id="5_e4jnu"]
 [ext_resource type="PackedScene" uid="uid://c7qwguxr61pmx" path="res://dialogue/dialouge_object.tscn" id="6_dnsau"]
-[ext_resource type="PackedScene" uid="uid://tpexuiss48cl" path="res://trainer/trainer.tscn" id="7_oak10"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wpwig"]
 texture = ExtResource("1_cov8l")
@@ -3378,6 +3377,3 @@ position = Vector2(-8, 24)
 
 [node name="dialouge_object_3" parent="dialogue" instance=ExtResource("6_dnsau")]
 position = Vector2(-88, 24)
-
-[node name="trainer" parent="." instance=ExtResource("7_oak10")]
-position = Vector2(-64, -64)

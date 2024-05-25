@@ -219,7 +219,6 @@ var jumping: bool = false
 
 func move(delta: float) -> void:
 	
-	
 	percent += walk_speed * delta
 	
 	if percent >= 1.0:
@@ -255,7 +254,6 @@ func jump(delta: float) -> void:
 func animation() -> void:
 	
 	if input_direction != Vector2.ZERO:
-		
 		
 		anim_tree.set("parameters/walk/blend_position", input_direction)
 		anim_tree.set("parameters/idle/blend_position", input_direction)
